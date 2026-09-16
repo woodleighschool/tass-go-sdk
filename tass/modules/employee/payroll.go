@@ -1,6 +1,13 @@
 package tassemployee
 
-func (c *Client) GetAllEmployeeLeaveEntitlements(employeeCode string) ([]EmployeeLeaveBalanceResponse, error) {}
+import tasscommon "github.com/woodleighschool/tass-go-sdk/tass/modules/common"
 
-func (c *Client) GetAllAccrualCodeOptions() ([]OptionsResponse, error) {}
+func (c *Client) GetAllEmployeeLeaveEntitlements(employeeCode string) ([]EmployeeLeaveBalanceResponse, error) {
+	// TODO: Implementation
+	return nil, nil
+}
 
+func (c *Client) GetAllAccrualCodeOptions() ([]tasscommon.OptionsResponse, error) {
+	// TODO: Implementation
+	return nil, nil
+}

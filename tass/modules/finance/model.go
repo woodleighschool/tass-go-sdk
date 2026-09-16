@@ -119,3 +119,45 @@ type AddGeneralJournalResponse struct {
 type UpdateGeneralJournalRequest struct {
 	// TODO: Definition
 }
+
+// Accounts Payable
+
+type SupplierCreditResponse struct {
+	// TODO: Definition
+}
+
+type AddSupplierCreditRequest struct {
+	// TODO: Definition
+}
+
+type UpdateSupplierCreditRequest struct {
+	// TODO: Definition
+}
+
+type ApplySupplerCreditResponse struct {
+	// TODO: Definition
+}
+
+type SupplierCreditUnapplyInvoicesResponse struct {
+	// TODO: Definition
+}
+
+type SupplierInvoiceResponse struct {
+	// TODO: Definition
+}
+
+type SupplierInvoiceHoldPaymentResponse struct {
+	// TODO: Definition
+}
+
+type UpdateSupplierInvoiceHoldPaymentRequest struct {
+	// TODO: Definition
+}
+
+type AddSupplierInvoicePurchaseOrderRequest struct {
+	// TODO: Definition
+}
+
+type AddSupplierInvoicePurchaseOrderResponse struct {
+	// TODO: Definition
+}

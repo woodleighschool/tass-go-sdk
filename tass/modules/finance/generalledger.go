@@ -2,20 +2,20 @@ package tassfinance
 
 import tasscommon "github.com/woodleighschool/tass-go-sdk/tass/modules/common"
 
-// op: GetAllAccountYearPeriodOptions
+// op: GetAllAccountYearPeriodOptions, path: /{cmpy_code}/options/finance/generalledger/accounts/yearsperiods
 func (c *Client) GetAllAccountYearPeriodOptions() ([]YearPeriodOptionsResponse, error) {
 	// TODO: Implementation
 	return nil, nil
 }
 
-// op: GetAllAccountBudgetOptions
+// op: GetAllAccountBudgetOptions, path: /{cmpy_code}/options/finance/generalledger/accounts/budgets
 func (c *Client) GetAllAccountBudgetOptions() ([]tasscommon.OptionsResponse, error) {
 	// TODO: Implementation
 	return nil, nil
 }
 
-// op: GetAllGroupCodeOptions
-func (c *Client) GetAllGroupCodeOptions() ([]tasscommon.OptionsResponse, error) {
+// op: GetAllGroupCodesOptions, path: /{cmpy_code}/options/finance/generalledger/accounts/
+func (c *Client) GetAllGroupCodesOptions() ([]tasscommon.OptionsResponse, error) {
 	// TODO: Implementation
 	return nil, nil
 }
