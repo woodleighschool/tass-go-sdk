@@ -2,229 +2,151 @@ package tassfinance
 
 import tasscommon "github.com/woodleighschool/tass-go-sdk/tass/modules/common"
 
-// op: GetAllAccountYearPeriodOptions, path: /{cmpy_code}/options/finance/generalledger/accounts/yearsperiods
-func (c *Client) GetAllAccountYearPeriodOptions() ([]YearPeriodOptionsResponse, error) {
-	// TODO: Implementation
-	return nil, nil
-}
-
-// op: GetAllAccountBudgetOptions, path: /{cmpy_code}/options/finance/generalledger/accounts/budgets
-func (c *Client) GetAllAccountBudgetOptions() ([]tasscommon.OptionsResponse, error) {
-	// TODO: Implementation
-	return nil, nil
-}
-
-// op: GetAllGroupCodesOptions, path: /{cmpy_code}/options/finance/generalledger/accounts/
-func (c *Client) GetAllGroupCodesOptions() ([]tasscommon.OptionsResponse, error) {
-	// TODO: Implementation
-	return nil, nil
-}
-
-// op: GetAllTaxCodeOptions
-func (c *Client) GetAllTaxCodeOptions() ([]tasscommon.OptionsResponse, error) {
-	// TODO: Implementation
-	return nil, nil
-}
-
-// op: GetAllTypeCodesOptions
-func (c *Client) GetAllTypeCodesOptions() ([]tasscommon.OptionsResponse, error) {
-	// TODO: Implementation
-	return nil, nil
-}
-
-// op: GetAccountCodeFormatRules
+// op: GetAccountCodeFormatRules, path: /{cmpy_code}/options/finance/generalledger/accounts/formatrules
 func (c *Client) GetAccountCodeFormatRules() (CodeFormatRulesResponse, error) {
 	// TODO: Implementation
 	return CodeFormatRulesResponse{}, nil
 }
 
-// op: GetAllJournalTypesOptions
-func (c *Client) GetAllJournalTypesOptions() ([]tasscommon.OptionsResponse, error) {
-	// TODO: Implementation
-	return nil, nil
-}
-
-// op: GetAllReportingCodeOptions
+// op: GetAllReportingCodeOptions, path: /{cmpy_code}/options/finance/generalledger/accounts/reportingcodes/reportingcodes
 func (c *Client) GetAllReportingCodeOptions() ([]ReportingCodeResponse, error) {
 	// TODO: Implementation
 	return nil, nil
 }
 
-// op: GetAllGeneralLedgerAccounts
-func (c *Client) GetAllGeneralLedgerAccounts() ([]GeneralLedgerAccountsResponse, error) {
+// op: GetAllGeneralLedgerAccounts, path: /{cmpy_code}/options/finance/generalledger/accounts
+func (c *Client) GetAllGeneralLedgerAccounts() ([]GeneralLedgerAccountResponse, error) {
 	// TODO: Implementation
 	return nil, nil
 }
 
-// op: AddGeneralLedgerAccount
-func (c *Client) AddGeneralLedgerAccount(payload AddGeneralLedgerAccountRequest) (GeneralLedgerAccountsResponse, error) {
+// op: AddGeneralLedgerAccount, path: /{cmpy_code}/options/finance/generalledger/accounts
+func (c *Client) AddGeneralLedgerAccount(payload AddGeneralLedgerAccountRequest) (GeneralLedgerAccountResponse, error) {
 	// TODO: Implementation
-	return GeneralLedgerAccountsResponse{}, nil
+	return GeneralLedgerAccountResponse{}, nil
 }
 
-// op: GetGeneralLedgerAccountByCode
+// op: GetGeneralLedgerAccountByCode, path: /{cmpy_code}/options/finance/generalledger/accounts/{acct_code}
 func (c *Client) GetGeneralLedgerAccount(accountCode string) (GeneralLedgerAccountResponse, error) {
 	// TODO: Implementation
 	return GeneralLedgerAccountResponse{}, nil
 }
 
-// op: UpdateGeneralLedgerAccount
+// op: UpdateGeneralLedgerAccount, path: /{cmpy_code}/options/finance/generalledger/accounts/{acct_code}
 func (c *Client) UpdateGeneralLedgerAccount(accountCode string, payload UpdateGeneralLedgerAccountRequest) error {
 	// TODO: Implementation
 	return nil
 }
 
-// op: PatchGeneralLedgerAccount
+// op: PatchGeneralLedgerAccount, path: /{cmpy_code}/options/finance/generalledger/accounts/{acct_code}
 func (c *Client) PatchGeneralLedgerAccount(accountCode string, payload tasscommon.Operation) error {
 	// TODO: Implementation
 	return nil
 }
 
-// op: GetAccountBudgetsByCode
+// op: GetAccountBudgetsByCode, path: /{cmpy_code}/options/finance/generalledger/accounts/{acct_code}/budgets
 func (c *Client) GetAccountBudgets(accountCode string) ([]AccountBudgetResponse, error) {
 	// TODO: Implementation
 	return nil, nil
 }
 
-// op: AddGeneralLedgerAccountBudget
+// op: AddGeneralLedgerAccountBudget, , path: /{cmpy_code}/options/finance/generalledger/accounts/{acct_code}/budgets
 func (c *Client) AddGeneralLedgerAccountBudget(accountCode string, payload AddAccountBudgetRequest) (AccountBudgetResponse, error) {
 	// TODO: Implementation
 	return AccountBudgetResponse{}, nil
 }
 
-// op: UpdateGeneralLedgerAccountBudget
+// op: UpdateGeneralLedgerAccountBudget, path: /{cmpy_code}/options/finance/generalledger/accounts/{acct_code}/budgets
 func (c *Client) UpdateGeneralLedgerAccountBudget(accountCode string, payload UpdateAccountBudgetRequest) error {
 	// TODO: Implementation
 	return nil
 }
 
-// op: GetAccountBalancesByCode
+// op: GetAccountBalancesByCode, path: /{cmpy_code}/options/finance/generalledger/accounts/{acct_code}/balances
 func (c *Client) GetAccountBalances(accountCode string) ([]AccountBalanceResponse, error) {
 	// TODO: Implementation
 	return nil, nil
 }
 
-// op: GetAccountTransactionsByCode
+// op: GetAccountTransactionsByCode, path: /{cmpy_code}/options/finance/generalledger/accounts/{acct_code}/transactions/{year_num}/{period_num}
 func (c *Client) GetAccountTransactions(accountCode string, yearNumber string, periodNumber string) ([]AccountTransactionResponse, error) {
 	// TODO: Implementation
 	return nil, nil
 }
 
-// op: GetAccountTransactionsByPeriod
+// op: GetAccountTransactionsByPeriod, path: /{cmpy_code}/options/finance/generalledger/accounts/transactions/{year_num}/{period_num}
 func (c *Client) GetAllAccountTransactions(yearNumber string, periodNumber string) ([]AccountTransactionResponse, error) {
 	// TODO: Implementation
 	return nil, nil
 }
 
-// op: GetAccountReportingCodesByCode
+// op: GetAccountReportingCodesByCode, path: /{cmpy_code}/options/finance/generalledger/accounts/{acct_code}/reportingcodes
 func (c *Client) GetAccountReportingCodes(accountCode string) (AccountReportingCodesResponse, error) {
 	// TODO: Implementation
 	return AccountReportingCodesResponse{}, nil
 }
 
-// op: UpdateAccountReportingCodes
+// op: UpdateAccountReportingCodes, path: /{cmpy_code}/options/finance/generalledger/accounts/{acct_code}/reportingcodes
 func (c *Client) UpdateAccountReportingCodes(accountCode string, payload UpdateAccountReportingCodesRequest) error {
 	// TODO: Implementation
 	return nil
 }
 
-// op: PatchAccountReportingCodes
+// op: PatchAccountReportingCodes, path: /{cmpy_code}/options/finance/generalledger/accounts/{acct_code}/reportingcodes
 func (c *Client) PatchAccountReportingCodes(accountCode string, payload tasscommon.Operation) error {
 	// TODO: Implementation
 	return nil
 }
 
-// op: GetAccountResponsibilitiesByCode
+// op: GetAccountResponsibilitiesByCode, path: /{cmpy_code}/options/finance/generalledger/accounts/{acct_code}/responsibilities
 func (c *Client) GetAccountResponsibilities(accountCode string) ([]AccountResponsibilityResponse, error) {
 	// TODO: Implementation
 	return nil, nil
 }
 
-// op: AddGeneralLedgerAccountResponsibility
+// op: AddGeneralLedgerAccountResponsibility, path: /{cmpy_code}/options/finance/generalledger/accounts/{acct_code}/responsibilities
 func (c *Client) AddAccountResponsibility(accountCode string, payload AddAccountResponsibilityRequest) (AccountResponsibilityResponse, error) {
 	// TODO: Implementation
 	return AccountResponsibilityResponse{}, nil
 }
 
-// op: GetAllResponsibilityTeacherOptions
-func (c *Client) GetAllResponsibilityTeacherOptions() ([]tasscommon.OptionsResponseActive, error) {
-	// TODO: Implementation
-	return nil, nil
-}
-
-// op: GetAllResponsibilityEmployeeOptions
-func (c *Client) GetAllResponsibilityEmployeeOptions() ([]tasscommon.OptionsResponseActive, error) {
-	// TODO: Implementation
-	return nil, nil
-}
-
-// op: GetAllResponsibilityApprovalLevelOptions
-func (c *Client) GetAllResponsibilityApprovalLevelOptions() ([]tasscommon.OptionsResponse, error) {
-	// TODO: Implementation
-	return nil, nil
-}
-
-// op: UpdateAccountResponsibility
+// op: UpdateAccountResponsibility, path: /{cmpy_code}/options/finance/generalledger/accounts/{acct_code}/responsibilities/{source_flg}/{user_code}
 func (c *Client) UpdateAccountResponsibility(accountCode string, userType string, userCode string, payload UpdateAccountResponsibilityRequest) error {
 	// TODO: Implementation
 	return nil
 }
 
-// op: DeleteAccountResponsibility
+// op: DeleteAccountResponsibility, path: /{cmpy_code}/options/finance/generalledger/accounts/{acct_code}/responsibilities/{source_flg}/{user_code}
 func (c *Client) DeleteAccountResponsibility(accountCode string, userType string, userCode string) error {
 	// TODO: Implementation
 	return nil
 }
 
-// op: GetAllJournalTypeOptions
-func (c *Client) GetAllJournalTypeOptions() ([]JournalTypeOptionsResponse, error) {
-	// TODO: Implementation
-	return nil, nil
-}
-
-// op: GetAllGLAccountOptions
-func (c *Client) GetAllGLAccountOptions() ([]GLAccountOptionsResponse, error) {
-	// TODO: Implementation
-	return nil, nil
-}
-
-// op: GetAllTaxCodeOptions
-func (c *Client) GetAllJournalTaxCodeOptions() ([]tasscommon.OptionsResponse, error) {
-	// TODO: Implementation
-	return nil, nil
-}
-
-// op: GetAllYearPeriodOptions
-func (c *Client) GetAllYearPeriodOptions() ([]YearPeriodOptionsResponse, error) {
-	// TODO: Implementation
-	return nil, nil
-}
-
-// op: GetAllJournals
+// op: GetAllJournals, path: /{cmpy_code}/options/finance/generalledger/journals
 func (c *Client) GetAllJournals() ([]JournalResponse, error) {
 	// TODO: Implementation
 	return nil, nil
 }
 
-// op: AddGeneralLedgerTaxJournal
+// op: AddGeneralLedgerTaxJournal, path: /{cmpy_code}/options/finance/generalledger/journals/tax
 func (c *Client) AddGeneralLedgerTaxJournal(payload AddTaxJournalRequest) (AddTaxJournalResponse, error) {
 	// TODO: Implementation
 	return AddTaxJournalResponse{}, nil
 }
 
-// op: UpdateGeneralLedgerTaxJournal
+// op: UpdateGeneralLedgerTaxJournal, path: /{cmpy_code}/options/finance/generalledger/journals/tax/{jour_num}
 func (c *Client) UpdateGeneralLedgerTaxJournal(journalNumber string, payload UpdateTaxJournalRequest) error {
 	// TODO: Implementation
 	return nil
 }
 
-// op: AddGeneralLedgerGeneralJournal
+// op: AddGeneralLedgerGeneralJournalpath: /{cmpy_code}/options/finance/generalledger/journals/general
 func (c *Client) AddGeneralLedgerGeneralJournal(payload AddGeneralJournalRequest) (AddGeneralJournalResponse, error) {
 	// TODO: Implementation
 	return AddGeneralJournalResponse{}, nil
 }
 
-// op: UpdateGeneralLedgerGeneralJournal
+// op: UpdateGeneralLedgerGeneralJournalpath: /{cmpy_code}/options/finance/generalledger/journals/general/{jour_num}
 func (c *Client) UpdateGeneralLedgerGeneralJournal(journalNumber string, payload UpdateGeneralJournalRequest) error {
 	// TODO: Implementation
 	return nil

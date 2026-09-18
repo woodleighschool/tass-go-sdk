@@ -2,98 +2,62 @@ package tassfinance
 
 import tasscommon "github.com/woodleighschool/tass-go-sdk/tass/modules/common"
 
-// op: GetAllPurchaseOrders
+// op: GetAllPurchaseOrders, path: /{cmpy_code}/finance/purchasing/purchaseorders
 func (c *Client) GetAllPurchaseOrders() ([]PurchaseOrderResponse, error) {
 	// TODO: Implementation
 	return nil, nil
 }
 
-// op: AddPurchaseOrder
+// op: AddPurchaseOrder, path: /{cmpy_code}/finance/purchasing/purchaseorders
 func (c *Client) AddPurchaseOrder(payload AddPurchaseOrderRequest) (PurchaseOrderResponse, error) {
 	// TODO: Implementation
 	return PurchaseOrderResponse{}, nil
 }
 
-// op: GetPurchaseOrderById
+// op: GetPurchaseOrderById, path: /{cmpy_code}/finance/purchasing/purchaseorders/{order_num}
 func (c *Client) GetPurchaseOrderByID(orderNumber string) (PurchaseOrderResponse, error) {
 	// TODO: Implementation
 	return PurchaseOrderResponse{}, nil
 }
 
-// op: UpdatePurchaseOrder
+// op: UpdatePurchaseOrder, path: /{cmpy_code}/finance/purchasing/purchaseorders/{order_num}
 func (c *Client) UpdatePurchaseOrder(orderNumber string, payload UpdatePurchaseOrderRequest) error {
 	// TODO: Implementation
 	return nil
 }
 
-// op: DeletePurchaseOrder
+// op: DeletePurchaseOrder, path: /{cmpy_code}/finance/purchasing/purchaseorders/{order_num}
 func (c *Client) DeletePurchaseOrder(orderNumber string) error {
 	// TODO: Implementation
 	return nil
 }
 
-// op: CancelPurchaseOrder
+// op: CancelPurchaseOrder, path: /{cmpy_code}/finance/purchasing/purchaseorders/{order_num}/cancel
 func (c *Client) CancelPurchaseOrder(orderNumber string) error {
 	// TODO: Implementation
 	return nil
 }
 
-// op: GetPurchaseOrderAttachments
+// op: GetPurchaseOrderAttachments, path: /{cmpy_code}/finance/purchasing/purchaseorders/{order_num}/attachments
 func (c *Client) GetPurchaseOrderAttachments(orderNumber string) ([]tasscommon.FileResponse, error) {
 	// TODO: Implementation
 	return nil, nil
 }
 
-// op: AddPurchaseOrderAttachment
+// op: AddPurchaseOrderAttachment, path: /{cmpy_code}/finance/purchasing/purchaseorders/{order_num}/attachments
 func (c *Client) AddPurchaseOrderAttachment(orderNumber string, payload tasscommon.FileRequest) (tasscommon.NewAttachmentResponse, error) {
 	// TODO: Implementation
 	return tasscommon.NewAttachmentResponse{}, nil
 }
 
-// op: DownloadPurchaseOrderAttachment
+// op: DownloadPurchaseOrderAttachment, path: /{cmpy_code}/finance/purchasing/purchaseorders/{order_num}/attachments/{attach_id}
 func (c *Client) GetPurchaseOrderAttachment(orderNumber string, attachmentID string) ([]byte, error) {
 	// TODO: Implementation
 	return nil, nil
 }
 
-// op: DeletePurchaseOrderAttachment
+// op: DeletePurchaseOrderAttachment, path: /{cmpy_code}/finance/purchasing/purchaseorders/{order_num}/attachments/{attach_id}
 func (c *Client) DeletePurchaseOrderAttachment(orderNumber string, attachmentID string) error {
 	// TODO: Implementation
 	return nil
-}
-
-// op: GetAllDeliveryPointOptions
-func (c *Client) GetAllDeliveryPointOptions() ([]tasscommon.OptionsResponse, error) {
-	// TODO: Implementation
-	return nil, nil
-}
-
-// op: GetPurchaseOrderGLAccountOptions
-func (c *Client) GetPurchaseOrderGLAccountOptions() ([]GLAccountOptionsResponse, error) {
-	// TODO: Implementation
-	return nil, nil
-}
-
-// op: GetAllPurchaseOrderStatusOptions
-func (c *Client) GetAllPurchaseOrderStatusOptions() ([]tasscommon.OptionsResponse, error) {
-	// TODO: Implementation
-	return nil, nil
-}
-
-// op: GetAllPurchaseOrderTaxCodeOptions
-func (c *Client) GetAllPurchaseOrderTaxCodeOptions() ([]tasscommon.OptionsResponse, error) {
-	// TODO: Implementation
-	return nil, nil
-}
-
-// op: GetAllTermCodeOptions
-func (c *Client) GetAllTermCodeOptions() ([]tasscommon.OptionsResponse, error) {
-	// TODO: Implementation
-	return nil, nil
-}
-
-// op: GetAllVendorPurchaseOrderOptions
-func (c *Client) GetAllVendorPurchaseOrderOptions() ([]tasscommon.OptionsResponseActive, error) {
-	// TODO: Implementation
-	return nil, nil
 }

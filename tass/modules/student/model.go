@@ -148,45 +148,6 @@ type StudentPhotoChange struct {
 	UpdatedOn   time.Time `json:"photo_update_on"`
 }
 
-type UDAreaOptionsResponse struct {
-	CompanyCode     string       `json:"cmpy_code"`
-	AreaCode        string       `json:"area_code"`
-	AreaDescription string       `json:"area_desc"`
-	UDFields        UDFieldTypes `json:"ud_fields"`
-}
-
-type UDFieldTypes struct {
-	UDFlags       []UDFieldDetails           `json:"ud_flags"`
-	UDCodes       []UDCodeFieldDetails       `json:"ud_codes"`
-	UDText        []UDFieldDetails           `json:"ud_text"`
-	UDDates       []UDFieldDetails           `json:"ud_dates"`
-	UDAttachments []UDAttachmentFieldDetails `json:"ud_attachments"`
-}
-
-type UDFieldDetails struct {
-	Name        string  `json:"field_name"`
-	Description *string `json:"field_desc,omitempty"`
-	SortOrder   string  `json:"sort_order"` // Must conform to SortOrderValidation
-}
-
-type UDCodeFieldDetails struct {
-	ReferenceValues []UDFieldReferenceValue `json:"reference_values"`
-
-	UDFieldDetails
-}
-
-type UDFieldReferenceValue struct {
-	Code        *string `json:"ud_code,omitempty"`
-	Description string  `json:"ud_desc"`
-	SortOrder   string  `json:"sort_order"` // Must conform to SortOrderValidation
-}
-
-type UDAttachmentFieldDetails struct {
-	FieldNumber string `json:"field_number"` // Must conform to FieldNumberValidation
-
-	UDFieldDetails
-}
-
 type StudentUDAreaResponse struct {
 	CompanyCode string                      `json:"cmpy_code"`
 	AreaCode    string                      `json:"area_code"`
@@ -442,7 +403,7 @@ type StudentUDFieldOptionResponse struct {
 type StudentMCEECDYAResponse struct {
 	CompanyCode            string     `json:"cmpy_code"`
 	StudentCode            string     `json:"stud_code"`
-	ArrivalYear            *string    `json:"arrive_yr,omitempty"` // Must conform to ArrivalYearValidation
+	ArrivalYear            *int       `json:"arrive_yr,omitempty"`
 	Parent1LOTE            *string    `json:"mlote_code,omitempty"`
 	Parent1NonSchoolLevel  *string    `json:"mnse_code,omitempty"`
 	Parent1OccupationGroup *string    `json:"mocc_code,omitempty"`
@@ -458,7 +419,7 @@ type StudentMCEECDYAResponse struct {
 }
 
 type UpdateStudentMCEECDYARequest struct {
-	ArrivalYear            *string `json:"arrive_yr,omitempty"` // Must conform to ArrivalYearValidation
+	ArrivalYear            *int    `json:"arrive_yr,omitempty"`
 	Parent1LOTE            *string `json:"mlote_code,omitempty"`
 	Parent1NonSchoolLevel  *string `json:"mnse_code,omitempty"`
 	Parent1OccupationGroup *string `json:"mocc_code,omitempty"`
@@ -625,19 +586,19 @@ type UpdateStudentIllnessRequest struct {
 }
 
 type StudentImmunisationResponse struct {
-	CompanyCode      string  `json:"cmpy_code"`
-	ImmunisationCode string  `json:"imm_code"`
-	ImmunisationYear *string `json:"imm_year,omitempty"` // Must conform to ImmunisationYearValidation
-	StudentCode      string  `json:"stud_code"`
+	CompanyCode      string `json:"cmpy_code"`
+	ImmunisationCode string `json:"imm_code"`
+	ImmunisationYear *int   `json:"imm_year,omitempty"`
+	StudentCode      string `json:"stud_code"`
 }
 
 type AddStudentImmunisationRequest struct {
-	ImmunisationCode string  `json:"imm_code"`           // Max length 2
-	ImmunisationYear *string `json:"imm_year,omitempty"` // Must conform to ImmunisationYearValidation
+	ImmunisationCode string `json:"imm_code"` // Max length 2
+	ImmunisationYear *int   `json:"imm_year,omitempty"`
 }
 
 type UpdateStudentImmunisationRequest struct {
-	ImmunisationYear *string `json:"imm_year,omitempty"` // Must conform to ImmunisationYearValidation
+	ImmunisationYear *int `json:"imm_year,omitempty"`
 }
 
 type StudentImmunisationRegisterResponse struct {
@@ -672,8 +633,8 @@ type StudentMedicationResponse struct {
 	FurtherDetails        *string               `json:"med_detl,omitempty"`
 	MethodOfUse           *string               `json:"med_meth,omitempty"`
 	Name                  *string               `json:"med_text,omitempty"`
-	MedicationUID         string                `json:"medication_uid"`                   // Must be a UUID
-	MinTimeBetweenDoses   *string               `json:"min_time_between_doses,omitempty"` // Must conform to MedicationMinTimeBetweenDosesValidation
+	MedicationUID         string                `json:"medication_uid"` // Must be a UUID
+	MinTimeBetweenDoses   *int                  `json:"min_time_between_doses,omitempty"`
 	PrescribingDoctor     *string               `json:"script_doc,omitempty"`
 	StartDate             *time.Time            `json:"start_date,omitempty"`
 	StudentCode           string                `json:"stud_code"`
@@ -686,15 +647,15 @@ type StudentMedicationResponse struct {
 type AddStudentMedicationRequest struct {
 	Active                bool                 `json:"active_flg"`
 	Administer            MedicationAdminister `json:"administer"`
-	DoctorPhone           *string              `json:"doc_phone,omitempty"`              // Max length 25
-	EndDate               *string              `json:"end_date,omitempty"`               // Must be a date
-	ExpiryDate            *string              `json:"expiry_date,omitempty"`            // Must be a date
-	FurtherDetails        *string              `json:"med_detl,omitempty"`               // Max length 200
-	MethodOfUse           *string              `json:"med_meth,omitempty"`               // Max length 200
-	Name                  *string              `json:"med_text,omitempty"`               // Max length 200
-	MinTimeBetweenDoses   *string              `json:"min_time_between_doses,omitempty"` // Must conform to MedicationMinTimeBetweenDosesValidation
-	PrescribingDoctor     *string              `json:"script_doc,omitempty"`             // Max length 30
-	StartDate             *string              `json:"start_date,omitempty"`             // Must be a date
+	DoctorPhone           *string              `json:"doc_phone,omitempty"`   // Max length 25
+	EndDate               *string              `json:"end_date,omitempty"`    // Must be a date
+	ExpiryDate            *string              `json:"expiry_date,omitempty"` // Must be a date
+	FurtherDetails        *string              `json:"med_detl,omitempty"`    // Max length 200
+	MethodOfUse           *string              `json:"med_meth,omitempty"`    // Max length 200
+	Name                  *string              `json:"med_text,omitempty"`    // Max length 200
+	MinTimeBetweenDoses   *int                 `json:"min_time_between_doses,omitempty"`
+	PrescribingDoctor     *string              `json:"script_doc,omitempty"` // Max length 30
+	StartDate             *string              `json:"start_date,omitempty"` // Must be a date
 	StaffTrainingRequired bool                 `json:"training"`
 }
 
@@ -833,7 +794,7 @@ type StudentPractitionerResponse struct {
 	CompanyCode          string  `json:"cmpy_code"`
 	Name                 *string `json:"doct_name,omitempty"`
 	Phone                *string `json:"doct_phone,omitempty"`
-	PractitionerNumber   *string `json:"prac_num,omitempty"` // Must conform to PractitionerNumberValidation
+	PractitionerNumber   *int    `json:"prac_num,omitempty"`
 	PractitionerTypeCode *string `json:"ptype_code,omitempty"`
 	StudentCode          string  `json:"stud_code"`
 }
@@ -871,13 +832,13 @@ type UpdateStudentMedicalSupplementaryRequest struct {
 
 type ActivityResponse struct {
 	CompanyCode        string                       `json:"cmpy_code"`
-	ActivityID         string                       `json:"activity_id"` // Must conform to ActivityIDValidation
+	ActivityID         int                          `json:"activity_id"`
 	Year               *string                      `json:"year,omitempty"`
 	Period             *string                      `json:"period,omitempty"`
 	SubjectCode        *string                      `json:"sub_code,omitempty"`
-	YearGroup          *string                      `json:"year_grp,omitempty"` // Must conform to YearGroupValidation
+	YearGroup          *int                         `json:"year_grp,omitempty"`
 	ActivityName       string                       `json:"activity_name"`
-	TopicID            string                       `json:"topic_id"` // Must conform to TopicIDValidation
+	TopicID            int                          `json:"topic_id"`
 	TopicName          string                       `json:"topic_name"`
 	AssessmentCriteria []AssessmentCriteriaResponse `json:"assessment_criteria"`
 }
@@ -885,7 +846,7 @@ type ActivityResponse struct {
 type AssessmentCriteriaResponse struct {
 	ObjectCode        string                    `json:"obj_code"`
 	ObjectDescription string                    `json:"obj_desc"`
-	MaxValue          *string                   `json:"max_val,omitempty"` // Must conform to AssessmentMaxValueValidation
+	MaxValue          *int                      `json:"max_val,omitempty"`
 	AssessmentMethod  *AssessmentMethodResponse `json:"assessment_method,omitempty"`
 }
 
@@ -899,22 +860,22 @@ type AssessmentMethodResponse struct {
 }
 
 type ValidationResponse struct {
-	ValidResult string  `json:"valid_result"`
-	MinValue    *string `json:"min_val,omitempty"` // Must conform to ValidationMinValueValidation
-	MaxValue    *string `json:"max_val,omitempty"` // Must conform to ValidationMaxValueValidation
+	ValidResult string `json:"valid_result"`
+	MinValue    *int   `json:"min_val,omitempty"`
+	MaxValue    *int   `json:"max_val,omitempty"`
 }
 
 type ActivityStudentResponse struct {
 	CompanyCode string  `json:"cmpy_code"`
-	ActivityID  string  `json:"activity_id"` // Must conform to ActivityIDValidation
+	ActivityID  int     `json:"activity_id"`
 	StudentCode string  `json:"stud_code"`
 	ClassCode   *string `json:"class_code,omitempty"`
-	YearGroup   *string `json:"year_grp,omitempty"` // Must conform to YearGroupValidation
+	YearGroup   *int    `json:"year_grp,omitempty"`
 }
 
 type ActivityStudentResultsResponse struct {
 	CompanyCode      string            `json:"cmpy_code"`
-	ActivityID       string            `json:"activity_id"` // Must conform to ActivityIDValidation
+	ActivityID       int               `json:"activity_id"`
 	StudentCode      string            `json:"stud_code"`
 	ObjectiveResults []ObjectiveResult `json:"objective_results"`
 }
@@ -946,10 +907,10 @@ type StudentAttendanceResponse struct {
 	SourceReference          *string    `json:"ref_num,omitempty"`
 	AbsentFromTime           *time.Time `json:"abs_from_time,omitempty"`
 	AbsentToTime             *time.Time `json:"abs_to_time,omitempty"`
-	ID                       string     `json:"key_num"`         // Must conform to AbsenceIDValidation
-	TimetableID              *string    `json:"tt_id,omitempty"` // Must conform to TimetableIDValidation
+	ID                       int        `json:"key_num"`
+	TimetableID              *int       `json:"tt_id,omitempty"`
 	Comment                  *string    `json:"note_text,omitempty"`
-	YearGroup                *string    `json:"year_grp,omitempty"` // Must conform to YearGroupValidation
+	YearGroup                *int       `json:"year_grp,omitempty"`
 	Boarder                  bool       `json:"boarder"`
 	House                    *string    `json:"house,omitempty"`
 	PCTutorGroup             *string    `json:"pctut_grp,omitempty"`
@@ -985,7 +946,7 @@ type StudentCommunicationRulesParentNameResponse struct {
 	FirstName      string  `json:"first_name"`
 	Gender         *string `json:"gender,omitempty"`
 	Initials       *string `json:"initials,omitempty"`
-	PersonPosition string  `json:"person_posn"` // Must conform to PersonPositionValidation
+	PersonPosition int     `json:"person_posn"`
 	PreferredName  string  `json:"preferred_name"`
 	Suffix         *string `json:"suffix,omitempty"`
 	Surname        string  `json:"surname"`
@@ -993,14 +954,14 @@ type StudentCommunicationRulesParentNameResponse struct {
 }
 
 type StudentCommunicationRulesParentAddressResponse struct {
-	AddressNumber  *string                                               `json:"add_num"` // Must conform to AddressNumberValidation
+	AddressNumber  *int                                                  `json:"add_num"`
 	AddressLine1   *string                                               `json:"addr1,omitempty"`
 	AddressLine2   *string                                               `json:"addr2,omitempty"`
 	AddressLine3   *string                                               `json:"addr3,omitempty"`
 	Description    *string                                               `json:"addr_desc,omitempty"`
 	Addresse       *string                                               `json:"addresse,omitempty"`
 	BusinessPhone  *string                                               `json:"bus_phone,omitempty"`
-	CallOrder      *string                                               `json:"call_order,omitempty"` // Must conform to CallOrderValidation
+	CallOrder      *int                                                  `json:"call_order,omitempty"`
 	Country        *string                                               `json:"country,omitempty"`
 	Email1         *string                                               `json:"e_mail1,omitempty"`
 	Email2         *string                                               `json:"e_mail2,omitempty"`
@@ -1008,7 +969,7 @@ type StudentCommunicationRulesParentAddressResponse struct {
 	HomePhone      *string                                               `json:"home_phone,omitempty"`
 	MobilePhone1   *string                                               `json:"mobile1,omitempty"`
 	MobilePhone2   *string                                               `json:"mobile2,omitempty"`
-	PersonPosition *string                                               `json:"person_posn,omitempty"` // Must conform to PersonPositionValidation
+	PersonPosition *int                                                  `json:"person_posn,omitempty"`
 	PostCode       *string                                               `json:"post_code,omitempty"`
 	Relationship   *string                                               `json:"relationship,omitempty"`
 	Salutation     *string                                               `json:"salutation,omitempty"`
