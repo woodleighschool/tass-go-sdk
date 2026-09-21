@@ -1,16 +1,42 @@
 package tassemployee
 
-import tasscommon "github.com/woodleighschool/tass-go-sdk/tass/modules/common"
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+
+	tasscommon "github.com/woodleighschool/tass-go-sdk/tass/modules/common"
+)
 
 // op: GetAllEmployeePDActivities, path: /{cmpy_code}/employees/{emp_code}/pdactivities
-func (c *Client) GetAllEmployeePDActivities(employeeCode string) ([]EmployeePDActivityResponse, error) {
-	// TODO; Implementation
-	return nil, nil
+func (c *Client) GetAllEmployeePDActivities(ctx context.Context, employeeCode string) ([]EmployeePDActivityResponse, error) {
+	var result []EmployeePDActivityResponse
+	url := fmt.Sprintf("/employees/%s/pdactivities", employeeCode)
+	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	if err != nil {
+		return nil, err
+	}
+	if err := json.Unmarshal(body, &result); err != nil {
+		return nil, err
+	}
+	return result, nil
 }
 
 // op: AddEmployeePDActivities, path: /{cmpy_code}/employees/{emp_code}/pdactivities
-func (c *Client) AddEmployeePDActivities(employeeCode string, payload AddEmployeePDActivityRequest) (EmployeePDActivityResponse, error) {
-	// TODO; Implementation
+func (c *Client) AddEmployeePDActivities(ctx context.Context, employeeCode string, payload AddEmployeePDActivityRequest) (EmployeePDActivityResponse, error) {
+	var result EmployeePDActivityResponse
+	url := fmt.Sprintf("/employees/%s/pdactivities", employeeCode)
+	if err := payload.validate(); err != nil {
+		return EmployeePDActivityResponse{}, err
+	}
+	body, err := c.t.request(ctx, http.MethodPost, url, nil, payload, http.StatusCreated)
+	if err != nil {
+		return EmployeePDActivityResponse{}, err
+	}
+	if err := json.Unmarshal(body, &result); err != nil {
+		return EmployeePDActivityResponse{}, err
+	}
 	return EmployeePDActivityResponse{}, nil
 }
 

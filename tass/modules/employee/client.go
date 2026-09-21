@@ -6,15 +6,15 @@ import (
 )
 
 type transport interface {
-	request(context.Context, string, string, url.Values, ...int)
+	request(context.Context, string, string, url.Values, any, ...int) ([]byte, error)
 }
 
 type Client struct {
-	transport transport
+	t transport
 }
 
 func NewClient(transport transport) Client {
 	return Client{
-		transport: transport,
+		t: transport,
 	}
 }

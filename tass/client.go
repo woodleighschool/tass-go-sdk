@@ -122,8 +122,13 @@ func (c *Client) request(
 	method string,
 	path string,
 	query url.Values,
+	payload any,
 	successCodes ...int,
 ) ([]byte, error) {
+	encoded, err := encodePayload(payload)
+	if err != nil {
+		return nil, err
+	}
 	for attempt := range 2 {
 		token, tokenErr := c.refreshToken(ctx)
 		if tokenErr != nil {
@@ -133,7 +138,7 @@ func (c *Client) request(
 		if len(query) != 0 {
 			requestURL += "?" + query.Encode()
 		}
-		request, requestErr := http.NewRequestWithContext(ctx, method, requestURL, nil)
+		request, requestErr := http.NewRequestWithContext(ctx, method, requestURL, bytes.NewReader(encoded))
 		if requestErr != nil {
 			return nil, fmt.Errorf("create tass api request: %w", requestErr)
 		}
@@ -238,6 +243,17 @@ func (c *Client) invalidateToken(token string) {
 		c.transport.token = ""
 		c.transport.tokenExpiryDate = time.Time{}
 	}
+}
+
+func encodePayload(payload any) ([]byte, error) {
+	if payload == nil {
+		return nil, nil
+	}
+	encoded, err := json.Marshal(payload)
+	if err != nil {
+		return nil, fmt.Errorf("encode tass request body: %w", err)
+	}
+	return encoded, nil
 }
 
 func containsStatus(statuses []int, status int) bool {
