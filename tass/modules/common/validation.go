@@ -98,10 +98,19 @@ type fieldError struct {
 	playground.FieldError
 }
 
-// TODO: Add more verbosity
 func (err fieldError) Error() string {
 	field := err.Field()
 	switch err.Tag() {
+	case "max":
+		return fmt.Sprintf("%s must be at most %s", field, err.Param())
+	case "datebeforetoday":
+		return field + " must be a date and must be before today"
+	case "datetime":
+		return fmt.Sprintf("%s must be a date in the format %s", field, err.Param())
+	case "nefield":
+		return fmt.Sprintf("%s cannot be the same as %s", field, err.Param())
+	case "dateafterdate":
+		return fmt.Sprintf("%s must be after %s", field, err.Param())
 	default:
 		return field + " is invalid"
 	}

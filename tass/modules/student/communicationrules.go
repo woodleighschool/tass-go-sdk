@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-// op: GetStudentCommunicationRules, path: /{cmpy_code}/students/{stud_code}/communicationrules
+// CODEGEN(none): op=GetStudentCommunicationRules, path=/{cmpy_code}/students/{stud_code}/communicationrules
 func (c *Client) GetStudentCommunicationRules(ctx context.Context, studentCode string) (StudentCommunicationRulesResponse, error) {
 	var result StudentCommunicationRulesResponse
 	url := fmt.Sprintf("/students/%s/communicationrules", studentCode)
@@ -21,7 +21,7 @@ func (c *Client) GetStudentCommunicationRules(ctx context.Context, studentCode s
 	return result, nil
 }
 
-// op: GetStudentCommunicationRulesByCommTypeCode, path: /{cmpy_code}/students/{stud_code}/communicationrules/{commtype_code}
+// CODEGEN(none): op=GetStudentCommunicationRulesByCommTypeCode, path=/{cmpy_code}/students/{stud_code}/communicationrules/{commtype_code}
 func (c *Client) GetStudentCommunicationRulesByCommType(ctx context.Context, studentCode string, communicationType string) (StudentCommunicationRulesResponse, error) {
 	var result StudentCommunicationRulesResponse
 	url := fmt.Sprintf("/students/%s/communicationrules/%s", studentCode, communicationType)
@@ -35,7 +35,7 @@ func (c *Client) GetStudentCommunicationRulesByCommType(ctx context.Context, stu
 	return result, nil
 }
 
-// op: GetAllStudentCommunicationRules, path: /{cmpy_code}/students/communicationrules
+// CODEGEN(none): op=GetAllStudentCommunicationRules, path=/{cmpy_code}/students/communicationrules
 func (c *Client) GetAllStudentCommunicationRules(ctx context.Context) ([]StudentCommunicationRulesResponse, error) {
 	var result []StudentCommunicationRulesResponse
 	body, err := c.t.request(ctx, http.MethodGet, "/students/communicationrules", nil, nil, http.StatusOK)
@@ -48,7 +48,7 @@ func (c *Client) GetAllStudentCommunicationRules(ctx context.Context) ([]Student
 	return result, nil
 }
 
-// op: GetAllStudentCommunicationRulesByCommType, path: /{cmpy_code}/students/communicationrules/{commtype_code}
+// CODEGEN(none): op=GetAllStudentCommunicationRulesByCommType, path=/{cmpy_code}/students/communicationrules/{commtype_code}
 func (c *Client) GetAllStudentCommunicationRulesByCommType(ctx context.Context, communicationType string) ([]StudentCommunicationRulesResponse, error) {
 	var result []StudentCommunicationRulesResponse
 	url := fmt.Sprintf("/students/communicationrules/%s", communicationType)

@@ -1,0 +1,373 @@
+  "AddEmployeeRequest": {
+        "required": [
+          "birth_date",
+          "emp_code",
+          "first_name",
+          "gender",
+          "initials",
+          "post_code",
+          "preferred_name",
+          "start_date",
+          "state_text",
+          "status_text",
+          "surname",
+          "title"
+        ],
+        "type": "object",
+        "properties": {
+          "add1_text": {
+            "maxLength": 60,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Address line 1."
+          },
+          "add2_text": {
+            "maxLength": 60,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Address line 2."
+          },
+          "alt_id": {
+            "maxLength": 40,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Alternate identifier. Must be unique for the company."
+          },
+          "birth_date": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Date of birth. Must be a valid date in format (yyyy-mm-dd) and must be less than the current date.",
+            "format": "date"
+          },
+          "cessation_type": {
+            "maxLength": 1,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Termination reason. If provided, it must be a one of: C -> contract finished, D -> deceased, F -> dismissal, I -> Illness, R -> redundancy, T -> transfer, V -> voluntary. ."
+          },
+          "city_text": {
+            "maxLength": 46,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Suburb/city."
+          },
+          "country_code": {
+            "maxLength": 2,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Country code."
+          },
+          "country_text": {
+            "maxLength": 20,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Country text."
+          },
+          "deceased_flg": {
+            "type": "boolean",
+            "description": "Deceased."
+          },
+          "driv_lic_text": {
+            "maxLength": 10,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Drivers license."
+          },
+          "e_mail": {
+            "maxLength": 60,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Email address."
+          },
+          "emp_code": {
+            "maxLength": 7,
+            "type": "string",
+            "description": "Employee code. When adding a new employee, set this field to blank if using auto-numbering."
+          },
+          "first_name": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "First name."
+          },
+          "gender": {
+            "maxLength": 3,
+            "type": "string",
+            "description": "Gender. If provided, it must be a valid value as per the gender options."
+          },
+          "indig_status": {
+            "maxLength": 1,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Indigenous status. If provided, it must be one of: 1 -> Aboriginal, 2 -> Torres Strait Islander, 3 -> Aboriginal & Torres Strait Islander, 4 -> neither, 9 -> unknown."
+          },
+          "initials": {
+            "maxLength": 5,
+            "type": "string",
+            "description": "Initials."
+          },
+          "main_activity": {
+            "maxLength": 4,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Main role activity. If provided, it must be a valid value as per the main activity options."
+          },
+          "marital_stat_flag": {
+            "maxLength": 1,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Marital status. If provided, it must be a valid value as per the marital status options."
+          },
+          "mob_phone": {
+            "maxLength": 30,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Mobile phone number."
+          },
+          "nok_add1_text": {
+            "maxLength": 60,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Next of kin - address line 1."
+          },
+          "nok_add2_text": {
+            "maxLength": 60,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Next of kin - address line 2."
+          },
+          "nok_city_text": {
+            "maxLength": 46,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Next of kin - suburb/city."
+          },
+          "nok_country_text": {
+            "maxLength": 20,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Next of kin - country text."
+          },
+          "nok_name_text": {
+            "maxLength": 30,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Next of kin - full name."
+          },
+          "nok_phone_h_text": {
+            "maxLength": 30,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Next of kin - home phone number."
+          },
+          "nok_phone_w_text": {
+            "maxLength": 30,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Next of kin - work phone number."
+          },
+          "nok_post_code": {
+            "maxLength": 10,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Next of kin - post code."
+          },
+          "nok_relat_text": {
+            "maxLength": 20,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Next of kin - relationship"
+          },
+          "nok_state_text": {
+            "maxLength": 3,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Next of kin - address state."
+          },
+          "other_name": {
+            "maxLength": 50,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Other name/s."
+          },
+          "phone_h_text": {
+            "maxLength": 30,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Home phone number."
+          },
+          "phone_w_text": {
+            "maxLength": 30,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Work phone number."
+          },
+          "position_text": {
+            "maxLength": 20,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Position text."
+          },
+          "position_title": {
+            "maxLength": 100,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Position title."
+          },
+          "post_code": {
+            "maxLength": 10,
+            "type": "string",
+            "description": "Address post code."
+          },
+          "preferred_name": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Preferred name."
+          },
+          "previous_payroll_id": {
+            "maxLength": 200,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Previous payroll identifier."
+          },
+          "school_email": {
+            "maxLength": 60,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "School email."
+          },
+          "sms_flg": {
+            "type": "boolean",
+            "description": "SMS flag."
+          },
+          "start_date": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Employment start date. Must be a valid date in format (yyyy-mm-dd).",
+            "format": "date"
+          },
+          "state_text": {
+            "maxLength": 3,
+            "type": "string",
+            "description": "Address state."
+          },
+          "status_text": {
+            "maxLength": 1,
+            "type": "string",
+            "description": "Employment status. If provided, it must be a valid value as per the employment status options."
+          },
+          "surname": {
+            "maxLength": 50,
+            "type": "string",
+            "description": "Surname."
+          },
+          "suffix": {
+            "maxLength": 30,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Suffix."
+          },
+          "supervisor_code": {
+            "maxLength": 7,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Supervisor code. Must be an existing employee and have a different emp_code to this employee."
+          },
+          "supervisor2_code": {
+            "maxLength": 7,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Supervisor 2 code. Must be an existing employee, be different to supervisor and have a different emp_code to this employee."
+          },
+          "term_date": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Termination date. Must be a valid date in (yyyy-mm-dd) and be greater than start_date.",
+            "format": "date"
+          },
+          "title": {
+            "maxLength": 15,
+            "type": "string",
+            "description": "Name title. If provided, it must be a valid value as per the name title options."
+          },
+          "vend_code": {
+            "maxLength": 8,
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "Supplier code. If provided, it must be a valid title as dictated by the company setup."
+          }
+        }
+      },

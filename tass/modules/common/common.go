@@ -18,7 +18,7 @@ type FileResponse struct {
 
 type IFormFile string
 
-// Custom struct
+// FileRequest is a custom struct for uploading files to TASS API
 type FileRequest struct {
 	FileName             *string           `json:"file_name,omitempty"`
 	FileContent          IFormFile         `json:"file_content,omitempty"`
@@ -191,9 +191,9 @@ type UDFieldDetails struct {
 }
 
 type UDCodeFieldDetails struct {
-	ReferenceValues []UDFieldReferenceValue `json:"reference_values"`
-
 	UDFieldDetails
+
+	ReferenceValues []UDFieldReferenceValue `json:"reference_values"`
 }
 
 type UDFieldReferenceValue struct {
@@ -203,7 +203,7 @@ type UDFieldReferenceValue struct {
 }
 
 type UDAttachmentFieldDetails struct {
-	FieldNumber int `json:"field_number"`
-
 	UDFieldDetails
+
+	FieldNumber int `json:"field_number"`
 }

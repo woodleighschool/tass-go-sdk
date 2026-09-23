@@ -5,11 +5,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"net/url"
 
 	tasscommon "github.com/woodleighschool/tass-go-sdk/tass/modules/common"
 )
 
-// op: GetEmployeeByCode, path: /{cmpy_code}/employees/{emp_code}
+// CODEGEN(none): op=GetEmployeeByCode, path=/{cmpy_code}/employees/{emp_code}
 func (c *Client) GetEmployee(ctx context.Context, employeeCode string) (EmployeeResponse, error) {
 	var result EmployeeResponse
 	url := fmt.Sprintf("/employees/%s", employeeCode)
@@ -23,7 +24,7 @@ func (c *Client) GetEmployee(ctx context.Context, employeeCode string) (Employee
 	return result, nil
 }
 
-// op: UpdateEmployee, path: /{cmpy_code}/employees/{emp_code}
+// CODEGEN(none): op=UpdateEmployee, path=/{cmpy_code}/employees/{emp_code}
 func (c *Client) UpdateEmployee(ctx context.Context, employeeCode string, payload UpdateEmployeeRequest) error {
 	url := fmt.Sprintf("/employees/%s", employeeCode)
 	if err := tasscommon.Validate(payload); err != nil {
@@ -36,7 +37,7 @@ func (c *Client) UpdateEmployee(ctx context.Context, employeeCode string, payloa
 	return nil
 }
 
-// op: PatchEmployee, path: /{cmpy_code}/employees/{emp_code}
+// CODEGEN(none): op=PatchEmployee, path=/{cmpy_code}/employees/{emp_code}
 func (c *Client) PatchEmployee(ctx context.Context, employeeCode string, payload []tasscommon.Operation) error {
 	url := fmt.Sprintf("/employees/%s", employeeCode)
 	_, err := c.t.request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
@@ -46,7 +47,7 @@ func (c *Client) PatchEmployee(ctx context.Context, employeeCode string, payload
 	return nil
 }
 
-// op: GetAllEmployees, path: /{cmpy_code}/employees
+// CODEGEN(none): op=GetAllEmployees, path=/{cmpy_code}/employees
 func (c *Client) GetAllEmployees(ctx context.Context) ([]EmployeeResponse, error) {
 	var result []EmployeeResponse
 	body, err := c.t.request(ctx, http.MethodGet, "/employees", nil, nil, http.StatusOK)
@@ -59,7 +60,7 @@ func (c *Client) GetAllEmployees(ctx context.Context) ([]EmployeeResponse, error
 	return result, nil
 }
 
-// op: AddEmployee, path: /{cmpy_code}/employees
+// CODEGEN(none): op=AddEmployee, path=/{cmpy_code}/employees
 func (c *Client) AddEmployee(ctx context.Context, payload AddEmployeeRequest) (EmployeeResponse, error) {
 	var result EmployeeResponse
 	if err := tasscommon.Validate(payload); err != nil {
@@ -75,7 +76,7 @@ func (c *Client) AddEmployee(ctx context.Context, payload AddEmployeeRequest) (E
 	return result, nil
 }
 
-// op: GetAllEmployeeStandardNotes, path: /{cmpy_code}/employees/{emp_code}/notes/standard
+// CODEGEN(none): op=GetAllEmployeeStandardNotes, path=/{cmpy_code}/employees/{emp_code}/notes/standard
 func (c *Client) GetAllEmployeeStandardNotes(ctx context.Context, employeeCode string) ([]EmployeeStandardNoteResponse, error) {
 	var result []EmployeeStandardNoteResponse
 	url := fmt.Sprintf("/employees/%s/notes/standard", employeeCode)
@@ -89,7 +90,7 @@ func (c *Client) GetAllEmployeeStandardNotes(ctx context.Context, employeeCode s
 	return result, nil
 }
 
-// op: AddEmployeeStandardNote, path: /{cmpy_code}/employees/{emp_code}/notes/standard
+// CODEGEN(none): op=AddEmployeeStandardNote, path=/{cmpy_code}/employees/{emp_code}/notes/standard
 func (c *Client) AddEmployeeStandardNote(ctx context.Context, employeeCode string, payload AddEmployeeStandardNoteRequest) (EmployeeStandardNoteResponse, error) {
 	var result EmployeeStandardNoteResponse
 	url := fmt.Sprintf("/employees/%s/notes/standard", employeeCode)
@@ -106,7 +107,7 @@ func (c *Client) AddEmployeeStandardNote(ctx context.Context, employeeCode strin
 	return result, nil
 }
 
-// op: GetEmployeeStandardNoteByID, path: /{cmpy_code}/employees/{emp_code}/notes/standard/{note_uid}
+// CODEGEN(none): op=GetEmployeeStandardNoteByID, path=/{cmpy_code}/employees/{emp_code}/notes/standard/{note_uid}
 func (c *Client) GetEmployeeStandardNote(ctx context.Context, employeeCode string, noteID string) (EmployeeStandardNoteResponse, error) {
 	var result EmployeeStandardNoteResponse
 	url := fmt.Sprintf("/employees/%s/notes/standard/%s", employeeCode, noteID)
@@ -120,7 +121,7 @@ func (c *Client) GetEmployeeStandardNote(ctx context.Context, employeeCode strin
 	return result, nil
 }
 
-// op: UpdateEmployeeStandardNote, path: /{cmpy_code}/employees/{emp_code}/notes/standard/{note_uid}
+// CODEGEN(none): op=UpdateEmployeeStandardNote, path=/{cmpy_code}/employees/{emp_code}/notes/standard/{note_uid}
 func (c *Client) UpdateEmployeeStandardNote(ctx context.Context, employeeCode string, noteID string, payload UpdateEmployeeStandardNoteRequest) error {
 	url := fmt.Sprintf("/employees/%s/notes/standard/%s", employeeCode, noteID)
 	if err := tasscommon.Validate(payload); err != nil {
@@ -133,7 +134,7 @@ func (c *Client) UpdateEmployeeStandardNote(ctx context.Context, employeeCode st
 	return nil
 }
 
-// op: PatchEmployeeStandardNote, path: /{cmpy_code}/employees/{emp_code}/notes/standard/{note_uid}
+// CODEGEN(none): op=PatchEmployeeStandardNote, path=/{cmpy_code}/employees/{emp_code}/notes/standard/{note_uid}
 func (c *Client) PatchEmployeeStandardNote(ctx context.Context, employeeCode string, noteID string, payload []tasscommon.Operation) error {
 	url := fmt.Sprintf("/employees/%s/notes/standard/%s", employeeCode, noteID)
 	_, err := c.t.request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
@@ -143,7 +144,7 @@ func (c *Client) PatchEmployeeStandardNote(ctx context.Context, employeeCode str
 	return nil
 }
 
-// op: DeleteEmployeeStandardNote, path: /{cmpy_code}/employees/{emp_code}/notes/standard/{note_uid}
+// CODEGEN(none): op=DeleteEmployeeStandardNote, path=/{cmpy_code}/employees/{emp_code}/notes/standard/{note_uid}
 func (c *Client) DeleteEmployeeStandardNote(ctx context.Context, employeeCode string, noteID string) error {
 	url := fmt.Sprintf("/employees/%s/notes/standard/%s", employeeCode, noteID)
 	_, err := c.t.request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
@@ -153,7 +154,7 @@ func (c *Client) DeleteEmployeeStandardNote(ctx context.Context, employeeCode st
 	return nil
 }
 
-// op: GetAllEmployeeStandardNotesAttachments, path: /{cmpy_code}/employees/{emp_code}/notes/standard/{note_uid}/attachments
+// CODEGEN(none): op=GetAllEmployeeStandardNotesAttachments, path=/{cmpy_code}/employees/{emp_code}/notes/standard/{note_uid}/attachments
 func (c *Client) GetAllEmployeeStandardNotesAttachments(ctx context.Context, employeeCode string, noteID string) ([]tasscommon.FileResponse, error) {
 	var result []tasscommon.FileResponse
 	url := fmt.Sprintf("/employees/%s/notes/standard/%s/attachments", employeeCode, noteID)
@@ -167,7 +168,7 @@ func (c *Client) GetAllEmployeeStandardNotesAttachments(ctx context.Context, emp
 	return result, nil
 }
 
-// op: AddEmployeeStandardNotesAttachments, path: /{cmpy_code}/employees/{emp_code}/notes/standard/{note_uid}/attachments
+// CODEGEN(none): op=AddEmployeeStandardNotesAttachments, path=/{cmpy_code}/employees/{emp_code}/notes/standard/{note_uid}/attachments
 func (c *Client) AddEmployeeStandardNotesAttachments(ctx context.Context, employeeCode string, noteID string, payload tasscommon.FileRequest) (tasscommon.NewAttachmentResponse, error) {
 	var result tasscommon.NewAttachmentResponse
 	url := fmt.Sprintf("/employees/%s/notes/standard/%s/attachments", employeeCode, noteID)
@@ -184,7 +185,7 @@ func (c *Client) AddEmployeeStandardNotesAttachments(ctx context.Context, employ
 	return result, nil
 }
 
-// op: DownloadEmployeeStandardNotesAttachment, path: /{cmpy_code}/employees/{emp_code}/notes/standard/{note_uid}/attachments/{attach_id}
+// CODEGEN(none): op=DownloadEmployeeStandardNotesAttachment, path=/{cmpy_code}/employees/{emp_code}/notes/standard/{note_uid}/attachments/{attach_id}
 func (c *Client) GetEmployeeStandardNotesAttachment(ctx context.Context, employeeCode string, noteID string, attachmentID string) ([]byte, error) {
 	var result []byte
 	url := fmt.Sprintf("/employees/%s/notes/standard/%s/attachments/%s", employeeCode, noteID, attachmentID)
@@ -198,7 +199,7 @@ func (c *Client) GetEmployeeStandardNotesAttachment(ctx context.Context, employe
 	return result, nil
 }
 
-// op: DeleteEmployeeStandardNotesAttachment, path: /{cmpy_code}/employees/{emp_code}/notes/standard/{note_uid}/attachments/{attach_id}
+// CODEGEN(none): op=DeleteEmployeeStandardNotesAttachment, path=/{cmpy_code}/employees/{emp_code}/notes/standard/{note_uid}/attachments/{attach_id}
 func (c *Client) DeleteEmployeeStandardNotesAttachment(ctx context.Context, employeeCode string, noteID string, attachmentID string) error {
 	url := fmt.Sprintf("/employees/%s/notes/standard/%s/attachments/%s", employeeCode, noteID, attachmentID)
 	_, err := c.t.request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
@@ -208,7 +209,7 @@ func (c *Client) DeleteEmployeeStandardNotesAttachment(ctx context.Context, empl
 	return nil
 }
 
-// op: GetAllEmployeeConfidentialNotes, path: /{cmpy_code}/employees/{emp_code}/notes/confidential
+// CODEGEN(none): op=GetAllEmployeeConfidentialNotes, path=/{cmpy_code}/employees/{emp_code}/notes/confidential
 func (c *Client) GetAllEmployeeConfidentialNotes(ctx context.Context, employeeCode string) ([]EmployeeConfidentialNoteResponse, error) {
 	var result []EmployeeConfidentialNoteResponse
 	url := fmt.Sprintf("/employees/%s/notes/confidential", employeeCode)
@@ -222,7 +223,7 @@ func (c *Client) GetAllEmployeeConfidentialNotes(ctx context.Context, employeeCo
 	return result, nil
 }
 
-// op: AddEmployeeConfidentialNote, path: /{cmpy_code}/employees/{emp_code}/notes/confidential
+// CODEGEN(none): op=AddEmployeeConfidentialNote, path=/{cmpy_code}/employees/{emp_code}/notes/confidential
 func (c *Client) AddEmployeeConfidentialNote(ctx context.Context, employeeCode string, payload AddEmployeeConfidentialNoteRequest) (EmployeeConfidentialNoteResponse, error) {
 	var result EmployeeConfidentialNoteResponse
 	url := fmt.Sprintf("/employees/%s/notes/confidential", employeeCode)
@@ -239,7 +240,7 @@ func (c *Client) AddEmployeeConfidentialNote(ctx context.Context, employeeCode s
 	return result, nil
 }
 
-// op: GetEmployeeConfidentialNoteByID, path: /{cmpy_code}/employees/{emp_code}/notes/confidential/{note_uid}
+// CODEGEN(none): op=GetEmployeeConfidentialNoteByID, path=/{cmpy_code}/employees/{emp_code}/notes/confidential/{note_uid}
 func (c *Client) GetEmployeeConfidentialNote(ctx context.Context, employeeCode string, noteID string) (EmployeeConfidentialNoteResponse, error) {
 	var result EmployeeConfidentialNoteResponse
 	url := fmt.Sprintf("/employees/%s/notes/confidential/%s", employeeCode, noteID)
@@ -253,7 +254,7 @@ func (c *Client) GetEmployeeConfidentialNote(ctx context.Context, employeeCode s
 	return result, nil
 }
 
-// op: UpdateEmployeeConfidentialNote, path: /{cmpy_code}/employees/{emp_code}/notes/confidential/{note_uid}
+// CODEGEN(none): op=UpdateEmployeeConfidentialNote, path=/{cmpy_code}/employees/{emp_code}/notes/confidential/{note_uid}
 func (c *Client) UpdateEmployeeConfidentialNote(ctx context.Context, employeeCode string, noteID string, payload UpdateEmployeeConfidentialNoteRequest) error {
 	url := fmt.Sprintf("/employees/%s/notes/confidential/%s", employeeCode, noteID)
 	if err := tasscommon.Validate(payload); err != nil {
@@ -266,7 +267,7 @@ func (c *Client) UpdateEmployeeConfidentialNote(ctx context.Context, employeeCod
 	return nil
 }
 
-// op: PatchEmployeeConfidentialNote, path: /{cmpy_code}/employees/{emp_code}/notes/confidential/{note_uid}
+// CODEGEN(none): op=PatchEmployeeConfidentialNote, path=/{cmpy_code}/employees/{emp_code}/notes/confidential/{note_uid}
 func (c *Client) PatchEmployeeConfidentialNote(ctx context.Context, employeeCode string, noteID string, payload []tasscommon.Operation) error {
 	url := fmt.Sprintf("/employees/%s/notes/confidential/%s", employeeCode, noteID)
 	_, err := c.t.request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
@@ -276,7 +277,7 @@ func (c *Client) PatchEmployeeConfidentialNote(ctx context.Context, employeeCode
 	return nil
 }
 
-// op: DeleteEmployeeConfidentialNote, path: /{cmpy_code}/employees/{emp_code}/notes/confidential/{note_uid}
+// CODEGEN(none): op=DeleteEmployeeConfidentialNote, path=/{cmpy_code}/employees/{emp_code}/notes/confidential/{note_uid}
 func (c *Client) DeleteEmployeeConfidentialNote(ctx context.Context, employeeCode string, noteID string) error {
 	url := fmt.Sprintf("/employees/%s/notes/confidential/%s", employeeCode, noteID)
 	_, err := c.t.request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
@@ -286,7 +287,7 @@ func (c *Client) DeleteEmployeeConfidentialNote(ctx context.Context, employeeCod
 	return nil
 }
 
-// op: GetAllEmployeeConfidentialNotesAttachments, path: /{cmpy_code}/employees/{emp_code}/notes/confidential/{note_uid}/attachments
+// CODEGEN(none): op=GetAllEmployeeConfidentialNotesAttachments, path=/{cmpy_code}/employees/{emp_code}/notes/confidential/{note_uid}/attachments
 func (c *Client) GetAllEmployeeConfidentialNotesAttachments(ctx context.Context, employeeCode string, noteID string) ([]tasscommon.FileResponse, error) {
 	var result []tasscommon.FileResponse
 	url := fmt.Sprintf("/employees/%s/notes/confidential/%s/attachments", employeeCode, noteID)
@@ -300,7 +301,7 @@ func (c *Client) GetAllEmployeeConfidentialNotesAttachments(ctx context.Context,
 	return result, nil
 }
 
-// op: AddEmployeeConfidentialNotesAttachments, path: /{cmpy_code}/employees/{emp_code}/notes/confidential/{note_uid}/attachments
+// CODEGEN(none): op=AddEmployeeConfidentialNotesAttachments, path=/{cmpy_code}/employees/{emp_code}/notes/confidential/{note_uid}/attachments
 func (c *Client) AddEmployeeConfidentialNotesAttachments(ctx context.Context, employeeCode string, noteID string, payload tasscommon.FileRequest) (tasscommon.NewAttachmentResponse, error) {
 	var result tasscommon.NewAttachmentResponse
 	url := fmt.Sprintf("/employees/%s/notes/confidential/%s/attachments", employeeCode, noteID)
@@ -317,7 +318,7 @@ func (c *Client) AddEmployeeConfidentialNotesAttachments(ctx context.Context, em
 	return result, nil
 }
 
-// op: DownloadEmployeeConfidentialNotesAttachment, path: /{cmpy_code}/employees/{emp_code}/notes/confidential/{note_uid}/attachments/{attach_id}
+// CODEGEN(none): op=DownloadEmployeeConfidentialNotesAttachment, path=/{cmpy_code}/employees/{emp_code}/notes/confidential/{note_uid}/attachments/{attach_id}
 func (c *Client) GetEmployeeConfidentialNotesAttachment(ctx context.Context, employeeCode string, noteID string, attachmentID string) ([]byte, error) {
 	var result []byte
 	url := fmt.Sprintf("/employees/%s/notes/confidential/%s/attachments/%s", employeeCode, noteID, attachmentID)
@@ -331,7 +332,7 @@ func (c *Client) GetEmployeeConfidentialNotesAttachment(ctx context.Context, emp
 	return result, nil
 }
 
-// op: DeleteEmployeeConfidentialNotesAttachment, path: /{cmpy_code}/employees/{emp_code}/notes/confidential/{note_uid}/attachments/{attach_id}
+// CODEGEN(none): op=DeleteEmployeeConfidentialNotesAttachment, path=/{cmpy_code}/employees/{emp_code}/notes/confidential/{note_uid}/attachments/{attach_id}
 func (c *Client) DeleteEmployeeConfidentialNotesAttachment(ctx context.Context, employeeCode string, noteID string, attachmentID string) error {
 	url := fmt.Sprintf("/employees/%s/notes/confidential/%s/attachments/%s", employeeCode, noteID, attachmentID)
 	_, err := c.t.request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
@@ -341,11 +342,14 @@ func (c *Client) DeleteEmployeeConfidentialNotesAttachment(ctx context.Context, 
 	return nil
 }
 
-// op: GetEmployeePhotoChanges, path: /{cmpy_code}/employees/photo/changes
+// CODEGEN(none): op=GetEmployeePhotoChanges, path=/{cmpy_code}/employees/photo/changes
 func (c *Client) GetEmployeePhotoChanges(ctx context.Context, changeKey string) (EmployeePhotoChangesResponse, error) {
 	var result EmployeePhotoChangesResponse
-	// TODO: What format is the change key and how to apply it to the query
-	body, err := c.t.request(ctx, http.MethodGet, "/employees/photo/changes", nil, nil, http.StatusOK)
+	query, err := url.ParseQuery(fmt.Sprintf("change_key=%s", changeKey))
+	if err != nil {
+		return EmployeePhotoChangesResponse{}, err
+	}
+	body, err := c.t.request(ctx, http.MethodGet, "/employees/photo/changes", query, nil, http.StatusOK)
 	if err != nil {
 		return EmployeePhotoChangesResponse{}, err
 	}
@@ -355,14 +359,22 @@ func (c *Client) GetEmployeePhotoChanges(ctx context.Context, changeKey string) 
 	return result, nil
 }
 
-// op: GetEmployeePhoto, path: /{cmpy_code}/employees/{emp_code}/photo
-func (c *Client) GetEmployeePhoto(ctx context.Context, employeeCode string) (any, error) {
-	// TODO: Implementation
-	// What does this return?!
-	return nil, nil
+// CODEGEN(none): op=GetEmployeePhoto, path=/{cmpy_code}/employees/{emp_code}/photo
+func (c *Client) GetEmployeePhoto(ctx context.Context, employeeCode string) ([]byte, error) {
+	// TODO: Check this works?
+	var result []byte
+	url := fmt.Sprintf("/employees/%s/photo", employeeCode)
+	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	if err != nil {
+		return nil, err
+	}
+	if err := json.Unmarshal(body, &result); err != nil {
+		return nil, err
+	}
+	return result, nil
 }
 
-// op: AddEmployeePhoto, path: /{cmpy_code}/employees/{emp_code}/photo
+// CODEGEN(none): op=AddEmployeePhoto, path=/{cmpy_code}/employees/{emp_code}/photo
 func (c *Client) AddEmployeePhoto(ctx context.Context, employeeCode string, payload tasscommon.FileRequest) error {
 	url := fmt.Sprintf("/employees/%s/photo", employeeCode)
 	if err := tasscommon.Validate(payload); err != nil {
@@ -375,7 +387,7 @@ func (c *Client) AddEmployeePhoto(ctx context.Context, employeeCode string, payl
 	return nil
 }
 
-// op: GetAllEmployeeQualifications, path: /{cmpy_code}/employees/{emp_code}/qualifications
+// CODEGEN(none): op=GetAllEmployeeQualifications, path=/{cmpy_code}/employees/{emp_code}/qualifications
 func (c *Client) GetAllEmployeeQualifications(ctx context.Context, employeeCode string) ([]EmployeeQualificationResponse, error) {
 	var result []EmployeeQualificationResponse
 	url := fmt.Sprintf("/employees/%s/qualifications", employeeCode)
@@ -389,7 +401,7 @@ func (c *Client) GetAllEmployeeQualifications(ctx context.Context, employeeCode 
 	return result, nil
 }
 
-// op: AddEmployeeQualification, path: /{cmpy_code}/employees/{emp_code}/qualifications
+// CODEGEN(none): op=AddEmployeeQualification, path=/{cmpy_code}/employees/{emp_code}/qualifications
 func (c *Client) AddEmployeeQualification(ctx context.Context, employeeCode string, payload AddEmployeeQualificationRequest) (EmployeeQualificationResponse, error) {
 	var result EmployeeQualificationResponse
 	url := fmt.Sprintf("/employees/%s/qualifications", employeeCode)
@@ -406,7 +418,7 @@ func (c *Client) AddEmployeeQualification(ctx context.Context, employeeCode stri
 	return result, nil
 }
 
-// op: GetEmployeeQualificationByID, path: /{cmpy_code}/employees/{emp_code}/qualifications/{qual_uid}
+// CODEGEN(none): op=GetEmployeeQualificationByID, path=/{cmpy_code}/employees/{emp_code}/qualifications/{qual_uid}
 func (c *Client) GetEmployeeQualification(ctx context.Context, employeeCode string, qualificationID string) (EmployeeQualificationResponse, error) {
 	var result EmployeeQualificationResponse
 	url := fmt.Sprintf("/employees/%s/qualifications/%s", employeeCode, qualificationID)
@@ -420,7 +432,7 @@ func (c *Client) GetEmployeeQualification(ctx context.Context, employeeCode stri
 	return result, nil
 }
 
-// op: UpdateEmployeeQualification, path: /{cmpy_code}/employees/{emp_code}/qualifications/{qual_uid}
+// CODEGEN(none): op=UpdateEmployeeQualification, path=/{cmpy_code}/employees/{emp_code}/qualifications/{qual_uid}
 func (c *Client) UpdateEmployeeQualification(ctx context.Context, employeeCode string, qualificationID string, payload UpdateEmployeeQualificationRequest) error {
 	url := fmt.Sprintf("/employees/%s/qualifications/%s", employeeCode, qualificationID)
 	if err := tasscommon.Validate(payload); err != nil {
@@ -433,7 +445,7 @@ func (c *Client) UpdateEmployeeQualification(ctx context.Context, employeeCode s
 	return nil
 }
 
-// op: PatchEmployeeQualification, path: /{cmpy_code}/employees/{emp_code}/qualifications/{qual_uid}
+// CODEGEN(none): op=PatchEmployeeQualification, path=/{cmpy_code}/employees/{emp_code}/qualifications/{qual_uid}
 func (c *Client) PatchEmployeeQualification(ctx context.Context, employeeCode string, qualificationID string, payload []tasscommon.Operation) error {
 	url := fmt.Sprintf("/employees/%s/qualifications/%s", employeeCode, qualificationID)
 	_, err := c.t.request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
@@ -443,7 +455,7 @@ func (c *Client) PatchEmployeeQualification(ctx context.Context, employeeCode st
 	return nil
 }
 
-// op: DeleteEmployeeQualification, path: /{cmpy_code}/employees/{emp_code}/qualifications/{qual_uid}
+// CODEGEN(none): op=DeleteEmployeeQualification, path=/{cmpy_code}/employees/{emp_code}/qualifications/{qual_uid}
 func (c *Client) DeleteEmployeeQualification(ctx context.Context, employeeCode string, qualificationID string) error {
 	url := fmt.Sprintf("/employees/%s/qualifications/%s", employeeCode, qualificationID)
 	_, err := c.t.request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
@@ -453,7 +465,7 @@ func (c *Client) DeleteEmployeeQualification(ctx context.Context, employeeCode s
 	return nil
 }
 
-// op: GetAllEmployeeQualificationsAttachments, path: /{cmpy_code}/employees/{emp_code}/qualifications/{qual_uid}/attachments
+// CODEGEN(none): op=GetAllEmployeeQualificationsAttachments, path=/{cmpy_code}/employees/{emp_code}/qualifications/{qual_uid}/attachments
 func (c *Client) GetAllEmployeeQualificationsAttachments(ctx context.Context, employeeCode string, qualificationID string) ([]tasscommon.FileResponse, error) {
 	var result []tasscommon.FileResponse
 	url := fmt.Sprintf("/employees/%s/qualifications/%s/attachments", employeeCode, qualificationID)
@@ -467,7 +479,7 @@ func (c *Client) GetAllEmployeeQualificationsAttachments(ctx context.Context, em
 	return result, nil
 }
 
-// op: AddEmployeeQualificationsAttachment, path: /{cmpy_code}/employees/{emp_code}/qualifications/{qual_uid}/attachments
+// CODEGEN(none): op=AddEmployeeQualificationsAttachment, path=/{cmpy_code}/employees/{emp_code}/qualifications/{qual_uid}/attachments
 func (c *Client) AddEmployeeQualificationsAttachment(ctx context.Context, employeeCode string, qualificationID string, payload tasscommon.FileRequest) (tasscommon.NewAttachmentResponse, error) {
 	var result tasscommon.NewAttachmentResponse
 	url := fmt.Sprintf("/employees/%s/qualifications/%s/attachments", employeeCode, qualificationID)
@@ -484,7 +496,7 @@ func (c *Client) AddEmployeeQualificationsAttachment(ctx context.Context, employ
 	return result, nil
 }
 
-// op: DownloadEmployeeQualificationsAttachment, path: /{cmpy_code}/employees/{emp_code}/qualifications/{qual_uid}/attachments/{attach_id}
+// CODEGEN(none): op=DownloadEmployeeQualificationsAttachment, path=/{cmpy_code}/employees/{emp_code}/qualifications/{qual_uid}/attachments/{attach_id}
 func (c *Client) GetEmployeeQualificationsAttachment(ctx context.Context, employeeCode string, qualificationID string, attachmentID string) ([]byte, error) {
 	var result []byte
 	url := fmt.Sprintf("/employees/%s/qualifications/%s/attachments/%s", employeeCode, qualificationID, attachmentID)
@@ -498,7 +510,7 @@ func (c *Client) GetEmployeeQualificationsAttachment(ctx context.Context, employ
 	return result, nil
 }
 
-// op: DeleteEmployeeQualificationsAttachment, path: /{cmpy_code}/employees/{emp_code}/qualifications/{qual_uid}/attachments/{attach_id}
+// CODEGEN(none): op=DeleteEmployeeQualificationsAttachment, path=/{cmpy_code}/employees/{emp_code}/qualifications/{qual_uid}/attachments/{attach_id}
 func (c *Client) DeleteEmployeeQualificationsAttachment(ctx context.Context, employeeCode string, qualificationID string, attachmentID string) error {
 	url := fmt.Sprintf("/employees/%s/qualifications/%s/attachments/%s", employeeCode, qualificationID, attachmentID)
 	_, err := c.t.request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
@@ -508,7 +520,7 @@ func (c *Client) DeleteEmployeeQualificationsAttachment(ctx context.Context, emp
 	return nil
 }
 
-// op: GetAllEmployeeUDAreas, path: /{cmpy_code}/employees/{emp_code}/udareas
+// CODEGEN(none): op=GetAllEmployeeUDAreas, path=/{cmpy_code}/employees/{emp_code}/udareas
 func (c *Client) GetAllEmployeeUDAreas(ctx context.Context, employeeCode string) ([]EmployeeUDAreaResponse, error) {
 	var result []EmployeeUDAreaResponse
 	url := fmt.Sprintf("/employees/%s/udareas", employeeCode)
@@ -522,7 +534,7 @@ func (c *Client) GetAllEmployeeUDAreas(ctx context.Context, employeeCode string)
 	return result, nil
 }
 
-// op: GetEmployeeUDArea, path: /{cmpy_code}/employees/{emp_code}/udareas/{area_code}
+// CODEGEN(none): op=GetEmployeeUDArea, path=/{cmpy_code}/employees/{emp_code}/udareas/{area_code}
 func (c *Client) GetEmployeeUDArea(ctx context.Context, employeeCode string, areaCode string) (EmployeeUDAreaResponse, error) {
 	var result EmployeeUDAreaResponse
 	url := fmt.Sprintf("/employees/%s/udareas/%s", employeeCode, areaCode)
@@ -536,7 +548,7 @@ func (c *Client) GetEmployeeUDArea(ctx context.Context, employeeCode string, are
 	return result, nil
 }
 
-// op: AddEmployeeUDArea, path: /{cmpy_code}/employees/{emp_code}/udareas/{area_code}
+// CODEGEN(none): op=AddEmployeeUDArea, path=/{cmpy_code}/employees/{emp_code}/udareas/{area_code}
 func (c *Client) AddEmployeeUDArea(ctx context.Context, employeeCode string, areaCode string, payload AddEmployeeUDAreaRequest) (EmployeeUDAreaResponse, error) {
 	var result EmployeeUDAreaResponse
 	url := fmt.Sprintf("/employees/%s/udareas/%s", employeeCode, areaCode)
@@ -553,7 +565,7 @@ func (c *Client) AddEmployeeUDArea(ctx context.Context, employeeCode string, are
 	return result, nil
 }
 
-// op: UpdateEmployeeUDArea, path: /{cmpy_code}/employees/{emp_code}/udareas/{area_code}
+// CODEGEN(none): op=UpdateEmployeeUDArea, path=/{cmpy_code}/employees/{emp_code}/udareas/{area_code}
 func (c *Client) UpdateEmployeeUDArea(ctx context.Context, employeeCode string, areaCode string, payload UpdateEmployeeUDAreaRequest) error {
 	url := fmt.Sprintf("/employees/%s/udareas/%s", employeeCode, areaCode)
 	if err := tasscommon.Validate(payload); err != nil {
@@ -566,7 +578,7 @@ func (c *Client) UpdateEmployeeUDArea(ctx context.Context, employeeCode string, 
 	return nil
 }
 
-// op: PatchEmployeeUDArea, path: /{cmpy_code}/employees/{emp_code}/udareas/{area_code}
+// CODEGEN(none): op=PatchEmployeeUDArea, path=/{cmpy_code}/employees/{emp_code}/udareas/{area_code}
 func (c *Client) PatchEmployeeUDArea(ctx context.Context, employeeCode string, areaCode string, payload []tasscommon.Operation) error {
 	url := fmt.Sprintf("/employees/%s/udareas/%s", employeeCode, areaCode)
 	_, err := c.t.request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
@@ -576,7 +588,7 @@ func (c *Client) PatchEmployeeUDArea(ctx context.Context, employeeCode string, a
 	return nil
 }
 
-// op: DeleteEmployeeUDArea, path: /{cmpy_code}/employees/{emp_code}/udareas/{area_code}
+// CODEGEN(none): op=DeleteEmployeeUDArea, path=/{cmpy_code}/employees/{emp_code}/udareas/{area_code}
 func (c *Client) DeleteEmployeeUDArea(ctx context.Context, employeeCode string, areaCode string) error {
 	url := fmt.Sprintf("/employees/%s/udareas/%s", employeeCode, areaCode)
 	_, err := c.t.request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
@@ -586,7 +598,7 @@ func (c *Client) DeleteEmployeeUDArea(ctx context.Context, employeeCode string, 
 	return nil
 }
 
-// op: DownloadEmployeeUDAreaAttachment, path: /{cmpy_code}/employees/{emp_code}/udareas/{area_code}/attachments/{field_number}/{attach_id}
+// CODEGEN(none): op=DownloadEmployeeUDAreaAttachment, path=/{cmpy_code}/employees/{emp_code}/udareas/{area_code}/attachments/{field_number}/{attach_id}
 func (c *Client) GetEmployeeUDAreaAttachment(ctx context.Context, employeeCode string, areaCode string, udFieldID int, attachmentID string) ([]byte, error) {
 	var result []byte
 	url := fmt.Sprintf("/employees/%s/udareas/%s/attachments/%d/%s", employeeCode, areaCode, udFieldID, attachmentID)
@@ -600,7 +612,7 @@ func (c *Client) GetEmployeeUDAreaAttachment(ctx context.Context, employeeCode s
 	return result, nil
 }
 
-// op: DownloadEmployeeUDAreaAttachment, path: /{cmpy_code}/employees/{emp_code}/udareas/{area_code}/attachments/{field_number}/{attach_id}
+// CODEGEN(none): op=DownloadEmployeeUDAreaAttachment, path=/{cmpy_code}/employees/{emp_code}/udareas/{area_code}/attachments/{field_number}/{attach_id}
 func (c *Client) DeleteEmployeeUDAreaAttachment(ctx context.Context, employeeCode string, areaCode string, udFieldID int, attachmentID string) error {
 	url := fmt.Sprintf("/employees/%s/udareas/%s/attachments/%d/%s", employeeCode, areaCode, udFieldID, attachmentID)
 	_, err := c.t.request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
@@ -610,7 +622,7 @@ func (c *Client) DeleteEmployeeUDAreaAttachment(ctx context.Context, employeeCod
 	return nil
 }
 
-// op: AddEmployeeUDAreaAttachment, path: /{cmpy_code}/employees/{emp_code}/udareas/{area_code}/attachments/{field_number}
+// CODEGEN(none): op=AddEmployeeUDAreaAttachment, path=/{cmpy_code}/employees/{emp_code}/udareas/{area_code}/attachments/{field_number}
 func (c *Client) AddEmployeeUDAreaAttachment(ctx context.Context, employeeCode string, areaCode string, udFieldID int, payload tasscommon.FileRequest) (tasscommon.NewAttachmentResponse, error) {
 	var result tasscommon.NewAttachmentResponse
 	url := fmt.Sprintf("/employees/%s/udareas/%s/attachments/%d", employeeCode, areaCode, udFieldID)

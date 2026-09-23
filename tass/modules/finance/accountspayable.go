@@ -9,7 +9,7 @@ import (
 	tasscommon "github.com/woodleighschool/tass-go-sdk/tass/modules/common"
 )
 
-// op: GetAllSupplierCredits, path: /{cmpy_code}/finance/accountspayable/credits
+// CODEGEN(none): op=GetAllSupplierCredits, path=/{cmpy_code}/finance/accountspayable/credits
 func (c *Client) GetAllSupplierCredits(ctx context.Context) ([]SupplierCreditResponse, error) {
 	var result []SupplierCreditResponse
 	body, err := c.t.request(ctx, http.MethodGet, "/finance/accountspayable/credits", nil, nil, http.StatusOK)
@@ -22,7 +22,7 @@ func (c *Client) GetAllSupplierCredits(ctx context.Context) ([]SupplierCreditRes
 	return result, err
 }
 
-// op: AddSupplierCredit, path: /{cmpy_code}/finance/accountspayable/credits
+// CODEGEN(none): op=AddSupplierCredit, path=/{cmpy_code}/finance/accountspayable/credits
 func (c *Client) AddSupplierCredit(ctx context.Context, payload AddSupplierCreditRequest) (SupplierCreditResponse, error) {
 	var result SupplierCreditResponse
 	if err := tasscommon.Validate(payload); err != nil {
@@ -38,7 +38,7 @@ func (c *Client) AddSupplierCredit(ctx context.Context, payload AddSupplierCredi
 	return result, nil
 }
 
-// op: GetSupplierCreditByID, path: /{cmpy_code}/finance/accountspayable/credits/{debit_num}
+// CODEGEN(none): op=GetSupplierCreditByID, path=/{cmpy_code}/finance/accountspayable/credits/{debit_num}
 func (c *Client) GetSupplierCredit(ctx context.Context, creditNumber int) (SupplierCreditResponse, error) {
 	var result SupplierCreditResponse
 	url := fmt.Sprintf("/finance/accountspayable/credits/%d", creditNumber)
@@ -52,7 +52,7 @@ func (c *Client) GetSupplierCredit(ctx context.Context, creditNumber int) (Suppl
 	return result, nil
 }
 
-// op: UpdateSupplierCredit, path: /{cmpy_code}/finance/accountspayable/credits/{debit_num}
+// CODEGEN(none): op=UpdateSupplierCredit, path=/{cmpy_code}/finance/accountspayable/credits/{debit_num}
 func (c *Client) UpdateSupplierCredit(ctx context.Context, creditNumber int, payload UpdateSupplierCreditRequest) error {
 	url := fmt.Sprintf("/finance/accountspayable/credits/%d", creditNumber)
 	if err := tasscommon.Validate(payload); err != nil {
@@ -65,7 +65,7 @@ func (c *Client) UpdateSupplierCredit(ctx context.Context, creditNumber int, pay
 	return nil
 }
 
-// op: ApplySupplierCredit, path: /{cmpy_code}/finance/accountspayable/credits/{debit_num}/apply
+// CODEGEN(none): op=ApplySupplierCredit, path=/{cmpy_code}/finance/accountspayable/credits/{debit_num}/apply
 func (c *Client) ApplySupplierCredit(ctx context.Context, creditNumber int, payload ApplySupplierCreditRequest) (SupplierCreditApplyInvoicesResponse, error) {
 	var result SupplierCreditApplyInvoicesResponse
 	url := fmt.Sprintf("/finance/accountspayable/credits/%d/apply", creditNumber)
@@ -82,7 +82,7 @@ func (c *Client) ApplySupplierCredit(ctx context.Context, creditNumber int, payl
 	return result, nil
 }
 
-// op: UnapplySupplierCredit, path: /{cmpy_code}/finance/accountspayable/credits/{debit_num}/unapply
+// CODEGEN(none): op=UnapplySupplierCredit, path=/{cmpy_code}/finance/accountspayable/credits/{debit_num}/unapply
 func (c *Client) UnapplySupplierCredit(ctx context.Context, creditNumber int) (SupplierCreditUnapplyInvoicesResponse, error) {
 	var result SupplierCreditUnapplyInvoicesResponse
 	url := fmt.Sprintf("/finance/accountspayable/credits/%d/unapply", creditNumber)
@@ -96,7 +96,7 @@ func (c *Client) UnapplySupplierCredit(ctx context.Context, creditNumber int) (S
 	return result, nil
 }
 
-// op: GetSupplierCreditAttachments, path: /{cmpy_code}/finance/accountspayable/credits/{debit_num}/attachments
+// CODEGEN(none): op=GetSupplierCreditAttachments, path=/{cmpy_code}/finance/accountspayable/credits/{debit_num}/attachments
 func (c *Client) GetSupplierCreditAttachments(ctx context.Context, creditNumber int) ([]tasscommon.FileResponse, error) {
 	var result []tasscommon.FileResponse
 	url := fmt.Sprintf("/finance/accountspayable/credits/%d/attachments", creditNumber)
@@ -110,7 +110,7 @@ func (c *Client) GetSupplierCreditAttachments(ctx context.Context, creditNumber 
 	return result, nil
 }
 
-// op: AddSupplierCreditAttachment, path: /{cmpy_code}/finance/accountspayable/credits/{debit_num}/attachments
+// CODEGEN(none): op=AddSupplierCreditAttachment, path=/{cmpy_code}/finance/accountspayable/credits/{debit_num}/attachments
 func (c *Client) AddSupplierCreditAttachment(ctx context.Context, creditNumber int, payload tasscommon.FileRequest) (tasscommon.NewAttachmentResponse, error) {
 	var result tasscommon.NewAttachmentResponse
 	url := fmt.Sprintf("/finance/accountspayable/credits/%d/attachments", creditNumber)
@@ -127,7 +127,7 @@ func (c *Client) AddSupplierCreditAttachment(ctx context.Context, creditNumber i
 	return result, nil
 }
 
-// op: DownloadSupplierCreditAttachment, path: /{cmpy_code}/finance/accountspayable/credits/{debit_num}/attachments/{attach_id}
+// CODEGEN(none): op=DownloadSupplierCreditAttachment, path=/{cmpy_code}/finance/accountspayable/credits/{debit_num}/attachments/{attach_id}
 func (c *Client) GetSupplierCreditAttachment(ctx context.Context, creditNumber int, attachmentID string) ([]byte, error) {
 	var result []byte
 	url := fmt.Sprintf("/finance/accountspayable/credits/%d/attachments/%s", creditNumber, attachmentID)
@@ -141,7 +141,7 @@ func (c *Client) GetSupplierCreditAttachment(ctx context.Context, creditNumber i
 	return result, nil
 }
 
-// op: DeleteSupplierCreditAttachment, path: /{cmpy_code}/finance/accountspayable/credits/{debit_num}/attachments/{attach_id}
+// CODEGEN(none): op=DeleteSupplierCreditAttachment, path=/{cmpy_code}/finance/accountspayable/credits/{debit_num}/attachments/{attach_id}
 func (c *Client) DeleteSupplierCreditAttachment(ctx context.Context, creditNumber int, attachmentID string) error {
 	url := fmt.Sprintf("/finance/accountspayable/credits/%d/attachments/%s", creditNumber, attachmentID)
 	_, err := c.t.request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
@@ -151,7 +151,7 @@ func (c *Client) DeleteSupplierCreditAttachment(ctx context.Context, creditNumbe
 	return nil
 }
 
-// op: GetAllSupplierInvoices, path: /{cmpy_code}/finance/accountspayable/invoices
+// CODEGEN(none): op=GetAllSupplierInvoices, path=/{cmpy_code}/finance/accountspayable/invoices
 func (c *Client) GetAllSupplierInvoices(ctx context.Context) ([]SupplierInvoiceResponse, error) {
 	var result []SupplierInvoiceResponse
 	body, err := c.t.request(ctx, http.MethodGet, "/finance/accountspayable/invoices", nil, nil, http.StatusOK)
@@ -164,7 +164,7 @@ func (c *Client) GetAllSupplierInvoices(ctx context.Context) ([]SupplierInvoiceR
 	return result, nil
 }
 
-// op: GetInvoiceHoldPaymentByID, path: /{cmpy_code}/finance/accountspayable/invoices/{vouch_code}/holdpayment
+// CODEGEN(none): op=GetInvoiceHoldPaymentByID, path=/{cmpy_code}/finance/accountspayable/invoices/{vouch_code}/holdpayment
 func (c *Client) GetInvoiceHoldPayment(ctx context.Context, invoiceNumber int) (SupplierInvoiceHoldPaymentResponse, error) {
 	var result SupplierInvoiceHoldPaymentResponse
 	url := fmt.Sprintf("/finance/accountspayable/invoices/%d/holdpayment", invoiceNumber)
@@ -178,7 +178,7 @@ func (c *Client) GetInvoiceHoldPayment(ctx context.Context, invoiceNumber int) (
 	return result, nil
 }
 
-// op: UpdateInvoiceHoldPayment, path: /{cmpy_code}/finance/accountspayable/invoices/{vouch_code}/holdpayment
+// CODEGEN(none): op=UpdateInvoiceHoldPayment, path=/{cmpy_code}/finance/accountspayable/invoices/{vouch_code}/holdpayment
 func (c *Client) UpdateInvoiceHoldPayment(ctx context.Context, invoiceNumber int, payload UpdateSupplierInvoiceHoldPaymentRequest) error {
 	url := fmt.Sprintf("/finance/accountspayable/invoices/%d/holdpayment", invoiceNumber)
 	if err := tasscommon.Validate(payload); err != nil {
@@ -191,7 +191,7 @@ func (c *Client) UpdateInvoiceHoldPayment(ctx context.Context, invoiceNumber int
 	return nil
 }
 
-// op: AddSupplierInvoicePurchaseOrder, path: /{cmpy_code}/finance/accountspayable/invoices/purchaseorder
+// CODEGEN(none): op=AddSupplierInvoicePurchaseOrder, path=/{cmpy_code}/finance/accountspayable/invoices/purchaseorder
 func (c *Client) AddSupplierInvoicePurchaseOrder(ctx context.Context, payload AddSupplierInvoicePurchaseOrderRequest) (AddSupplierInvoicePurchaseOrderResponse, error) {
 	var result AddSupplierInvoicePurchaseOrderResponse
 	if err := tasscommon.Validate(payload); err != nil {
@@ -207,7 +207,7 @@ func (c *Client) AddSupplierInvoicePurchaseOrder(ctx context.Context, payload Ad
 	return result, nil
 }
 
-// op: AddSupplierInvoiceGeneralLedger, path: /{cmpy_code}/finance/accountspayable/invoices/generalledger
+// CODEGEN(none): op=AddSupplierInvoiceGeneralLedger, path=/{cmpy_code}/finance/accountspayable/invoices/generalledger
 func (c *Client) AddSupplierInvoiceGeneralLedger(ctx context.Context, payload AddSupplierInvoiceGeneralLedgerRequest) (AddSupplierInvoiceGeneralLedgerResponse, error) {
 	var result AddSupplierInvoiceGeneralLedgerResponse
 	if err := tasscommon.Validate(payload); err != nil {
@@ -223,7 +223,7 @@ func (c *Client) AddSupplierInvoiceGeneralLedger(ctx context.Context, payload Ad
 	return result, nil
 }
 
-// op: UpdateSupplierInvoicePurchaseOrder, path: /{cmpy_code}/finance/accountspayable/invoices/purchaseorder/{vouch_code}
+// CODEGEN(none): op=UpdateSupplierInvoicePurchaseOrder, path=/{cmpy_code}/finance/accountspayable/invoices/purchaseorder/{vouch_code}
 func (c *Client) UpdateSupplierInvoicePurchaseOrder(ctx context.Context, invoiceNumber int, payload UpdateSupplierInvoicePurchaseOrderRequest) error {
 	url := fmt.Sprintf("/finance/accountspayable/invoices/purchaseorder/%d", invoiceNumber)
 	if err := tasscommon.Validate(payload); err != nil {
@@ -236,7 +236,7 @@ func (c *Client) UpdateSupplierInvoicePurchaseOrder(ctx context.Context, invoice
 	return nil
 }
 
-// op: UpdateSupplierInvoiceGeneralLedger, path: /{cmpy_code}/finance/accountspayable/invoices/generalledger/{vouch_code}
+// CODEGEN(none): op=UpdateSupplierInvoiceGeneralLedger, path=/{cmpy_code}/finance/accountspayable/invoices/generalledger/{vouch_code}
 func (c *Client) UpdateSupplierInvoiceGeneralLedger(ctx context.Context, invoiceNumber int, payload UpdateSupplierInvoiceGeneralLedgerRequest) error {
 	url := fmt.Sprintf("/finance/accountspayable/invoices/generalledger/%d", invoiceNumber)
 	if err := tasscommon.Validate(payload); err != nil {
@@ -249,7 +249,7 @@ func (c *Client) UpdateSupplierInvoiceGeneralLedger(ctx context.Context, invoice
 	return nil
 }
 
-// op: CancelSupplierInvoicePurchaseOrder, path: /{cmpy_code}/finance/accountspayable/invoices/purchaseorder/{vouch_code}/cancel
+// CODEGEN(none): op=CancelSupplierInvoicePurchaseOrder, path=/{cmpy_code}/finance/accountspayable/invoices/purchaseorder/{vouch_code}/cancel
 func (c *Client) CancelSupplierInvoicePurchaseOrder(ctx context.Context, invoiceNumber int) error {
 	url := fmt.Sprintf("/finance/accountspayable/invoices/purchaseorder/%d/cancel", invoiceNumber)
 	_, err := c.t.request(ctx, http.MethodPost, url, nil, nil, http.StatusOK)
@@ -259,7 +259,7 @@ func (c *Client) CancelSupplierInvoicePurchaseOrder(ctx context.Context, invoice
 	return nil
 }
 
-// op: CancelSupplierInvoiceGeneralLedger, path: /{cmpy_code}/finance/accountspayable/invoices/generalledger/{vouch_code}/cancel
+// CODEGEN(none): op=CancelSupplierInvoiceGeneralLedger, path=/{cmpy_code}/finance/accountspayable/invoices/generalledger/{vouch_code}/cancel
 func (c *Client) CancelSupplierInvoiceGeneralLedger(ctx context.Context, invoiceNumber int) error {
 	url := fmt.Sprintf("/finance/accountspayable/invoices/generalledger/%d/cancel", invoiceNumber)
 	_, err := c.t.request(ctx, http.MethodPost, url, nil, nil, http.StatusOK)
@@ -269,7 +269,7 @@ func (c *Client) CancelSupplierInvoiceGeneralLedger(ctx context.Context, invoice
 	return nil
 }
 
-// op: GetSupplierInvoicePurchaseOrderAttachments, path: /{cmpy_code}/finance/accountspayable/invoices/purchaseorder/{vouch_code}/attachments
+// CODEGEN(none): op=GetSupplierInvoicePurchaseOrderAttachments, path=/{cmpy_code}/finance/accountspayable/invoices/purchaseorder/{vouch_code}/attachments
 func (c *Client) GetSupplierInvoicePurchaseOrderAttachments(ctx context.Context, invoiceNumber int) ([]tasscommon.FileResponse, error) {
 	var result []tasscommon.FileResponse
 	url := fmt.Sprintf("/finance/accountspayable/invoices/purchaseorder/%d/attachments", invoiceNumber)
@@ -283,7 +283,7 @@ func (c *Client) GetSupplierInvoicePurchaseOrderAttachments(ctx context.Context,
 	return result, nil
 }
 
-// op: AddSupplierInvoicePurchaseOrderAttachment, path: /{cmpy_code}/finance/accountspayable/invoices/purchaseorder/{vouch_code}/attachments
+// CODEGEN(none): op=AddSupplierInvoicePurchaseOrderAttachment, path=/{cmpy_code}/finance/accountspayable/invoices/purchaseorder/{vouch_code}/attachments
 func (c *Client) AddSupplierInvoicePurchaseOrderAttachments(ctx context.Context, invoiceNumber int, payload tasscommon.FileRequest) (tasscommon.NewAttachmentResponse, error) {
 	var result tasscommon.NewAttachmentResponse
 	url := fmt.Sprintf("/finance/accountspayable/invoices/purchaseorder/%d/attachments", invoiceNumber)
@@ -300,7 +300,7 @@ func (c *Client) AddSupplierInvoicePurchaseOrderAttachments(ctx context.Context,
 	return result, nil
 }
 
-// op: DownloadSupplierInvoicePurchaseOrderAttachment, path: /{cmpy_code}/finance/accountspayable/invoices/purchaseorder/{vouch_code}/attachments/{attach_id}
+// CODEGEN(none): op=DownloadSupplierInvoicePurchaseOrderAttachment, path=/{cmpy_code}/finance/accountspayable/invoices/purchaseorder/{vouch_code}/attachments/{attach_id}
 func (c *Client) GetSupplierInvoicePurchaseOrderAttachment(ctx context.Context, invoiceNumber int, attachmentID string) ([]byte, error) {
 	var result []byte
 	url := fmt.Sprintf("/finance/accountspayable/invoices/purchaseorder/%d/attachments/%s", invoiceNumber, attachmentID)
@@ -314,7 +314,7 @@ func (c *Client) GetSupplierInvoicePurchaseOrderAttachment(ctx context.Context, 
 	return result, nil
 }
 
-// op: DeleteSupplierInvoicePurchaseOrderAttachment, path: /{cmpy_code}/finance/accountspayable/invoices/purchaseorder/{vouch_code}/attachments/{attach_id}
+// CODEGEN(none): op=DeleteSupplierInvoicePurchaseOrderAttachment, path=/{cmpy_code}/finance/accountspayable/invoices/purchaseorder/{vouch_code}/attachments/{attach_id}
 func (c *Client) DeleteSupplierInvoicePurchaseOrderAttachment(ctx context.Context, invoiceNumber int, attachmentID string) error {
 	url := fmt.Sprintf("/finance/accountspayable/invoices/purchaseorder/%d/attachments/%s", invoiceNumber, attachmentID)
 	_, err := c.t.request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
@@ -324,7 +324,7 @@ func (c *Client) DeleteSupplierInvoicePurchaseOrderAttachment(ctx context.Contex
 	return nil
 }
 
-// op: GetSupplierInvoiceByID, path: /{cmpy_code}/finance/accountspayable/invoices/{vouch_code}
+// CODEGEN(none): op=GetSupplierInvoiceByID, path=/{cmpy_code}/finance/accountspayable/invoices/{vouch_code}
 func (c *Client) GetSupplierInvoice(ctx context.Context, invoiceNumber int) (SupplierInvoiceResponse, error) {
 	var result SupplierInvoiceResponse
 	url := fmt.Sprintf("/finance/accountspayable/invoices/%d", invoiceNumber)
@@ -338,7 +338,7 @@ func (c *Client) GetSupplierInvoice(ctx context.Context, invoiceNumber int) (Sup
 	return result, nil
 }
 
-// op: GetAllSuppliers, path: /{cmpy_code}/finance/accountspayable/suppliers
+// CODEGEN(none): op=GetAllSuppliers, path=/{cmpy_code}/finance/accountspayable/suppliers
 func (c *Client) GetAllSuppliers(ctx context.Context) ([]SupplierResponse, error) {
 	var result []SupplierResponse
 	body, err := c.t.request(ctx, http.MethodGet, "/finance/accountspayable/suppliers", nil, nil, http.StatusOK)
@@ -351,7 +351,7 @@ func (c *Client) GetAllSuppliers(ctx context.Context) ([]SupplierResponse, error
 	return result, nil
 }
 
-// op: AddSuppliers, path: /{cmpy_code}/finance/accountspayable/suppliers
+// CODEGEN(none): op=AddSuppliers, path=/{cmpy_code}/finance/accountspayable/suppliers
 func (c *Client) AddSuppliers(ctx context.Context, payload AddSupplierRequest) (SupplierResponse, error) {
 	var result SupplierResponse
 	if err := tasscommon.Validate(payload); err != nil {
@@ -367,7 +367,7 @@ func (c *Client) AddSuppliers(ctx context.Context, payload AddSupplierRequest) (
 	return result, nil
 }
 
-// op: GetSupplierByCode, path: /{cmpy_code}/finance/accountspayable/suppliers/{vend_code}
+// CODEGEN(none): op=GetSupplierByCode, path=/{cmpy_code}/finance/accountspayable/suppliers/{vend_code}
 func (c *Client) GetSupplier(ctx context.Context, supplierCode string) (SupplierResponse, error) {
 	var result SupplierResponse
 	url := fmt.Sprintf("/finance/accountspayable/suppliers/%s", supplierCode)
@@ -381,7 +381,7 @@ func (c *Client) GetSupplier(ctx context.Context, supplierCode string) (Supplier
 	return result, nil
 }
 
-// op: UpdateSupplier, path: /{cmpy_code}/finance/accountspayable/suppliers/{vend_code}
+// CODEGEN(none): op=UpdateSupplier, path=/{cmpy_code}/finance/accountspayable/suppliers/{vend_code}
 func (c *Client) UpdateSupplier(ctx context.Context, supplierCode string, payload UpdateSupplierRequest) error {
 	url := fmt.Sprintf("/finance/accountspayable/suppliers/%s", supplierCode)
 	if err := tasscommon.Validate(payload); err != nil {
@@ -394,7 +394,7 @@ func (c *Client) UpdateSupplier(ctx context.Context, supplierCode string, payloa
 	return nil
 }
 
-// op: PatchSupplier, path: /{cmpy_code}/finance/accountspayable/suppliers/{vend_code}
+// CODEGEN(none): op=PatchSupplier, path=/{cmpy_code}/finance/accountspayable/suppliers/{vend_code}
 func (c *Client) PatchSupplier(ctx context.Context, supplierCode string, payload []tasscommon.Operation) error {
 	url := fmt.Sprintf("/finance/accountspayable/suppliers/%s", supplierCode)
 	_, err := c.t.request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
@@ -404,7 +404,7 @@ func (c *Client) PatchSupplier(ctx context.Context, supplierCode string, payload
 	return nil
 }
 
-// op: DeleteSupplier, path: /{cmpy_code}/finance/accountspayable/suppliers/{vend_code}
+// CODEGEN(none): op=DeleteSupplier, path=/{cmpy_code}/finance/accountspayable/suppliers/{vend_code}
 func (c *Client) DeleteSupplier(ctx context.Context, supplierCode string) error {
 	url := fmt.Sprintf("/finance/accountspayable/suppliers/%s", supplierCode)
 	_, err := c.t.request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
@@ -414,7 +414,7 @@ func (c *Client) DeleteSupplier(ctx context.Context, supplierCode string) error 
 	return nil
 }
 
-// op: GetSupplierContacts, path: /{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/contacts
+// CODEGEN(none): op=GetSupplierContacts, path=/{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/contacts
 func (c *Client) GetSupplierContacts(ctx context.Context, supplierCode string) (SupplierContactsResponse, error) {
 	var result SupplierContactsResponse
 	url := fmt.Sprintf("/finance/accountspayable/suppliers/%s/contacts", supplierCode)
@@ -428,7 +428,7 @@ func (c *Client) GetSupplierContacts(ctx context.Context, supplierCode string) (
 	return result, nil
 }
 
-// op: UpdateSupplierContacts, path: /{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/contacts
+// CODEGEN(none): op=UpdateSupplierContacts, path=/{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/contacts
 func (c *Client) UpdateSupplierContacts(ctx context.Context, supplierCode string, payload UpdateSupplierContactsRequest) error {
 	url := fmt.Sprintf("/finance/accountspayable/suppliers/%s/contacts", supplierCode)
 	if err := tasscommon.Validate(payload); err != nil {
@@ -441,7 +441,7 @@ func (c *Client) UpdateSupplierContacts(ctx context.Context, supplierCode string
 	return nil
 }
 
-// op: PatchSupplierContacts, path: /{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/contacts
+// CODEGEN(none): op=PatchSupplierContacts, path=/{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/contacts
 func (c *Client) PatchSupplierContacts(ctx context.Context, supplierCode string, payload []tasscommon.Operation) error {
 	url := fmt.Sprintf("/finance/accountspayable/suppliers/%s/contacts", supplierCode)
 	_, err := c.t.request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
@@ -451,7 +451,7 @@ func (c *Client) PatchSupplierContacts(ctx context.Context, supplierCode string,
 	return nil
 }
 
-// op: GetSupplierAccountInformation, path: /{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/accountinformation
+// CODEGEN(none): op=GetSupplierAccountInformation, path=/{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/accountinformation
 func (c *Client) GetSupplierAccountInformation(ctx context.Context, supplierCode string) (SupplierAccountInformationResponse, error) {
 	var result SupplierAccountInformationResponse
 	url := fmt.Sprintf("/finance/accountspayable/suppliers/%s/accountsinformation", supplierCode)
@@ -465,7 +465,7 @@ func (c *Client) GetSupplierAccountInformation(ctx context.Context, supplierCode
 	return result, nil
 }
 
-// op: UpdateSupplierAccountInformation, path: /{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/accountinformation
+// CODEGEN(none): op=UpdateSupplierAccountInformation, path=/{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/accountinformation
 func (c *Client) UpdateSupplierAccountInformation(ctx context.Context, supplierCode string, payload UpdateSupplierAccountInformationRequest) error {
 	url := fmt.Sprintf("/finance/accountspayable/suppliers/%s/accountinformation", supplierCode)
 	if err := tasscommon.Validate(payload); err != nil {
@@ -478,7 +478,7 @@ func (c *Client) UpdateSupplierAccountInformation(ctx context.Context, supplierC
 	return nil
 }
 
-// op: PatchSupplierAccountInformation, path: /{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/accountinformation
+// CODEGEN(none): op=PatchSupplierAccountInformation, path=/{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/accountinformation
 func (c *Client) PatchSupplierAccountInformation(ctx context.Context, supplierCode string, payload []tasscommon.Operation) error {
 	url := fmt.Sprintf("/finance/accountspayable/suppliers/%s/accountinformation", supplierCode)
 	_, err := c.t.request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
@@ -488,7 +488,7 @@ func (c *Client) PatchSupplierAccountInformation(ctx context.Context, supplierCo
 	return nil
 }
 
-// op: GetSupplierPaymentInfo, path: /{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/paymentinformation
+// CODEGEN(none): op=GetSupplierPaymentInfo, path=/{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/paymentinformation
 func (c *Client) GetSupplierPaymentInfo(ctx context.Context, supplierCode string) (SupplierPaymentInfoResponse, error) {
 	var result SupplierPaymentInfoResponse
 	url := fmt.Sprintf("/finance/accountspayable/suppliers/%s/paymentinformation", supplierCode)
@@ -502,7 +502,7 @@ func (c *Client) GetSupplierPaymentInfo(ctx context.Context, supplierCode string
 	return result, nil
 }
 
-// op: UpdateSupplierPaymentInfo, path: /{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/paymentinformation
+// CODEGEN(none): op=UpdateSupplierPaymentInfo, path=/{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/paymentinformation
 func (c *Client) UpdateSupplierPaymentInfo(ctx context.Context, supplierCode string, payload UpdateSupplierPaymentInfoRequest) error {
 	url := fmt.Sprintf("/finance/accountspayable/suppliers/%s/paymentinformation", supplierCode)
 	if err := tasscommon.Validate(payload); err != nil {
@@ -515,7 +515,7 @@ func (c *Client) UpdateSupplierPaymentInfo(ctx context.Context, supplierCode str
 	return nil
 }
 
-// op: PatchSupplierPaymentInfo, path: /{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/paymentinformation
+// CODEGEN(none): op=PatchSupplierPaymentInfo, path=/{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/paymentinformation
 func (c *Client) PatchSupplierPaymentInfo(ctx context.Context, supplierCode string, payload []tasscommon.Operation) error {
 	url := fmt.Sprintf("/finance/accountspayable/suppliers/%s/paymentinformation", supplierCode)
 	_, err := c.t.request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
@@ -525,7 +525,7 @@ func (c *Client) PatchSupplierPaymentInfo(ctx context.Context, supplierCode stri
 	return nil
 }
 
-// op: GetSupplierCreditStatus, path: /{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/creditstatus
+// CODEGEN(none): op=GetSupplierCreditStatus, path=/{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/creditstatus
 func (c *Client) GetSupplierCreditStatus(ctx context.Context, supplierCode string) (SupplierCreditStatusResponse, error) {
 	var result SupplierCreditStatusResponse
 	url := fmt.Sprintf("/finance/accountspayable/suppliers/%s/creditstatus", supplierCode)
@@ -539,7 +539,7 @@ func (c *Client) GetSupplierCreditStatus(ctx context.Context, supplierCode strin
 	return result, nil
 }
 
-// op: UpdateSupplierCreditStatus, path: /{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/creditstatus
+// CODEGEN(none): op=UpdateSupplierCreditStatus, path=/{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/creditstatus
 func (c *Client) UpdateSupplierCreditStatus(ctx context.Context, supplierCode string, payload UpdateSupplierCreditStatusRequest) error {
 	url := fmt.Sprintf("/finance/accountspayable/suppliers/%s/creditstatus", supplierCode)
 	if err := tasscommon.Validate(payload); err != nil {
@@ -552,7 +552,7 @@ func (c *Client) UpdateSupplierCreditStatus(ctx context.Context, supplierCode st
 	return nil
 }
 
-// op: GetAllSupplierNotes, path: /{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/notes
+// CODEGEN(none): op=GetAllSupplierNotes, path=/{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/notes
 func (c *Client) GetAllSupplierNotes(ctx context.Context, supplierCode string) ([]SupplierNoteResponse, error) {
 	var result []SupplierNoteResponse
 	url := fmt.Sprintf("/finance/accountspayable/suppliers/%s/notes", supplierCode)
@@ -566,7 +566,7 @@ func (c *Client) GetAllSupplierNotes(ctx context.Context, supplierCode string) (
 	return result, nil
 }
 
-// op: AddSupplierNote, path: /{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/notes
+// CODEGEN(none): op=AddSupplierNote, path=/{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/notes
 func (c *Client) AddSupplierNote(ctx context.Context, supplierCode string, payload AddSupplierNoteRequest) (SupplierNoteResponse, error) {
 	var result SupplierNoteResponse
 	url := fmt.Sprintf("/finance/accountspayable/suppliers/%s/notes", supplierCode)
@@ -583,7 +583,7 @@ func (c *Client) AddSupplierNote(ctx context.Context, supplierCode string, paylo
 	return result, nil
 }
 
-// op: GetSupplierNote, path: /{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/notes/{note_uid}
+// CODEGEN(none): op=GetSupplierNote, path=/{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/notes/{note_uid}
 func (c *Client) GetSupplierNote(ctx context.Context, supplierCode string, noteID string) (SupplierNoteResponse, error) {
 	var result SupplierNoteResponse
 	url := fmt.Sprintf("/finance/accountspayable/suppliers/%s/notes/%s", supplierCode, noteID)
@@ -597,7 +597,7 @@ func (c *Client) GetSupplierNote(ctx context.Context, supplierCode string, noteI
 	return result, nil
 }
 
-// op: UpdateSupplierNote, path: /{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/notes/{note_uid}
+// CODEGEN(none): op=UpdateSupplierNote, path=/{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/notes/{note_uid}
 func (c *Client) UpdateSupplierNote(ctx context.Context, supplierCode string, noteID string, payload UpdateSupplierNoteRequest) error {
 	url := fmt.Sprintf("/finance/accountspayable/suppliers/%s/notes/%s", supplierCode, noteID)
 	if err := tasscommon.Validate(payload); err != nil {
@@ -610,7 +610,7 @@ func (c *Client) UpdateSupplierNote(ctx context.Context, supplierCode string, no
 	return nil
 }
 
-// op: PatchSupplierNote, path: /{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/notes/{note_uid}
+// CODEGEN(none): op=PatchSupplierNote, path=/{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/notes/{note_uid}
 func (c *Client) PatchSupplierNote(ctx context.Context, supplierCode string, noteID string, payload []tasscommon.Operation) error {
 	url := fmt.Sprintf("/finance/accountspayable/suppliers/%s/notes/%s", supplierCode, noteID)
 	_, err := c.t.request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
@@ -620,7 +620,7 @@ func (c *Client) PatchSupplierNote(ctx context.Context, supplierCode string, not
 	return nil
 }
 
-// op: DeleteSupplierNote, path: /{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/notes/{note_uid}
+// CODEGEN(none): op=DeleteSupplierNote, path=/{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/notes/{note_uid}
 func (c *Client) DeleteSupplierNote(ctx context.Context, supplierCode string, noteID string) error {
 	url := fmt.Sprintf("/finance/accountspayable/suppliers/%s/notes/%s", supplierCode, noteID)
 	_, err := c.t.request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
@@ -630,7 +630,7 @@ func (c *Client) DeleteSupplierNote(ctx context.Context, supplierCode string, no
 	return nil
 }
 
-// op: GetAllSupplierNoteAttachments, path: /{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/notes/{note_uid}/attachments
+// CODEGEN(none): op=GetAllSupplierNoteAttachments, path=/{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/notes/{note_uid}/attachments
 func (c *Client) GetAllSupplierNoteAttachments(ctx context.Context, supplierCode string, noteID string) ([]tasscommon.FileResponse, error) {
 	var result []tasscommon.FileResponse
 	url := fmt.Sprintf("/finance/accountspayable/suppliers/%s/notes/%s/attachments", supplierCode, noteID)
@@ -644,7 +644,7 @@ func (c *Client) GetAllSupplierNoteAttachments(ctx context.Context, supplierCode
 	return result, nil
 }
 
-// op: AddSupplierNoteAttachment, path: /{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/notes/{note_uid}/attachments
+// CODEGEN(none): op=AddSupplierNoteAttachment, path=/{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/notes/{note_uid}/attachments
 func (c *Client) AddSupplierNoteAttachment(ctx context.Context, supplierCode string, noteID string, payload tasscommon.FileRequest) (tasscommon.NewAttachmentResponse, error) {
 	var result tasscommon.NewAttachmentResponse
 	url := fmt.Sprintf("/finance/accountspayable/suppliers/%s/notes/%s/attachments", supplierCode, noteID)
@@ -661,7 +661,7 @@ func (c *Client) AddSupplierNoteAttachment(ctx context.Context, supplierCode str
 	return result, nil
 }
 
-// op: DownloadSupplierNoteAttachment, path: /{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/notes/{note_uid}/attachments/{attach_id}
+// CODEGEN(none): op=DownloadSupplierNoteAttachment, path=/{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/notes/{note_uid}/attachments/{attach_id}
 func (c *Client) GetSupplierNoteAttachment(ctx context.Context, supplierCode string, noteID string, attachmentID string) ([]byte, error) {
 	var result []byte
 	url := fmt.Sprintf("/finance/accountspayable/suppliers/%s/notes/%s/attachments/%s", supplierCode, noteID, attachmentID)
@@ -675,7 +675,7 @@ func (c *Client) GetSupplierNoteAttachment(ctx context.Context, supplierCode str
 	return result, nil
 }
 
-// op: DeleteSupplierNoteAttachment, path: /{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/notes/{note_uid}/attachments/{attach_id}
+// CODEGEN(none): op=DeleteSupplierNoteAttachment, path=/{cmpy_code}/finance/accountspayable/suppliers/{vend_code}/notes/{note_uid}/attachments/{attach_id}
 func (c *Client) DeleteSupplierNoteAttachment(ctx context.Context, supplierCode string, noteID string, attachmentID string) error {
 	url := fmt.Sprintf("/finance/accountspayable/suppliers/%s/notes/%s/attachments/%s", supplierCode, noteID, attachmentID)
 	_, err := c.t.request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)

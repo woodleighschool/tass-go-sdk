@@ -9,7 +9,7 @@ import (
 	tasscommon "github.com/woodleighschool/tass-go-sdk/tass/modules/common"
 )
 
-// op: GetAllActivities, path: /{cmpy_code}/assessment/activities/{year}/{semester}
+// CODEGEN(none): op=GetAllActivities, path=/{cmpy_code}/assessment/activities/{year}/{semester}
 func (c *Client) GetAllActivities(ctx context.Context, year string, semester string) ([]ActivityResponse, error) {
 	var result []ActivityResponse
 	url := fmt.Sprintf("/assessment/activities/%s/%s", year, semester)
@@ -23,7 +23,7 @@ func (c *Client) GetAllActivities(ctx context.Context, year string, semester str
 	return result, nil
 }
 
-// op: GetAllActivityStudents, path: /{cmpy_code}/assessment/activities/{activity_id}/students
+// CODEGEN(none): op=GetAllActivityStudents, path=/{cmpy_code}/assessment/activities/{activity_id}/students
 func (c *Client) GetAllActivityStudents(ctx context.Context, activityID int) ([]ActivityStudentResponse, error) {
 	var result []ActivityStudentResponse
 	url := fmt.Sprintf("/assessment/activities/%d/students", activityID)
@@ -37,7 +37,7 @@ func (c *Client) GetAllActivityStudents(ctx context.Context, activityID int) ([]
 	return result, nil
 }
 
-// op: GetStudentActivityResult, path: /{cmpy_code}/assessment/activities/{activity_id}/students/{stud_code}/results
+// CODEGEN(none): op=GetStudentActivityResult, path=/{cmpy_code}/assessment/activities/{activity_id}/students/{stud_code}/results
 func (c *Client) GetStudentActivityResult(ctx context.Context, activityID int, studentCode string) (ActivityStudentResultsResponse, error) {
 	var result ActivityStudentResultsResponse
 	url := fmt.Sprintf("/assessment/activities/%d/students/%s/results", activityID, studentCode)
@@ -51,7 +51,7 @@ func (c *Client) GetStudentActivityResult(ctx context.Context, activityID int, s
 	return result, nil
 }
 
-// op: UpdateStudentActivityResults, path: /{cmpy_code}/assessment/activities/{activity_id}/students/{stud_code}/results
+// CODEGEN(none): op=UpdateStudentActivityResults, path=/{cmpy_code}/assessment/activities/{activity_id}/students/{stud_code}/results
 func (c *Client) UpdateStudentActivityResults(ctx context.Context, activityID int, studentCode string, payload UpdateActivityStudentResultsRequest) error {
 	url := fmt.Sprintf("/assessment/activities/%d/students/%s/results", activityID, studentCode)
 	if err := tasscommon.Validate(payload); err != nil {

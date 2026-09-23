@@ -63,7 +63,7 @@ type EmployeeResponse struct {
 	VendorCode            *string           `json:"vend_code,omitempty"`
 }
 
-type UpdateEmployeeRequest struct {
+type EmployeeRequest struct {
 	BirthDate     string `json:"birth_date" validate:"datebeforetoday"`
 	EmployeeCode  string `json:"emp_code" validate:"max=7"`
 	FirstName     string `json:"first_name" validate:"max=50"`
@@ -116,58 +116,8 @@ type UpdateEmployeeRequest struct {
 	VendorCode            *string `json:"vend_code,omitempty" validate:"max=8"`                             // Must conform to GetAllVendorOptions response
 }
 
-type AddEmployeeRequest struct {
-	BirthDate     string `json:"birth_date" validate:"datebeforetoday"`
-	EmployeeCode  string `json:"emp_code" validate:"max=7"`
-	FirstName     string `json:"first_name" validate:"max=50"`
-	Gender        string `json:"gender" validate:"max=3"` // Must conform to GetAllGenderOptions response
-	Initials      string `json:"initials" validate:"max=5"`
-	PostCode      string `json:"post_code" validate:"max=10"`
-	PreferredName string `json:"preferred_name" validate:"max=50"`
-	StartDate     string `json:"start_date" validate:"datetime=2006-01-02"` // TODO: Confirm date format
-	State         string `json:"state_text" validate:"max=3"`
-	Status        string `json:"status_text" validate:"max=1"` // Must conform to GetAllEmployeeStatusOptions response
-	Surname       string `json:"surname" validate:"max=50"`
-	Title         string `json:"title" validate:"max=15"` // Must conform to GetAllTitleOptions response
-
-	AddressLine1          *string `json:"add1_text,omitempty" validate:"max=60"`
-	AddressLine2          *string `json:"add2_text,omitempty" validate:"max=60"`
-	AlternateID           *string `json:"alt_id,omitempty" validate:"max=40"`
-	CessationType         *string `json:"cessation_type,omitempty" validate:"max=1"` // Must conform to CessationType
-	City                  *string `json:"city_text,omitempty" validate:"max=46"`
-	CountryCode           *string `json:"country_code,omitempty" validate:"max=2"`
-	CountryText           *string `json:"country_text,omitempty" validate:"max=20"`
-	Deceased              bool    `json:"deceased_flg"`
-	DriversLicense        *string `json:"driv_lic_text,omitempty" validate:"max=10"`
-	Email                 *string `json:"e_mail,omitempty" validate:"max=60"`
-	IndiginousStatus      *string `json:"indig_status,omitempty" validate:"max=1"`      // Must conform to IndiginousStatus
-	Role                  *string `json:"main_activity,omitempty" validate:"max=4"`     // Must conform to GetAllMainActivityOptions response
-	MaritalStatus         *string `json:"marital_stat_flag,omitempty" validate:"max=1"` // Must conform to GetAllMaritalStatusOptions response
-	MobilePhone           *string `json:"mob_phone,omitempty" validate:"max=30"`
-	NextOfKinAddressLine1 *string `json:"nok_add1_text,omitempty" validate:"max=60"`
-	NextOfKinAddressLine2 *string `json:"nok_add2_text,omitempty" validate:"max=60"`
-	NextOfKinCity         *string `json:"nok_city_text,omitempty" validate:"max=46"`
-	NextOfKinCountry      *string `json:"nok_country_text,omitempty" validate:"max=20"`
-	NextOfKinName         *string `json:"nok_name_text,omitempty" validate:"max=30"`
-	NextOfKinHomePhone    *string `json:"nok_phone_h_text,omitempty" validate:"max=30"`
-	NextOfKinWorkPhone    *string `json:"nok_phone_w_text,omitempty" validate:"max=30"`
-	NextOfKinPostCode     *string `json:"nok_post_code,omitempty" validate:"max=10"`
-	NextOfKinRelationship *string `json:"nok_relat_text,omitempty" validate:"max=20"`
-	NextOfKinState        *string `json:"nok_state_text,omitempty" validate:"max=3"`
-	OtherNames            *string `json:"other_name,omitempty" validate:"max=50"`
-	HomePhone             *string `json:"phone_h_text,omitempty" validate:"max=30"`
-	WorkPhone             *string `json:"phone_w_text,omitempty" validate:"max=30"`
-	PositionText          *string `json:"position_text,omitempty" validate:"max=20"`
-	PositionTitle         *string `json:"position_title,omitempty" validate:"max=100"`
-	PreviousPayrollID     *string `json:"previous_payroll_id,omitempty" validate:"max=200"`
-	SchoolEmail           *string `json:"school_email,omitempty" validate:"max=60"`
-	SMSFlag               bool    `json:"sms_flg"`
-	Suffix                *string `json:"suffix,omitempty" validate:"max=30"`
-	SupervisorCode        *string `json:"supervisor_code,omitempty" validate:"max=7,nefield=EmployeeCode"`  // must be an existing employee and cannot be this employee
-	Supervisor2Code       *string `json:"supervisor2_code,omitempty" validate:"max=7,nefield=EmployeeCode"` // must be an existing employee and cannot be this employee
-	TerminationDate       *string `json:"term_date,omitempty" validate:"dateafterdate=StartDate"`           // TODO: Confirm this works
-	VendorCode            *string `json:"vend_code,omitempty" validate:"max=8"`                             // must conform to GetAllVendorOptions response
-}
+type AddEmployeeRequest EmployeeRequest
+type UpdateEmployeeRequest EmployeeRequest
 
 type EmployeeStandardNoteResponse struct {
 	CompanyCode   string     `json:"cmpy_code"`
@@ -195,21 +145,21 @@ type EmployeeConfidentialNoteResponse struct {
 	CompanyCode   string     `json:"cmpy_code"`
 	EmployeeCode  string     `json:"emp_code"`
 	Category      *string    `json:"note_cat,omitempty"`
-	Date          *time.Time `json:"note_date,omitempty" validate:"2026-01-02T03:04:05.000"` // TODO: Confirm this works
+	Date          *time.Time `json:"note_date,omitempty" validate:"datetime=2026-01-02T03:04:05.000"` // TODO: Confirm this works
 	Text          *string    `json:"note_text,omitempty"`
 	ID            string     `json:"note_uid"` // TODO: UUID? Must be a UUID
 	HasAttachment bool       `json:"has_attachment"`
 }
 
 type AddEmployeeConfidentialNoteRequest struct {
-	Category string `json:"note_cat" validate:"max=3"`                    // Must conform to GetAllEmployeeNoteCategoryOptions
-	Date     string `json:"note_date" validate:"2026-01-02T03:04:05.000"` // TODO: Confirm this works
+	Category string `json:"note_cat" validate:"max=3"`                             // Must conform to GetAllEmployeeNoteCategoryOptions
+	Date     string `json:"note_date" validate:"datetime=2026-01-02T03:04:05.000"` // TODO: Confirm this works
 	Text     string `json:"note_text" validate:"max=4000"`
 }
 
 type UpdateEmployeeConfidentialNoteRequest struct {
-	Category string `json:"note_cat" validate:"max=3"`                    // Must conform to GetAllEmployeeNoteCategoryOptions
-	Date     string `json:"note_date" validate:"2026-01-02T03:04:05.000"` // TODO: Confirm this works
+	Category string `json:"note_cat" validate:"max=3"`                             // Must conform to GetAllEmployeeNoteCategoryOptions
+	Date     string `json:"note_date" validate:"datetime=2026-01-02T03:04:05.000"` // TODO: Confirm this works
 	Text     string `json:"note_text" validate:"max=4000"`
 }
 

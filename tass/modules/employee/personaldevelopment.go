@@ -9,7 +9,7 @@ import (
 	tasscommon "github.com/woodleighschool/tass-go-sdk/tass/modules/common"
 )
 
-// op: GetAllEmployeePDActivities, path: /{cmpy_code}/employees/{emp_code}/pdactivities
+// CODEGEN(none): op=GetAllEmployeePDActivities, path=/{cmpy_code}/employees/{emp_code}/pdactivities
 func (c *Client) GetAllEmployeePDActivities(ctx context.Context, employeeCode string) ([]EmployeePDActivityResponse, error) {
 	var result []EmployeePDActivityResponse
 	url := fmt.Sprintf("/employees/%s/pdactivities", employeeCode)
@@ -23,7 +23,7 @@ func (c *Client) GetAllEmployeePDActivities(ctx context.Context, employeeCode st
 	return result, nil
 }
 
-// op: AddEmployeePDActivities, path: /{cmpy_code}/employees/{emp_code}/pdactivities
+// CODEGEN(none): op=AddEmployeePDActivities, path=/{cmpy_code}/employees/{emp_code}/pdactivities
 func (c *Client) AddEmployeePDActivities(ctx context.Context, employeeCode string, payload AddEmployeePDActivityRequest) (EmployeePDActivityResponse, error) {
 	var result EmployeePDActivityResponse
 	url := fmt.Sprintf("/employees/%s/pdactivities", employeeCode)
@@ -37,13 +37,13 @@ func (c *Client) AddEmployeePDActivities(ctx context.Context, employeeCode strin
 	if err := json.Unmarshal(body, &result); err != nil {
 		return EmployeePDActivityResponse{}, err
 	}
-	return EmployeePDActivityResponse{}, nil
+	return result, nil
 }
 
-// op: GetEmployeePDActivityByID, path: /{cmpy_code}/employees/{emp_code}/pdactivities/{pdact_num}
+// CODEGEN(none): op=GetEmployeePDActivityByID, path=/{cmpy_code}/employees/{emp_code}/pdactivities/{pdact_num}
 func (c *Client) GetEmployeePDActivity(ctx context.Context, employeeCode string, pdActivityCode int) (EmployeePDActivityResponse, error) {
 	var result EmployeePDActivityResponse
-	url := fmt.Sprintf("/employees/%s/pdactivities", employeeCode)
+	url := fmt.Sprintf("/employees/%s/pdactivities/%d", employeeCode, pdActivityCode)
 	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return EmployeePDActivityResponse{}, err
@@ -54,7 +54,7 @@ func (c *Client) GetEmployeePDActivity(ctx context.Context, employeeCode string,
 	return result, nil
 }
 
-// op: UpdateEmployeePDActivity, path: /{cmpy_code}/employees/{emp_code}/pdactivities/{pdact_num}
+// CODEGEN(none): op=UpdateEmployeePDActivity, path=/{cmpy_code}/employees/{emp_code}/pdactivities/{pdact_num}
 func (c *Client) UpdateEmployeePDActivity(ctx context.Context, employeeCode string, pdActivityCode int, payload UpdateEmployeePDActivityRequest) error {
 	url := fmt.Sprintf("/employees/%s/pdactivities/%d", employeeCode, pdActivityCode)
 	if err := tasscommon.Validate(payload); err != nil {
@@ -67,7 +67,7 @@ func (c *Client) UpdateEmployeePDActivity(ctx context.Context, employeeCode stri
 	return nil
 }
 
-// op: PatchEmployeePDActivity, path: /{cmpy_code}/employees/{emp_code}/pdactivities/{pdact_num}
+// CODEGEN(none): op=PatchEmployeePDActivity, path=/{cmpy_code}/employees/{emp_code}/pdactivities/{pdact_num}
 func (c *Client) PatchEmployeePDActivity(ctx context.Context, employeeCode string, pdActivityCode int, payload []tasscommon.Operation) error {
 	url := fmt.Sprintf("/employees/%s/pdactivities/%d", employeeCode, pdActivityCode)
 	_, err := c.t.request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
@@ -77,7 +77,7 @@ func (c *Client) PatchEmployeePDActivity(ctx context.Context, employeeCode strin
 	return nil
 }
 
-// op: DeleteEmployeePDActivity, path: /{cmpy_code}/employees/{emp_code}/pdactivities/{pdact_num}
+// CODEGEN(none): op=DeleteEmployeePDActivity, path=/{cmpy_code}/employees/{emp_code}/pdactivities/{pdact_num}
 func (c *Client) DeleteEmployeePDActivity(ctx context.Context, employeeCode string, pdActivityCode int) error {
 	url := fmt.Sprintf("/employees/%s/pdactivities/%d", employeeCode, pdActivityCode)
 	_, err := c.t.request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
@@ -87,7 +87,7 @@ func (c *Client) DeleteEmployeePDActivity(ctx context.Context, employeeCode stri
 	return nil
 }
 
-// op: DownloadEmployeePDActivityAttachment, path: /{cmpy_code}/employees/{emp_code}/pdactivities/{pdact_num}/attachments/{field_number}/{attach_id}
+// CODEGEN(none): op=DownloadEmployeePDActivityAttachment, path=/{cmpy_code}/employees/{emp_code}/pdactivities/{pdact_num}/attachments/{field_number}/{attach_id}
 func (c *Client) GetEmployeePDActivityAttachment(ctx context.Context, employeeCode string, pdActivityCode int, udFieldID int, attachmentID string) ([]byte, error) {
 	var result []byte
 	url := fmt.Sprintf("/employees/%s/pdactivities/%d/attachments/%d/%s", employeeCode, pdActivityCode, udFieldID, attachmentID)
@@ -101,7 +101,7 @@ func (c *Client) GetEmployeePDActivityAttachment(ctx context.Context, employeeCo
 	return result, nil
 }
 
-// op: DeleteEmployeePDActivityAttachment, path: /{cmpy_code}/employees/{emp_code}/pdactivities/{pdact_num}/attachments/{field_number}/{attach_id}
+// CODEGEN(none): op=DeleteEmployeePDActivityAttachment, path=/{cmpy_code}/employees/{emp_code}/pdactivities/{pdact_num}/attachments/{field_number}/{attach_id}
 func (c *Client) DeleteEmployeePDActivityAttachment(ctx context.Context, employeeCode string, pdActivityCode int, udFieldID int, attachmentID string) error {
 	url := fmt.Sprintf("/employees/%s/pdactivities/%d/attachments/%d/%s", employeeCode, pdActivityCode, udFieldID, attachmentID)
 	_, err := c.t.request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
@@ -111,16 +111,16 @@ func (c *Client) DeleteEmployeePDActivityAttachment(ctx context.Context, employe
 	return nil
 }
 
-// op: AddEmployeePDActivityAttachment, path: /{cmpy_code}/employees/{emp_code}/pdactivities/{pdact_num}/attachments/{field_number}
+// CODEGEN(none): op=AddEmployeePDActivityAttachment, path=/{cmpy_code}/employees/{emp_code}/pdactivities/{pdact_num}/attachments/{field_number}
 func (c *Client) AddEmployeePDActivityAttachment(ctx context.Context, employeeCode string, pdActivityCode int, udFieldID int, payload tasscommon.FileRequest) (tasscommon.NewAttachmentResponse, error) {
 	var result tasscommon.NewAttachmentResponse
 	url := fmt.Sprintf("/employees/%s/pdactivities/%d/attachments/%d", employeeCode, pdActivityCode, udFieldID)
 	body, err := c.t.upload(ctx, url, payload, http.StatusCreated)
 	if err != nil {
-		return tasscommon.NewAttachmentResponse{}, nil
+		return tasscommon.NewAttachmentResponse{}, err
 	}
 	if err := json.Unmarshal(body, &result); err != nil {
-		return tasscommon.NewAttachmentResponse{}, nil
+		return tasscommon.NewAttachmentResponse{}, err
 	}
 	return result, nil
 }

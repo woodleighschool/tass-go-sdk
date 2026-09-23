@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-// op: GetAllEmployeeLeaveEntitlements, path: /{cmpy_code}/payroll/leaveentitlements/{emp_code}
+// CODEGEN(none): op=GetAllEmployeeLeaveEntitlements, path=/{cmpy_code}/payroll/leaveentitlements/{emp_code}
 func (c *Client) GetAllEmployeeLeaveEntitlements(ctx context.Context, employeeCode string) ([]EmployeeLeaveBalanceResponse, error) {
 	var result []EmployeeLeaveBalanceResponse
 	url := fmt.Sprintf("/payroll/leaveentitlements/%s", employeeCode)
