@@ -642,4 +642,4 @@ Progress for testing functions and structs
 - [ ] ValidationResponse
 - [ ] WorseningSigns
 - [ ] YearPeriodOptionsResponse
-  "contact_details"
+- [ ] contact_details
