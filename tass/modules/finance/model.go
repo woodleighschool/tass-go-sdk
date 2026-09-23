@@ -84,50 +84,88 @@ const (
 )
 
 type PurchaseOrderGLLineResponse struct {
-	Line                 *int      `json:"line_num"` // Must conform to POGLLineNumberValidation
+	Line                 *int      `json:"line_num"`
 	Reference            *string   `json:"ref_text,omitempty"`
 	OEM                  *string   `json:"oem_text,omitempty"`
 	Description          *string   `json:"desc_text,omitempty"`
 	AccountCode          string    `json:"acct_code"`
-	OrderQuantity        *float64  `json:"order_qty,omitempty"`     // Must conform to POOrderQuantityValidation
-	UnitCost             *float64  `json:"unit_cost_amt,omitempty"` // Must conform to POUnitCostValidation
-	UnitTax              *float64  `json:"unit_tax_amt,omitempty"`  // Must conform to POUnitTaxValidation
+	OrderQuantity        *float64  `json:"order_qty,omitempty"`
+	UnitCost             *float64  `json:"unit_cost_amt,omitempty"`
+	UnitTax              *float64  `json:"unit_tax_amt,omitempty"`
 	TaxCode              *string   `json:"tax_code,omitempty"`
-	InvoicedQuantity     *float64  `json:"invoiced_qty,omitempty"` // Must conform to POInvoicedQuantityValidation
+	InvoicedQuantity     *float64  `json:"invoiced_qty,omitempty"`
 	ExtendedCost         *float64  `json:"ext_cost_amt,omitempty"`
 	ExtendedTax          *float64  `json:"ext_tax_amt,omitempty"`
 	LineTotal            *float64  `json:"line_total_amt,omitempty"`
 	TaxType              POTaxType `json:"tax_type,omitempty"`
-	TaxPercentage        *float64  `json:"tax_per,omitempty"` // Must conform to POTaxPercentageValidation
+	TaxPercentage        *float64  `json:"tax_per,omitempty"`
 	GLAccountDescription *string   `json:"gl_acct_desc"`
 }
 
 type AddPurchaseOrderRequest struct {
-	SupplierCode       string                        `json:"vend_code"`  // Max length 8
-	OrderDate          string                        `json:"order_date"` // Must be a date
-	WarehouseCode      string                        `json:"ware_code"`  // Max length 3
+	SupplierCode       string                        `json:"vend_code" validate:"max=8"`
+	OrderDate          string                        `json:"order_date" validate:"datetime=2006-01-02"` // TODO: Confirm date format
+	WarehouseCode      string                        `json:"ware_code" validate:"max=3"`
 	GeneralLedgerLines []PurchaseOrderGLLineResponse `json:"gl_lines"`
 
-	DueDate           *string                              `json:"due_date,omitempty"` // Must be a date
+	DueDate           *string                              `json:"due_date,omitempty" validate:"datetime=2006-01-02"` // TODO: Confirm date format
 	Printed           bool                                 `json:"printed_flag"`
-	AuthorisationCode *string                              `json:"authorise_code,omitempty"` // Max length 8
-	Comment           *string                              `json:"comment_text,omitempty"`   // Max length 250
+	AuthorisationCode *string                              `json:"authorise_code,omitempty" validate:"max=8"`
+	Comment           *string                              `json:"comment_text,omitempty" validate:"max=250"`
 	DeliveryDetails   PurchaseOrderDeliveryDetailsResponse `json:"delivery_details"`
 	UDFields          PurchaseOrderUDFieldsResponse        `json:"ud_fields"`
 }
 
 type UpdatePurchaseOrderRequest struct {
-	OrderDate string `json:"order_date"` // Must be a date
+	OrderDate string `json:"order_date" validate:"datetime=2006-01-02"` // TODO: Confirm date format
 
-	SupplierCode       *string                              `json:"vend_code,omitempty"`      // Max length 8
-	DueDate            *string                              `json:"due_date,omitempty"`       // Must be a date
-	AuthorisationCode  *string                              `json:"authorise_code,omitempty"` // Max length 8
-	Printed            bool                                 `json:"printed_flag"`
-	WarehouseCode      *string                              `json:"ware_code,omitempty"`    // Max length 3
-	Comment            *string                              `json:"comment_text,omitempty"` // Max length 250
-	DeliveryDetails    PurchaseOrderDeliveryDetailsResponse `json:"delivery_details"`
-	UDFields           PurchaseOrderUDFieldsResponse        `json:"ud_fields"`
-	GeneralLedgerLines []PurchaseOrderGLLineResponse        `json:"gl_lines"`
+	SupplierCode       *string                                    `json:"vend_code,omitempty" validate:"max=8"`
+	DueDate            *string                                    `json:"due_date,omitempty" validate:"datetime=2006-01-02"` // TODO: Confirm date format
+	AuthorisationCode  *string                                    `json:"authorise_code,omitempty" validate:"max=8"`
+	Printed            bool                                       `json:"printed_flag"`
+	WarehouseCode      *string                                    `json:"ware_code,omitempty" validate:"max=3"`
+	Comment            *string                                    `json:"comment_text,omitempty" validate:"max=250"`
+	DeliveryDetails    *UpdatePurchaseOrderDeliveryDetailsRequest `json:"delivery_details,omitempty"`
+	UDFields           *UpdatePurchaseOrderUDFieldsRequest        `json:"ud_fields,omitempty"`
+	GeneralLedgerLines []UpdatePurchaseOrderGLLineRequest         `json:"gl_lines,omitempty"`
+}
+
+type UpdatePurchaseOrderDeliveryDetailsRequest struct {
+	Name         *string `json:"delivery_name_text,omitempty" validate:"max=40"`
+	AddressLine1 *string `json:"delivery_addr_line1,omitempty" validate:"max=40"`
+	AddressLine2 *string `json:"delivery_addr_line2,omitempty" validate:"max=40"`
+	AddressLine3 *string `json:"delivery_addr_line3,omitempty" validate:"max=40"`
+	AddressLine4 *string `json:"delivery_addr_line4,omitempty" validate:"max=40"`
+	Country      *string `json:"delivery_country_text,omitempty" validate:"max=40"`
+}
+
+type UpdatePurchaseOrderUDFieldsRequest struct {
+	Flags *UpdatePurchaseOrderUDFlagsRequest `json:"ud_flags,omitempty"`
+	Text  *UpdatePurchaseOrderUDTextRequest  `json:"ud_text,omitempty"`
+}
+
+type UpdatePurchaseOrderUDFlagsRequest struct {
+	UD1Flag bool `json:"ud1_flg"`
+	UD2Flag bool `json:"ud2_flg"`
+	UD3Flag bool `json:"ud3_flg"`
+}
+
+type UpdatePurchaseOrderUDTextRequest struct {
+	UD4Text *string `json:"ud4_text,omitempty" validate:"max=20"`
+	UD5Text *string `json:"ud5_text,omitempty" validate:"max=20"`
+	UD6Text *string `json:"ud6_text,omitempty" validate:"max=20"`
+}
+
+type UpdatePurchaseOrderGLLineRequest struct {
+	LineNumber        int      `json:"line_num"`
+	Reference         *string  `json:"ref_text,omitempty" validate:"max=25"`
+	SupplierReference *string  `json:"oem_text,omitempty" validate:"max=15"`
+	Description       *string  `json:"desc_text,omitempty" validate:"max=4000"`
+	AccountCode       *string  `json:"acct_code,omitempty" validate:"max=18"`
+	OrderQuantity     *float64 `json:"order_qty,omitempty"`
+	UnitCost          *float64 `json:"unit_cost_amt,omitempty"`
+	UnitTax           *float64 `json:"unit_tax_amt,omitempty"`
+	TaxCode           *string  `json:"tax_code,omitempty" validate:"max=3"`
 }
 
 // General Ledger
@@ -143,15 +181,15 @@ const (
 type GLAccountOptionsResponse struct {
 	Code        string `json:"code"`
 	Description string `json:"desc"`
-	StartYear   int    `json:"start_year"`    // Must conform to GLAccountStartYearValidation
-	EndYear     int    `json:"end_year"`      // Must conform to GLAccountEndYearValidation
-	StartPeriod int    `json:"start_perioud"` // Must conform to GLAccountStartPeriodValidation
-	EndPeriod   int    `json:"end_period"`    // Must conform to GLAccountEndPeriodValidation
+	StartYear   int    `json:"start_year"`
+	EndYear     int    `json:"end_year"`
+	StartPeriod int    `json:"start_perioud"`
+	EndPeriod   int    `json:"end_period"`
 }
 
 type YearPeriodOptionsResponse struct {
-	Year      *int       `json:"year_num,omitempty"`   // Must conform to YearPeriodYearValidation
-	Period    *int       `json:"period_num,omitempty"` // Must conform to YearPeriodPeriodValidation
+	Year      *int       `json:"year_num,omitempty"`
+	Period    *int       `json:"period_num,omitempty"`
 	StartDate *time.Time `json:"start_date,omitempty"`
 	EndDate   *time.Time `json:"end_date,omitempty"`
 }
@@ -197,10 +235,10 @@ type GeneralLedgerAccountResponse struct {
 	CompanyCode    string  `json:"cmpy_code"`
 	AccountCode    string  `json:"acct_code"`
 	Description    string  `json:"desc_text"`
-	StartYear      int     `json:"start_year_num"`   // Must conform to GLAccountStartYearValidation
-	StartPeriod    int     `json:"start_period_num"` // Must conform to GLAccountStartPeriodValidation
-	EndYear        int     `json:"end_year_num"`     // Must conform to GLAccountEndYearValidation
-	EndPeriod      int     `json:"end_period_num"`   // Must conform to GLAccountEndPeriodValidation
+	StartYear      int     `json:"start_year_num"`
+	StartPeriod    int     `json:"start_period_num"`
+	EndYear        int     `json:"end_year_num"`
+	EndPeriod      int     `json:"end_period_num"`
 	GroupCode      *string `json:"group_code,omitempty"`
 	ExternalCode   *string `json:"external_code,omitempty"`
 	Type           string  `json:"type_ind"`
@@ -208,31 +246,31 @@ type GeneralLedgerAccountResponse struct {
 }
 
 type AddGeneralLedgerAccountRequest struct {
-	AccountCode string `json:"acct_code"`        // Max length 18
-	Description string `json:"desc_text"`        // Max length 40
-	StartYear   int    `json:"start_year_num"`   // Must conform to GLAccountStartYearValidation
-	StartPeriod int    `json:"start_period_num"` // Must conform to GLAccountStartPeriodValidation
-	EndYear     int    `json:"end_year_num"`     // Must conform to GLAccountEndYearValidation
-	EndPeriod   int    `json:"end_period_num"`   // Must conform to GLAccountEndPeriodValidation
-	Type        string `json:"type_ind"`         // Max length 1
+	AccountCode string `json:"acct_code" validate:"max=18"`
+	Description string `json:"desc_text" validate:"max=40"`
+	StartYear   int    `json:"start_year_num"`
+	StartPeriod int    `json:"start_period_num"`
+	EndYear     int    `json:"end_year_num"`
+	EndPeriod   int    `json:"end_period_num"`
+	Type        string `json:"type_ind" validate:"max=1"`
 
-	GroupCode      *string `json:"group_code,omitempty"`    // Max length 7
-	ExternalCode   *string `json:"external_code,omitempty"` // Max length 20
-	DefaultTaxCode *string `json:"def_tax_code,omitempty"`  // Max length 3
+	GroupCode      *string `json:"group_code,omitempty" validate:"max=7"`
+	ExternalCode   *string `json:"external_code,omitempty" validate:"max=20"`
+	DefaultTaxCode *string `json:"def_tax_code,omitempty" validate:"max=3"`
 }
 
 type UpdateGeneralLedgerAccountRequest struct {
-	AccountCode string `json:"acct_code"`        // Max length 18
-	Description string `json:"desc_text"`        // Max length 40
-	StartYear   int    `json:"start_year_num"`   // Must conform to GLAccountStartYearValidation
-	StartPeriod int    `json:"start_period_num"` // Must conform to GLAccountStartPeriodValidation
-	EndYear     int    `json:"end_year_num"`     // Must conform to GLAccountEndYearValidation
-	EndPeriod   int    `json:"end_period_num"`   // Must conform to GLAccountEndPeriodValidation
-	Type        string `json:"type_ind"`         // Max length 1
+	AccountCode string `json:"acct_code" validate:"max=18"`
+	Description string `json:"desc_text" validate:"max=40"`
+	StartYear   int    `json:"start_year_num"`
+	StartPeriod int    `json:"start_period_num"`
+	EndYear     int    `json:"end_year_num"`
+	EndPeriod   int    `json:"end_period_num"`
+	Type        string `json:"type_ind" validate:"max=1"`
 
-	GroupCode      *string `json:"group_code,omitempty"`    // Max length 7
-	ExternalCode   *string `json:"external_code,omitempty"` // Max length 20
-	DefaultTaxCode *string `json:"def_tax_code,omitempty"`  // Max length 3
+	GroupCode      *string `json:"group_code,omitempty" validate:"max=7"`
+	ExternalCode   *string `json:"external_code,omitempty" validate:"max=20"`
+	DefaultTaxCode *string `json:"def_tax_code,omitempty" validate:"max=3"`
 }
 
 type AccountBudgetResponse struct {
@@ -339,9 +377,9 @@ type ReportingCodes struct {
 }
 
 type UpdateAccountReportingCodesRequest struct {
-	AssociatedAccountCode *string        `json:"assoc_acct_code,omitempty"` // Max length 18
-	ResponsibilityName    *string        `json:"resp_name,omitempty"`       // Max length 40
-	ResponsibilityEmail   *string        `json:"resp_e_mail,omitempty"`     // Max length 40
+	AssociatedAccountCode *string        `json:"assoc_acct_code,omitempty" validate:"max=18"`
+	ResponsibilityName    *string        `json:"resp_name,omitempty" validate:"max=40"`
+	ResponsibilityEmail   *string        `json:"resp_e_mail,omitempty" validate:"max=40"`
 	ReportingCodes        ReportingCodes `json:"rpt_codes"`
 }
 
@@ -361,13 +399,13 @@ type AccountResponsibilityResponse struct {
 }
 
 type AddAccountResponsibilityRequest struct {
-	UserCode      string     `json:"user_code"` // Max length 7
+	UserCode      string     `json:"user_code" validate:"max=7"`
 	Source        SourceFlag `json:"source_flg"`
 	ApprovalLevel int        `json:"resp_flg"`
 }
 
 type UpdateAccountResponsibilityRequest struct {
-	UserCode      string     `json:"user_code"` // Max length 7
+	UserCode      string     `json:"user_code" validate:"max=7"`
 	Source        SourceFlag `json:"source_flg"`
 	ApprovalLevel int        `json:"resp_flg"`
 }
@@ -426,15 +464,15 @@ type AddTaxJournalRequest struct {
 }
 
 type TaxJournalLine struct {
-	AccountCode  string  `json:"acct_code"` // Max length 18
-	Description  string  `json:"desc_text"` // Max length 4000
+	AccountCode  string  `json:"acct_code" validate:"max=18"`
+	Description  string  `json:"desc_text" validate:"max=4000"`
 	DebitAmount  float64 `json:"debit_amt"`
 	CreditAmount float64 `json:"credit_amt"`
-	TaxType      string  `json:"tax_type"` // Max length 1
-	TaxCode      string  `json:"tax_code"` // Max length 3
+	TaxType      string  `json:"tax_type" validate:"max=1"`
+	TaxCode      string  `json:"tax_code" validate:"max=3"`
 
-	Reference *string `json:"ref_text,omitempty"`      // Max length 10
-	Analysis  *string `json:"analysis_text,omitempty"` // Max length 16
+	Reference *string `json:"ref_text,omitempty" validate:"max=10"`
+	Analysis  *string `json:"analysis_text,omitempty" validate:"max=16"`
 	TaxAmount float64 `json:"tax_amt,omitempty"`
 }
 
@@ -444,7 +482,7 @@ type AddTaxJournalResponse struct {
 }
 
 type UpdateTaxJournalRequest struct {
-	JournalDate string `json:"jour_date"` // Must be a date
+	JournalDate string `json:"jour_date" validate:"datetime=2006-01-02"` // TODO: Confirm date format
 	Year        int    `json:"year_num"`
 	Period      int    `json:"period_num"`
 
@@ -456,7 +494,7 @@ type UpdateTaxJournalRequest struct {
 
 type AddGeneralJournalRequest struct {
 	Code               string                `json:"jour_code"`
-	Date               string                `json:"jour_date"` // Must be a date
+	Date               string                `json:"jour_date" validate:"datetime=2006-01-02"` // TODO: Confirm date format
 	Year               int                   `json:"year_num"`
 	Period             int                   `json:"period_num"`
 	Comment1           *string               `json:"com1_text,omitempty"`
@@ -466,13 +504,13 @@ type AddGeneralJournalRequest struct {
 }
 
 type StandardJournalLine struct {
-	AccountCode  string  `json:"acct_code"` // Max length 18
-	Description  string  `json:"desc_text"` // Max length 4000
+	AccountCode  string  `json:"acct_code" validate:"max=18"`
+	Description  string  `json:"desc_text" validate:"max=4000"`
 	DebitAmount  float64 `json:"debit_amt"`
 	CreditAmount float64 `json:"credit_amt"`
 
-	Reference *string `json:"ref_text,omitempty"`      // Max length 10
-	Analysis  *string `json:"analysis_text,omitempty"` // Max length 16
+	Reference *string `json:"ref_text,omitempty" validate:"max=10"`
+	Analysis  *string `json:"analysis_text,omitempty" validate:"max=16"`
 }
 
 type AddGeneralJournalResponse struct {
@@ -482,7 +520,7 @@ type AddGeneralJournalResponse struct {
 
 type UpdateGeneralJournalRequest struct {
 	Code   string `json:"jour_code"`
-	Date   string `json:"jour_date"` // Must be a date
+	Date   string `json:"jour_date" validate:"datetime=2006-01-02"` // TODO: Confirm date format
 	Year   int    `json:"year_num"`
 	Period int    `json:"period_num"`
 
@@ -539,42 +577,42 @@ type SupplierCreditAppliedInvoiceResponse struct {
 type AddSupplierCreditRequest struct {
 	SupplierCode string  `json:"vend_code"`
 	DebitText    string  `json:"debit_text"`
-	DebitDate    string  `json:"debit_date"` // Must be a date
+	DebitDate    string  `json:"debit_date" validate:"datetime=2006-01-02"` // TODO: Confirm date format
 	TotalAmount  float64 `json:"total_amt"`
 	Year         int     `json:"year_num"`
 	Period       int     `json:"period_num"`
-	Comment1     string  `json:"com1_text"` // Max length 30
+	Comment1     string  `json:"com1_text" validate:"max=30"`
 
-	Comment2           *string                          `json:"com2_text,omitempty"` // Max length 30
+	Comment2           *string                          `json:"com2_text,omitempty" validate:"max=30"`
 	GeneralLedgerLines []AddSupplierCreditGLLineRequest `json:"gl_lines"`
 }
 
 type AddSupplierCreditGLLineRequest struct {
-	AccountCode string  `json:"acct_code"` // Max length 18
-	Description string  `json:"desc_text"` // Max length 4000
-	TaxCode     string  `json:"tax_code"`  // Max length 3
+	AccountCode string  `json:"acct_code" validate:"max=18"`
+	Description string  `json:"desc_text" validate:"max=4000"`
+	TaxCode     string  `json:"tax_code" validate:"max=3"`
 	GrossAmount float64 `json:"dist_amt"`
 
 	TaxAmount *float64 `json:"dist_tax,omitempty"`
 }
 
 type UpdateSupplierCreditRequest struct {
-	SupplierCode string  `json:"vend_code"`  // Max length 8
-	DebitText    string  `json:"debit_text"` // Max length 25
-	DebitDate    string  `json:"debit_date"` // Must be a date
+	SupplierCode string  `json:"vend_code" validate:"max=8"`
+	DebitText    string  `json:"debit_text" validate:"max=25"`
+	DebitDate    string  `json:"debit_date" validate:"datetime=2006-01-02"` // TODO: Confirm date format
 	TotalAmount  float64 `json:"total_amt"`
 	Year         int     `json:"year_num"`
 	Period       int     `json:"period_num"`
-	Comment1     string  `json:"com1_text"` // Max length 30
+	Comment1     string  `json:"com1_text" validate:"max=30"`
 
-	Comment2           *string                           `json:"com2_text,omitempty"` // Max length 30
+	Comment2           *string                           `json:"com2_text,omitempty" validate:"max=30"`
 	GeneralLedgerLines UpdateSupplierCreditGLLineRequest `json:"gl_lines"`
 }
 
 type UpdateSupplierCreditGLLineRequest struct {
-	AccountCode string  `json:"acct_code"` // Max length 18
-	Description string  `json:"desc_text"` // Max length 4000
-	TaxCode     string  `json:"tax_code"`  // Max length 3
+	AccountCode string  `json:"acct_code" validate:"max=18"`
+	Description string  `json:"desc_text" validate:"max=4000"`
+	TaxCode     string  `json:"tax_code" validate:"max=3"`
 	GrossAmount float64 `json:"dist_amt"`
 
 	TaxAmount *float64 `json:"dist_tax,omitempty"`
@@ -675,26 +713,26 @@ type SupplierInvoiceHoldPaymentAssigneeResponse struct {
 }
 
 type UpdateSupplierInvoiceHoldPaymentRequest struct {
-	HoldCode string `json:"hold_code"` // Max length 2
+	HoldCode string `json:"hold_code" validate:"max=2"`
 
 	Assignees []SupplierInvoiceHoldPaymentAssigneeRequest `json:"assignees"`
 }
 
 type SupplierInvoiceHoldPaymentAssigneeRequest struct {
-	EmployeeCode string `json:"emp_code"` // Max length 7
+	EmployeeCode string `json:"emp_code" validate:"max=7"`
 }
 
 type AddSupplierInvoicePurchaseOrderRequest struct {
-	SupplierCode        string                                       `json:"vend_code"`  // Max length 8
-	SupplierInvoiceCode string                                       `json:"inv_text"`   // Max length 20
-	Date                string                                       `json:"vouch_date"` // Must be a date
+	SupplierCode        string                                       `json:"vend_code" validate:"max=8"`
+	SupplierInvoiceCode string                                       `json:"inv_text" validate:"max=20"`
+	Date                string                                       `json:"vouch_date" validate:"datetime=2006-01-02"` // TODO: Confirm date format
 	TotalAmount         float64                                      `json:"total_amt"`
-	DueDate             string                                       `json:"due_date"` // Must be a date
+	DueDate             string                                       `json:"due_date" validate:"datetime=2006-01-02"` // TODO: Confirm date format
 	Year                int                                          `json:"year_num"`
 	Period              int                                          `json:"period_num"`
 	PurchaseOrderLines  []AddSupplierInvoicePurchaseOrderLineRequest `json:"po_lines"`
 
-	PaymentTermsCode *string                               `json:"term_code,omitempty"` // Max length 3
+	PaymentTermsCode *string                               `json:"term_code,omitempty" validate:"max=3"`
 	Comment1         *string                               `json:"com1_text,omitempty"`
 	Comment2         *string                               `json:"com2_text,omitempty"`
 	Assignees        []InvoicePurchaseOrderAssigneeRequest `json:"assignees"`
@@ -703,19 +741,19 @@ type AddSupplierInvoicePurchaseOrderRequest struct {
 type AddSupplierInvoicePurchaseOrderLineRequest struct {
 	PONumber       int     `json:"order_num"`
 	POLineNumber   int     `json:"po_line_num"`
-	AccountCode    string  `json:"acct_code"` // Max length 18
+	AccountCode    string  `json:"acct_code" validate:"max=18"`
 	OrderQuantity  float64 `json:"order_qty"`
-	TaxCode        string  `json:"tax_code"` // Max length 3
+	TaxCode        string  `json:"tax_code" validate:"max=3"`
 	UnitCostAmount float64 `json:"unit_cost_amt"`
 	UnitTaxAmount  float64 `json:"unit_tax_amt"`
 
-	Reference         *string `json:"ref_text,omitempty"`  // Max length 25
-	SupplierReference *string `json:"oem_text,omitempty"`  // Max length 15
-	Description       *string `json:"desc_text,omitempty"` // Max length 4000
+	Reference         *string `json:"ref_text,omitempty" validate:"max=25"`
+	SupplierReference *string `json:"oem_text,omitempty" validate:"max=15"`
+	Description       *string `json:"desc_text,omitempty" validate:"max=4000"`
 }
 
 type InvoicePurchaseOrderAssigneeRequest struct {
-	EmployeeCode string `json:"emp_code"` // Max length 7
+	EmployeeCode string `json:"emp_code" validate:"max=7"`
 }
 
 type AddSupplierInvoicePurchaseOrderResponse struct {
@@ -725,27 +763,27 @@ type AddSupplierInvoicePurchaseOrderResponse struct {
 }
 
 type AddSupplierInvoiceGeneralLedgerRequest struct {
-	SupplierCode          string                                       `json:"vend_code"`  // Max length 8
-	SupplierInvoiceNumber string                                       `json:"inv_text"`   // Max length 20
-	Date                  string                                       `json:"vouch_date"` // Must be a date
+	SupplierCode          string                                       `json:"vend_code" validate:"max=8"`
+	SupplierInvoiceNumber string                                       `json:"inv_text" validate:"max=20"`
+	Date                  string                                       `json:"vouch_date" validate:"datetime=2006-01-02"` // TODO: Confirm date format
 	TotalAmount           float64                                      `json:"total_amt"`
-	DueDate               string                                       `json:"due_date"` // Must be a date
+	DueDate               string                                       `json:"due_date" validate:"datetime=2006-01-02"` // TODO: Confirm date format
 	Year                  int                                          `json:"year_num"`
 	Period                int                                          `json:"period_num"`
 	GeneralLedgerLines    []AddSupplierInvoiceGeneralLedgerLineRequest `json:"gl_lines"`
 
-	PaymentTermsCode *string `json:"term_code,omitempty"` // Max length 3
+	PaymentTermsCode *string `json:"term_code,omitempty" validate:"max=3"`
 	Comment1         *string `json:"com1_text,omitempty"`
 	Comment2         *string `json:"com2_text,omitempty"`
 }
 
 type AddSupplierInvoiceGeneralLedgerLineRequest struct {
-	AccountCode     string  `json:"acct_code"` // Max length 18
-	TaxCode         string  `json:"tax_code"`  // Max length 3
+	AccountCode     string  `json:"acct_code" validate:"max=18"`
+	TaxCode         string  `json:"tax_code" validate:"max=3"`
 	LineTotalAmount float64 `json:"line_total_amt"`
 
 	TaxAmount   *float64 `json:"tax_amt,omitempty"`
-	Description *string  `json:"desc_text,omitempty"` // Max length 4000
+	Description *string  `json:"desc_text,omitempty" validate:"max=4000"`
 }
 
 type AddSupplierInvoiceGeneralLedgerResponse struct {
@@ -755,11 +793,11 @@ type AddSupplierInvoiceGeneralLedgerResponse struct {
 }
 
 type UpdateSupplierInvoiceGeneralLedgerRequest struct {
-	SupplierInvoiceNumber *string                                         `json:"inv_text,omitempty"`   // Max length 20
-	Date                  *string                                         `json:"vouch_date,omitempty"` // Must be a date
+	SupplierInvoiceNumber *string                                         `json:"inv_text,omitempty" validate:"max=20"`
+	Date                  *string                                         `json:"vouch_date,omitempty" validate:"datetime=2006-01-02"` // TODO: Confirm date format
 	TotalAmount           *float64                                        `json:"total_amt,omitempty"`
-	PaymentTermsCode      *string                                         `json:"term_code,omitempty"` // Max length 3
-	DueDate               *string                                         `json:"due_date,omitempty"`  // Must be a date
+	PaymentTermsCode      *string                                         `json:"term_code,omitempty" validate:"max=3"`
+	DueDate               *string                                         `json:"due_date,omitempty" validate:"datetime=2006-01-02"` // TODO: Confirm date format
 	Year                  *int                                            `json:"year_num,omitempty"`
 	Period                *int                                            `json:"period_num,omitempty"`
 	Comment1              *string                                         `json:"com1_text,omitempty"`
@@ -768,39 +806,39 @@ type UpdateSupplierInvoiceGeneralLedgerRequest struct {
 }
 
 type UpdateSupplierInvoiceGeneralLedgerLineRequest struct {
-	AccountCode     string  `json:"acct_code"` // Max length 18
-	TaxCode         string  `json:"tax_code"`  // Max length 3
+	AccountCode     string  `json:"acct_code" validate:"max=18"`
+	TaxCode         string  `json:"tax_code" validate:"max=3"`
 	LineTotalAmount float64 `json:"line_total_amt"`
 
 	TaxAmount   *float64 `json:"tax_amt,omitempty"`
-	Description *string  `json:"desc_text,omitempty"` // Max length 4000
+	Description *string  `json:"desc_text,omitempty" validate:"max=4000"`
 }
 
 type UpdateSupplierInvoicePurchaseOrderRequest struct {
-	SupplierInvoiceNumber *string                                         `json:"inv_text,omitempty"`   // Max length 20
-	Date                  *string                                         `json:"vouch_date,omitempty"` // Must be a date
+	SupplierInvoiceNumber *string                                         `json:"inv_text,omitempty" validate:"max=20"`
+	Date                  *string                                         `json:"vouch_date,omitempty" validate:"datetime=2006-01-02"` // TODO: Confirm date format
 	TotalAmount           *float64                                        `json:"total_amt,omitempty"`
-	PaymentTermsCode      *string                                         `json:"term_code,omitempty"` // Max length 3
-	DueDate               *string                                         `json:"due_date,omitempty"`  // Must be a date
+	PaymentTermsCode      *string                                         `json:"term_code,omitempty" validate:"max=3"`
+	DueDate               *string                                         `json:"due_date,omitempty" validate:"datetime=2006-01-02"` // TODO: Confirm date format
 	Year                  *int                                            `json:"year_num,omitempty"`
 	Period                *int                                            `json:"period_num,omitempty"`
-	Comment1              *string                                         `json:"com1_text,omitempty"` // Max length 30
-	Comment2              *string                                         `json:"com2_text,omitempty"` // Max length 30
+	Comment1              *string                                         `json:"com1_text,omitempty" validate:"max=30"`
+	Comment2              *string                                         `json:"com2_text,omitempty" validate:"max=30"`
 	PurchaseOrderLines    []UpdateSupplierInvoicePurchaseOrderLineRequest `json:"po_lines"`
 }
 
 type UpdateSupplierInvoicePurchaseOrderLineRequest struct {
 	PONumber       int     `json:"order_num"`
 	POLineNumber   int     `json:"po_line_num"`
-	AccountCode    string  `json:"acct_code"` // Max length 18
+	AccountCode    string  `json:"acct_code" validate:"max=18"`
 	OrderQuantity  float64 `json:"order_qty"`
-	TaxCode        string  `json:"tax_code"` // Max length 3
+	TaxCode        string  `json:"tax_code" validate:"max=3"`
 	UnitCostAmount float64 `json:"unit_cost_amt"`
 	UnitTaxAmount  float64 `json:"unit_tax_amt"`
 
-	Reference         *string `json:"ref_text,omitempty"`  // Max length 25
-	SupplierReference *string `json:"oem_text,omitempty"`  // Max length 15
-	Description       *string `json:"desc_text,omitempty"` // Max length 4000
+	Reference         *string `json:"ref_text,omitempty" validate:"max=25"`
+	SupplierReference *string `json:"oem_text,omitempty" validate:"max=15"`
+	Description       *string `json:"desc_text,omitempty" validate:"max=4000"`
 }
 
 type SupplierResponse struct {
@@ -828,24 +866,24 @@ type SupplierResponse struct {
 }
 
 type AddSupplierRequest struct {
-	Code             string `json:"vend_code"` // Max length 8
-	Name             string `json:"name_text"` // Max length 30
-	Type             string `json:"type_code"` // Max length 3
-	PaymentTermsCode string `json:"term_code"` // Max length 3
-	TaxCode          string `json:"tax_code"`  // Max length 3
-	HoldCode         string `json:"hold_code"` // Max length 2
+	Code             string `json:"vend_code" validate:"max=8"`
+	Name             string `json:"name_text" validate:"max=30"`
+	Type             string `json:"type_code" validate:"max=3"`
+	PaymentTermsCode string `json:"term_code" validate:"max=3"`
+	TaxCode          string `json:"tax_code" validate:"max=3"`
+	HoldCode         string `json:"hold_code" validate:"max=2"`
 
-	Name2        *string `json:"name_text2,omitempty"`   // Max length 30
-	AddressLine1 *string `json:"addr1_text,omitempty"`   // Max length 40
-	AddressLine2 *string `json:"addr2_text,omitempty"`   // Max length 40
-	AddressLine3 *string `json:"addr3_text,omitempty"`   // Max length 40
-	City         *string `json:"city_text,omitempty"`    // Max length 40
-	State        *string `json:"state_code,omitempty"`   // Max length 6
-	PostCode     *string `json:"post_code,omitempty"`    // Max length 10
-	Country      *string `json:"country_text,omitempty"` // Max length 20
-	WebAddress   *string `json:"web_address,omitempty"`  // Max length 60
-	ABN          *string `json:"abn_text,omitempty"`     // Max length 30
-	VATNumber    *string `json:"vat_number,omitempty"`   // Max length 13
+	Name2        *string `json:"name_text2,omitempty" validate:"max=30"`
+	AddressLine1 *string `json:"addr1_text,omitempty" validate:"max=40"`
+	AddressLine2 *string `json:"addr2_text,omitempty" validate:"max=40"`
+	AddressLine3 *string `json:"addr3_text,omitempty" validate:"max=40"`
+	City         *string `json:"city_text,omitempty" validate:"max=40"`
+	State        *string `json:"state_code,omitempty" validate:"max=6"`
+	PostCode     *string `json:"post_code,omitempty" validate:"max=10"`
+	Country      *string `json:"country_text,omitempty" validate:"max=20"`
+	WebAddress   *string `json:"web_address,omitempty" validate:"max=60"`
+	ABN          *string `json:"abn_text,omitempty" validate:"max=30"`
+	VATNumber    *string `json:"vat_number,omitempty" validate:"max=13"`
 	WitholdTax   bool    `json:"withold_tax_ind"`
 	Active       bool    `json:"active_flg"`
 	Misc         bool    `json:"misc_flg"`
@@ -853,25 +891,25 @@ type AddSupplierRequest struct {
 }
 
 type UpdateSupplierRequest struct {
-	Name             string `json:"name_text"` // Max length 30
-	Type             string `json:"type_code"` // Max length 3
-	PaymentTermsCode string `json:"term_code"` // Max length 3
-	TaxCode          string `json:"tax_code"`  // Max length 3
-	HoldCode         string `json:"hold_code"` // Max length 2
+	Name             string `json:"name_text" validate:"max=30"`
+	Type             string `json:"type_code" validate:"max=3"`
+	PaymentTermsCode string `json:"term_code" validate:"max=3"`
+	TaxCode          string `json:"tax_code" validate:"max=3"`
+	HoldCode         string `json:"hold_code" validate:"max=2"`
 
 	Code string `json:"vend_code"`
 
-	Name2        *string `json:"name_text2,omitempty"`   // Max length 30
-	AddressLine1 *string `json:"addr1_text,omitempty"`   // Max length 40
-	AddressLine2 *string `json:"addr2_text,omitempty"`   // Max length 40
-	AddressLine3 *string `json:"addr3_text,omitempty"`   // Max length 40
-	City         *string `json:"city_text,omitempty"`    // Max length 40
-	State        *string `json:"state_code,omitempty"`   // Max length 6
-	PostCode     *string `json:"post_code,omitempty"`    // Max length 10
-	Country      *string `json:"country_text,omitempty"` // Max length 20
-	WebAddress   *string `json:"web_address,omitempty"`  // Max length 60
-	ABN          *string `json:"abn_text,omitempty"`     // Max length 30
-	VATNumber    *string `json:"vat_number,omitempty"`   // Max length 13
+	Name2        *string `json:"name_text2,omitempty" validate:"max=30"`
+	AddressLine1 *string `json:"addr1_text,omitempty" validate:"max=40"`
+	AddressLine2 *string `json:"addr2_text,omitempty" validate:"max=40"`
+	AddressLine3 *string `json:"addr3_text,omitempty" validate:"max=40"`
+	City         *string `json:"city_text,omitempty" validate:"max=40"`
+	State        *string `json:"state_code,omitempty" validate:"max=6"`
+	PostCode     *string `json:"post_code,omitempty" validate:"max=10"`
+	Country      *string `json:"country_text,omitempty" validate:"max=20"`
+	WebAddress   *string `json:"web_address,omitempty" validate:"max=60"`
+	ABN          *string `json:"abn_text,omitempty" validate:"max=30"`
+	VATNumber    *string `json:"vat_number,omitempty" validate:"max=13"`
 	WitholdTax   bool    `json:"withold_tax_ind"`
 	Active       bool    `json:"active_flg"`
 	Misc         bool    `json:"misc_flg"`
@@ -898,12 +936,12 @@ type UpdateSupplierContactsRequest struct {
 }
 
 type UpdateContactDetails struct {
-	Name           *string `json:"contact_text,omitempty"`   // Max length 30
-	Email          *string `json:"e_mail,omitempty"`         // Max length 60
-	PhoneExtension *string `json:"extension_text,omitempty"` // Max length 7
-	Fax            *string `json:"fax_text,omitempty"`       // Max length 30
-	Mobile         *string `json:"mobile_text,omitempty"`    // Max length 30
-	Telephone      *string `json:"tele_text,omitempty"`      // Max length 30
+	Name           *string `json:"contact_text,omitempty" validate:"max=30"`
+	Email          *string `json:"e_mail,omitempty" validate:"max=60"`
+	PhoneExtension *string `json:"extension_text,omitempty" validate:"max=7"`
+	Fax            *string `json:"fax_text,omitempty" validate:"max=30"`
+	Mobile         *string `json:"mobile_text,omitempty" validate:"max=30"`
+	Telephone      *string `json:"tele_text,omitempty" validate:"max=30"`
 }
 
 type SupplierAccountInformationResponse struct {
@@ -928,23 +966,23 @@ type SupplierAccountInformationResponse struct {
 }
 
 type UpdateSupplierAccountInformationRequest struct {
-	AccountCode1 *string  `json:"usual_acct_code1,omitempty"` // Max length 18
+	AccountCode1 *string  `json:"usual_acct_code1,omitempty" validate:"max=18"`
 	Percentage1  *float64 `json:"acct1_percent,omitempty"`
-	AccountCode2 *string  `json:"usual_acct_code2,omitempty"` // Max length 18
+	AccountCode2 *string  `json:"usual_acct_code2,omitempty" validate:"max=18"`
 	Percentage2  *float64 `json:"acct2_percent,omitempty"`
-	AccountCode3 *string  `json:"usual_acct_code3,omitempty"` // Max length 18
+	AccountCode3 *string  `json:"usual_acct_code3,omitempty" validate:"max=18"`
 	Percentage3  *float64 `json:"acct3_percent,omitempty"`
-	AccountCode4 *string  `json:"usual_acct_code4,omitempty"` // Max length 18
+	AccountCode4 *string  `json:"usual_acct_code4,omitempty" validate:"max=18"`
 	Percentage4  *float64 `json:"acct4_percent,omitempty"`
-	AccountCode5 *string  `json:"usual_acct_code5,omitempty"` // Max length 18
+	AccountCode5 *string  `json:"usual_acct_code5,omitempty" validate:"max=18"`
 	Percentage5  *float64 `json:"acct5_percent,omitempty"`
-	AccountCode6 *string  `json:"usual_acct_code6,omitempty"` // Max length 18
+	AccountCode6 *string  `json:"usual_acct_code6,omitempty" validate:"max=18"`
 	Percentage6  *float64 `json:"acct6_percent,omitempty"`
-	AccountCode7 *string  `json:"usual_acct_code7,omitempty"` // Max length 18
+	AccountCode7 *string  `json:"usual_acct_code7,omitempty" validate:"max=18"`
 	Percentage7  *float64 `json:"acct7_percent,omitempty"`
-	AccountCode8 *string  `json:"usual_acct_code8,omitempty"` // Max length 18
+	AccountCode8 *string  `json:"usual_acct_code8,omitempty" validate:"max=18"`
 	Percentage8  *float64 `json:"acct8_percent,omitempty"`
-	AccountCode9 *string  `json:"usual_acct_code9,omitempty"` // Max length 18
+	AccountCode9 *string  `json:"usual_acct_code9,omitempty" validate:"max=18"`
 	Percentage9  *float64 `json:"acct9_percent,omitempty"`
 }
 
@@ -960,14 +998,14 @@ type SupplierPaymentInfoResponse struct {
 }
 
 type UpdateSupplierPaymentInfoRequest struct {
-	BankCode        *string `json:"bank_code,omitempty"`      // Max length 9
-	PaymentType     *string `json:"pay_type,omitempty"`       // Max length 2
-	BankBSBCode     *string `json:"bank_bsb_code,omitempty"`  // Max length 7
-	BankSortCode    *string `json:"bank_sort_code,omitempty"` // Max length 8
-	BankAccountCode *string `json:"bank_acct_code,omitempty"` // Max length 20
-	BankAccountName *string `json:"bank_acct_name,omitempty"` // Max length 64
-	BACSReference   *string `json:"bacs_ref,omitempty"`       // Max length 60
-	OurAccountCode  *string `json:"our_acct_code,omitempty"`  // Max length 21
+	BankCode        *string `json:"bank_code,omitempty" validate:"max=9"`
+	PaymentType     *string `json:"pay_type,omitempty" validate:"max=2"`
+	BankBSBCode     *string `json:"bank_bsb_code,omitempty" validate:"max=7"`
+	BankSortCode    *string `json:"bank_sort_code,omitempty" validate:"max=8"`
+	BankAccountCode *string `json:"bank_acct_code,omitempty" validate:"max=20"`
+	BankAccountName *string `json:"bank_acct_name,omitempty" validate:"max=64"`
+	BACSReference   *string `json:"bacs_ref,omitempty" validate:"max=60"`
+	OurAccountCode  *string `json:"our_acct_code,omitempty" validate:"max=21"`
 }
 
 type SupplierCreditStatusResponse struct {
@@ -1001,13 +1039,13 @@ type SupplierNoteResponse struct {
 }
 
 type AddSupplierNoteRequest struct {
-	Date     string `json:"note_date"` // Must be a date
-	Category string `json:"note_cat"`  // Max length 3
-	Text     string `json:"note_text"` // Max length 4000
+	Date     string `json:"note_date" validate:"datetime=2006-01-02"` // TODO: Confirm date format
+	Category string `json:"note_cat" validate:"max=3"`
+	Text     string `json:"note_text" validate:"max=4000"`
 }
 
 type UpdateSupplierNoteRequest struct {
-	Date     string `json:"note_date"` // Must be a date
-	Category string `json:"note_cat"`  // Max length 3
-	Text     string `json:"note_text"` // Max length 4000
+	Date     string `json:"note_date" validate:"datetime=2006-01-02"` // TODO: Confirm date format
+	Category string `json:"note_cat" validate:"max=3"`
+	Text     string `json:"note_text" validate:"max=4000"`
 }

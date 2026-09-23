@@ -16,6 +16,3 @@ type ValidationExceptionDetails struct {
 type Errors struct {
 	AdditionalProperties []string `json:"additionalProperties"`
 }
-
-const DateError string = `%s: %s does not parse as a date: %w`
-const MaxLengthError string = `%s: %s must be less than or equal to %s`

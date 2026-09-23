@@ -10,10 +10,12 @@ import (
 	"net/url"
 	"regexp"
 	"slices"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
 
+	tasscommon "github.com/woodleighschool/tass-go-sdk/tass/modules/common"
 	tassemployee "github.com/woodleighschool/tass-go-sdk/tass/modules/employee"
 	tassfinance "github.com/woodleighschool/tass-go-sdk/tass/modules/finance"
 	tassstudent "github.com/woodleighschool/tass-go-sdk/tass/modules/student"
@@ -125,7 +127,7 @@ func (c *Client) request(
 	payload any,
 	successCodes ...int,
 ) ([]byte, error) {
-	encoded, err := encodePayload(payload)
+	encoded, err := encodeJSONPayload(payload)
 	if err != nil {
 		return nil, err
 	}
@@ -142,6 +144,53 @@ func (c *Client) request(
 		if requestErr != nil {
 			return nil, fmt.Errorf("create tass api request: %w", requestErr)
 		}
+		request.Header.Set("Accept", "application/json")
+		request.Header.Set("Authorization", "Bearer "+token)
+
+		response, requestErr := c.transport.httpClient.Do(request)
+		if requestErr != nil {
+			return nil, fmt.Errorf("call tass api: %w", requestErr)
+		}
+		body, readErr := io.ReadAll(response.Body)
+		closeErr := response.Body.Close()
+		if readErr != nil {
+			return nil, fmt.Errorf("read tass response: %w", readErr)
+		}
+		if closeErr != nil {
+			return nil, fmt.Errorf("close tass response: %w", closeErr)
+		}
+		if response.StatusCode == http.StatusUnauthorized && attempt == 0 {
+			c.invalidateToken(token)
+			continue
+		}
+		if !containsStatus(successCodes, response.StatusCode) {
+			return nil, NewHTTPError(response.StatusCode, body)
+		}
+		return body, nil
+	}
+	return nil, fmt.Errorf("tass authentication failed after token refresh")
+}
+
+func (c *Client) upload(
+	ctx context.Context,
+	path string,
+	payload tasscommon.FileRequest,
+	successCodes ...int,
+) ([]byte, error) {
+	encoded := encodeFormPayload(payload)
+	for attempt := range 2 {
+		token, tokenErr := c.refreshToken(ctx)
+		if tokenErr != nil {
+			return nil, tokenErr
+		}
+		requestURL := c.transport.apiEndpoint + path
+		request, requestErr := http.NewRequestWithContext(ctx, http.MethodPost, requestURL, strings.NewReader(encoded))
+		if requestErr != nil {
+			return nil, fmt.Errorf("create tass api request: %w", requestErr)
+		}
+		request.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+		request.Header.Set("Content-Length", strconv.Itoa(len(encoded)))
+
 		request.Header.Set("Accept", "application/json")
 		request.Header.Set("Authorization", "Bearer "+token)
 
@@ -245,7 +294,7 @@ func (c *Client) invalidateToken(token string) {
 	}
 }
 
-func encodePayload(payload any) ([]byte, error) {
+func encodeJSONPayload(payload any) ([]byte, error) {
 	if payload == nil {
 		return nil, nil
 	}
@@ -254,6 +303,22 @@ func encodePayload(payload any) ([]byte, error) {
 		return nil, fmt.Errorf("encode tass request body: %w", err)
 	}
 	return encoded, nil
+}
+
+func encodeFormPayload(payload tasscommon.FileRequest) string {
+	data := url.Values{}
+
+	if payload.FileName != nil {
+		data.Set("file_name", *payload.FileName)
+	}
+	if len(payload.AdditionalProperties) != 0 {
+		for key, value := range payload.AdditionalProperties {
+			data.Set(key, value)
+		}
+	}
+
+	data.Set("file_content", string(payload.FileContent))
+	return data.Encode()
 }
 
 func containsStatus(statuses []int, status int) bool {

@@ -2,8 +2,6 @@ package tasscommon
 
 import "time"
 
-const FileSizeValidation string = `^-?(?:0|[1-9]\\d*)$`
-
 type FileDetails struct {
 	Name         *string    `json:"file_name,omitempty"`
 	Size         *int       `json:"file_size,omitempty"`
@@ -22,8 +20,9 @@ type IFormFile string
 
 // Custom struct
 type FileRequest struct {
-	FileName    *string   `json:"file_name,omitempty"`
-	FileContent IFormFile `json:"file_content,omitempty"`
+	FileName             *string           `json:"file_name,omitempty"`
+	FileContent          IFormFile         `json:"file_content,omitempty"`
+	AdditionalProperties map[string]string `json:"-"`
 }
 
 type AttachmentDetails struct {
@@ -126,55 +125,55 @@ type UDAreaFieldsRequest struct {
 }
 
 type UDAreaFlagRequest struct {
-	UD1Flag  *string `json:"ud1_flag,omitempty"`  // Max length 1
-	UD2Flag  *string `json:"ud2_flag,omitempty"`  // Max length 1
-	UD3Flag  *string `json:"ud3_flag,omitempty"`  // Max length 1
-	UD4Flag  *string `json:"ud4_flag,omitempty"`  // Max length 1
-	UD5Flag  *string `json:"ud5_flag,omitempty"`  // Max length 1
-	UD6Flag  *string `json:"ud6_flag,omitempty"`  // Max length 1
-	UD7Flag  *string `json:"ud7_flag,omitempty"`  // Max length 1
-	UD8Flag  *string `json:"ud8_flag,omitempty"`  // Max length 1
-	UD9Flag  *string `json:"ud9_flag,omitempty"`  // Max length 1
-	UD10Flag *string `json:"ud10_flag,omitempty"` // Max length 1
+	UD1Flag  *string `json:"ud1_flag,omitempty" validate:"max=1"`
+	UD2Flag  *string `json:"ud2_flag,omitempty" validate:"max=1"`
+	UD3Flag  *string `json:"ud3_flag,omitempty" validate:"max=1"`
+	UD4Flag  *string `json:"ud4_flag,omitempty" validate:"max=1"`
+	UD5Flag  *string `json:"ud5_flag,omitempty" validate:"max=1"`
+	UD6Flag  *string `json:"ud6_flag,omitempty" validate:"max=1"`
+	UD7Flag  *string `json:"ud7_flag,omitempty" validate:"max=1"`
+	UD8Flag  *string `json:"ud8_flag,omitempty" validate:"max=1"`
+	UD9Flag  *string `json:"ud9_flag,omitempty" validate:"max=1"`
+	UD10Flag *string `json:"ud10_flag,omitempty" validate:"max=1"`
 }
 
 type UDAreaCodeRequest struct {
-	UD11Code *string `json:"ud11_code,omitempty"` // Max length 3
-	UD12Code *string `json:"ud12_code,omitempty"` // Max length 3
-	UD13Code *string `json:"ud13_code,omitempty"` // Max length 3
-	UD14Code *string `json:"ud14_code,omitempty"` // Max length 3
-	UD15Code *string `json:"ud15_code,omitempty"` // Max length 3
-	UD16Code *string `json:"ud16_code,omitempty"` // Max length 3
-	UD17Code *string `json:"ud17_code,omitempty"` // Max length 3
-	UD18Code *string `json:"ud18_code,omitempty"` // Max length 3
-	UD19Code *string `json:"ud19_code,omitempty"` // Max length 3
-	UD20Code *string `json:"ud20_code,omitempty"` // Max length 3
+	UD11Code *string `json:"ud11_code,omitempty" validate:"max=3"`
+	UD12Code *string `json:"ud12_code,omitempty" validate:"max=3"`
+	UD13Code *string `json:"ud13_code,omitempty" validate:"max=3"`
+	UD14Code *string `json:"ud14_code,omitempty" validate:"max=3"`
+	UD15Code *string `json:"ud15_code,omitempty" validate:"max=3"`
+	UD16Code *string `json:"ud16_code,omitempty" validate:"max=3"`
+	UD17Code *string `json:"ud17_code,omitempty" validate:"max=3"`
+	UD18Code *string `json:"ud18_code,omitempty" validate:"max=3"`
+	UD19Code *string `json:"ud19_code,omitempty" validate:"max=3"`
+	UD20Code *string `json:"ud20_code,omitempty" validate:"max=3"`
 }
 
 type UDAreaTextRequest struct {
-	UD21Text *string `json:"ud21_text,omitempty"` // Max length 100
-	UD22Text *string `json:"ud22_text,omitempty"` // Max length 100
-	UD23Text *string `json:"ud23_text,omitempty"` // Max length 100
-	UD24Text *string `json:"ud24_text,omitempty"` // Max length 100
-	UD25Text *string `json:"ud25_text,omitempty"` // Max length 100
-	UD26Text *string `json:"ud26_text,omitempty"` // Max length 100
-	UD27Text *string `json:"ud27_text,omitempty"` // Max length 100
-	UD28Text *string `json:"ud28_text,omitempty"` // Max length 100
-	UD29Text *string `json:"ud29_text,omitempty"` // Max length 100
-	UD30Text *string `json:"ud30_text,omitempty"` // Max length 100
+	UD21Text *string `json:"ud21_text,omitempty" validate:"max=100"`
+	UD22Text *string `json:"ud22_text,omitempty" validate:"max=100"`
+	UD23Text *string `json:"ud23_text,omitempty" validate:"max=100"`
+	UD24Text *string `json:"ud24_text,omitempty" validate:"max=100"`
+	UD25Text *string `json:"ud25_text,omitempty" validate:"max=100"`
+	UD26Text *string `json:"ud26_text,omitempty" validate:"max=100"`
+	UD27Text *string `json:"ud27_text,omitempty" validate:"max=100"`
+	UD28Text *string `json:"ud28_text,omitempty" validate:"max=100"`
+	UD29Text *string `json:"ud29_text,omitempty" validate:"max=100"`
+	UD30Text *string `json:"ud30_text,omitempty" validate:"max=100"`
 }
 
 type UDAreaDateRequest struct {
-	UD31Date *time.Time `json:"ud31_date,omitempty"` // Max length 100
-	UD32Date *time.Time `json:"ud32_date,omitempty"` // Max length 100
-	UD33Date *time.Time `json:"ud33_date,omitempty"` // Max length 100
-	UD34Date *time.Time `json:"ud34_date,omitempty"` // Max length 100
-	UD35Date *time.Time `json:"ud35_date,omitempty"` // Max length 100
-	UD36Date *time.Time `json:"ud36_date,omitempty"` // Max length 100
-	UD37Date *time.Time `json:"ud37_date,omitempty"` // Max length 100
-	UD38Date *time.Time `json:"ud38_date,omitempty"` // Max length 100
-	UD39Date *time.Time `json:"ud39_date,omitempty"` // Max length 100
-	UD40Date *time.Time `json:"ud40_date,omitempty"` // Max length 100
+	UD31Date *time.Time `json:"ud31_date,omitempty" validate:"max=100"`
+	UD32Date *time.Time `json:"ud32_date,omitempty" validate:"max=100"`
+	UD33Date *time.Time `json:"ud33_date,omitempty" validate:"max=100"`
+	UD34Date *time.Time `json:"ud34_date,omitempty" validate:"max=100"`
+	UD35Date *time.Time `json:"ud35_date,omitempty" validate:"max=100"`
+	UD36Date *time.Time `json:"ud36_date,omitempty" validate:"max=100"`
+	UD37Date *time.Time `json:"ud37_date,omitempty" validate:"max=100"`
+	UD38Date *time.Time `json:"ud38_date,omitempty" validate:"max=100"`
+	UD39Date *time.Time `json:"ud39_date,omitempty" validate:"max=100"`
+	UD40Date *time.Time `json:"ud40_date,omitempty" validate:"max=100"`
 }
 
 type UDFieldTypes struct {

@@ -53,43 +53,43 @@ type StudentResponse struct {
 }
 
 type UpdateStudentRequest struct {
-	ComparativeReporting string    `json:"compare_flg"` // Max length 1
+	ComparativeReporting string    `json:"compare_flg" validate:"max=1"`
 	DateOfEntry          time.Time `json:"doe"`
-	FirstName            string    `json:"first_name"` // Max length 50
+	FirstName            string    `json:"first_name" validate:"max=50"`
 	FTE                  string    `json:"fte"`
-	Gender               string    `json:"gender"`            // Max length 3
-	PreferredName        string    `json:"preferred_name"`    // Max length 20
-	PreferredSurname     string    `json:"preferred_surname"` // Max length 50
-	Surname              string    `json:"surname"`           // Max length 30
+	Gender               string    `json:"gender" validate:"max=3"`
+	PreferredName        string    `json:"preferred_name" validate:"max=20"`
+	PreferredSurname     string    `json:"preferred_surname" validate:"max=50"`
+	Surname              string    `json:"surname" validate:"max=30"`
 	YearGroup            string    `json:"year_grp"`
 
-	AltID             *string    `json:"alt_id,omitempty"` // Max length 40
+	AltID             *string    `json:"alt_id,omitempty" validate:"max=40"`
 	Boarder           *bool      `json:"boarder,omitempty"`
-	Campus            *string    `json:"campus,omitempty"` // Max length 3
-	CEIDER            *string    `json:"ceider,omitempty"` // Max length 9
+	Campus            *string    `json:"campus,omitempty" validate:"max=3"`
+	CEIDER            *string    `json:"ceider,omitempty" validate:"max=9"`
 	DateOfArrival     *time.Time `json:"date_arrival,omitempty"`
 	DistanceEducation *bool      `json:"distance_ed,omitempty"`
 	DateOfBirth       *time.Time `json:"dob,omitempty"`
 	DateOfLeaving     *time.Time `json:"dol,omitempty"`
-	Email             *string    `json:"e_mail,omitempty"` // Max length 60
+	Email             *string    `json:"e_mail,omitempty" validate:"max=60"`
 	EntryYear         *string    `json:"entry_lev,omitempty"`
 	FFPOS             *bool      `json:"ffpos"`
-	FormClass         *string    `json:"form_cls,omitempty"`    // Max length 2
-	House             *string    `json:"house,omitempty"`       // Max length 2
-	IDM               *string    `json:"idm_id,omitempty"`      // Max length 100
-	MobilePhone       *string    `json:"mob_phone,omitempty"`   // Max length 30
-	NextYear          *string    `json:"next_yr_ind"`           // Max length 1
-	OtherName         *string    `json:"other_name,omitempty"`  // Max length 50
-	PCTutorGroup      *string    `json:"pctut_grp,omitempty"`   // Max length 5
-	PreviousSchool    *string    `json:"prev_school,omitempty"` // Max length 5
+	FormClass         *string    `json:"form_cls,omitempty" validate:"max=2"`
+	House             *string    `json:"house,omitempty" validate:"max=2"`
+	IDM               *string    `json:"idm_id,omitempty" validate:"max=100"`
+	MobilePhone       *string    `json:"mob_phone,omitempty" validate:"max=30"`
+	NextYear          *string    `json:"next_yr_ind" validate:"max=1"`
+	OtherName         *string    `json:"other_name,omitempty" validate:"max=50"`
+	PCTutorGroup      *string    `json:"pctut_grp,omitempty" validate:"max=5"`
+	PreviousSchool    *string    `json:"prev_school,omitempty" validate:"max=5"`
 	PrivacyFlag       *bool      `json:"privacy_flg"`
-	Religion          *string    `json:"religion,omitempty"` // Max length 2
-	ResidencyStatus   *bool      `json:"resident_sts"`       // Max length 3
+	Religion          *string    `json:"religion,omitempty" validate:"max=2"`
+	ResidencyStatus   *bool      `json:"resident_sts" validate:"max=3"`
 	SMSFlag           *bool      `json:"sms_flg"`
-	StudentCode       *string    `json:"stud_code"`     // Max length 8
-	USI               *string    `json:"usi,omitempty"` // Max length 10
+	StudentCode       *string    `json:"stud_code" validate:"max=8"`
+	USI               *string    `json:"usi,omitempty" validate:"max=10"`
 	VisaExpiry        *time.Time `json:"visa_expiry,omitempty"`
-	VisaSubclass      *string    `json:"visa_subclass,omitempty"` // Max length 6
+	VisaSubclass      *string    `json:"visa_subclass,omitempty" validate:"max=6"`
 	WebAccess         *bool      `json:"web_access_ind"`
 }
 
@@ -104,15 +104,15 @@ type StudentStandardNoteResponse struct {
 }
 
 type AddStudentStandardNoteRequest struct {
-	NoteCategory string `json:"note_cat"`  // Max length 3
-	NoteDate     string `json:"note_date"` // Must be a date (yyyy-mm-dd)
-	NoteText     string `json:"note_text"` // Max length 4000
+	NoteCategory string `json:"note_cat" validate:"max=3"`
+	NoteDate     string `json:"note_date" validate:"datetime=2006-01-02"`
+	NoteText     string `json:"note_text" validate:"max=4000"`
 }
 
 type UpdateStudentStandardNoteRequest struct {
-	NoteCategory string `json:"note_cat"`  // Max length 3
-	NoteDate     string `json:"note_date"` // Must be a date (yyyy-mm-dd)
-	NoteText     string `json:"note_text"` // Max length 4000
+	NoteCategory string `json:"note_cat" validate:"max=3"`
+	NoteDate     string `json:"note_date" validate:"datetime=2006-01-02"`
+	NoteText     string `json:"note_text" validate:"max=4000"`
 }
 
 type StudentConfidentialNoteResponse struct {
@@ -126,15 +126,15 @@ type StudentConfidentialNoteResponse struct {
 }
 
 type AddStudentConfidentialNoteRequest struct {
-	NoteCategory string `json:"note_cat"`  // Max length 3
-	NoteDate     string `json:"note_date"` // Must be a date (yyyy-mm-dd)
-	NoteText     string `json:"note_text"` // Max length 4000
+	NoteCategory string `json:"note_cat" validate:"max=3"`
+	NoteDate     string `json:"note_date" validate:"datetime=2006-01-02"` // TODO: Confirm date format
+	NoteText     string `json:"note_text" validate:"max=4000"`
 }
 
 type UpdateStudentConfidentialNoteRequest struct {
-	NoteCategory string `json:"note_cat"`  // Max length 3
-	NoteDate     string `json:"note_date"` // Must be a date (yyyy-mm-dd)
-	NoteText     string `json:"note_text"` // Max length 4000
+	NoteCategory string `json:"note_cat" validate:"max=3"`
+	NoteDate     string `json:"note_date" validate:"datetime=2006-01-02"` // TODO: Confirm date format
+	NoteText     string `json:"note_text" validate:"max=4000"`
 }
 
 type StudentPhotoChangesResponse struct {
@@ -165,42 +165,42 @@ type StudentUDAreaFieldsResponse struct {
 }
 
 type StudentUDAreaFlagResponse struct {
-	UD1Flag  *string `json:"ud1_flg,omitempty"`  // Max length 1
-	UD2Flag  *string `json:"ud2_flg,omitempty"`  // Max length 1
-	UD3Flag  *string `json:"ud3_flg,omitempty"`  // Max length 1
-	UD4Flag  *string `json:"ud4_flg,omitempty"`  // Max length 1
-	UD5Flag  *string `json:"ud5_flg,omitempty"`  // Max length 1
-	UD6Flag  *string `json:"ud6_flg,omitempty"`  // Max length 1
-	UD7Flag  *string `json:"ud7_flg,omitempty"`  // Max length 1
-	UD8Flag  *string `json:"ud8_flg,omitempty"`  // Max length 1
-	UD9Flag  *string `json:"ud9_flg,omitempty"`  // Max length 1
-	UD10Flag *string `json:"ud10_flg,omitempty"` // Max length 1
+	UD1Flag  *string `json:"ud1_flg,omitempty" validate:"max=1"`
+	UD2Flag  *string `json:"ud2_flg,omitempty" validate:"max=1"`
+	UD3Flag  *string `json:"ud3_flg,omitempty" validate:"max=1"`
+	UD4Flag  *string `json:"ud4_flg,omitempty" validate:"max=1"`
+	UD5Flag  *string `json:"ud5_flg,omitempty" validate:"max=1"`
+	UD6Flag  *string `json:"ud6_flg,omitempty" validate:"max=1"`
+	UD7Flag  *string `json:"ud7_flg,omitempty" validate:"max=1"`
+	UD8Flag  *string `json:"ud8_flg,omitempty" validate:"max=1"`
+	UD9Flag  *string `json:"ud9_flg,omitempty" validate:"max=1"`
+	UD10Flag *string `json:"ud10_flg,omitempty" validate:"max=1"`
 }
 
 type StudentUDAreaCodeResponse struct {
-	UD11Code *string `json:"ud11_code,omitempty"` // Max length 3
-	UD12Code *string `json:"ud12_code,omitempty"` // Max length 3
-	UD13Code *string `json:"ud13_code,omitempty"` // Max length 3
-	UD14Code *string `json:"ud14_code,omitempty"` // Max length 3
-	UD15Code *string `json:"ud15_code,omitempty"` // Max length 3
-	UD16Code *string `json:"ud16_code,omitempty"` // Max length 3
-	UD17Code *string `json:"ud17_code,omitempty"` // Max length 3
-	UD18Code *string `json:"ud18_code,omitempty"` // Max length 3
-	UD19Code *string `json:"ud19_code,omitempty"` // Max length 3
-	UD20Code *string `json:"ud20_code,omitempty"` // Max length 3
+	UD11Code *string `json:"ud11_code,omitempty" validate:"max=3"`
+	UD12Code *string `json:"ud12_code,omitempty" validate:"max=3"`
+	UD13Code *string `json:"ud13_code,omitempty" validate:"max=3"`
+	UD14Code *string `json:"ud14_code,omitempty" validate:"max=3"`
+	UD15Code *string `json:"ud15_code,omitempty" validate:"max=3"`
+	UD16Code *string `json:"ud16_code,omitempty" validate:"max=3"`
+	UD17Code *string `json:"ud17_code,omitempty" validate:"max=3"`
+	UD18Code *string `json:"ud18_code,omitempty" validate:"max=3"`
+	UD19Code *string `json:"ud19_code,omitempty" validate:"max=3"`
+	UD20Code *string `json:"ud20_code,omitempty" validate:"max=3"`
 }
 
 type StudentUDAreaTextResponse struct {
-	UD21Text *string `json:"ud21_text,omitempty"` // Max length 100
-	UD22Text *string `json:"ud22_text,omitempty"` // Max length 100
-	UD23Text *string `json:"ud23_text,omitempty"` // Max length 100
-	UD24Text *string `json:"ud24_text,omitempty"` // Max length 100
-	UD25Text *string `json:"ud25_text,omitempty"` // Max length 100
-	UD26Text *string `json:"ud26_text,omitempty"` // Max length 100
-	UD27Text *string `json:"ud27_text,omitempty"` // Max length 100
-	UD28Text *string `json:"ud28_text,omitempty"` // Max length 100
-	UD29Text *string `json:"ud29_text,omitempty"` // Max length 100
-	UD30Text *string `json:"ud30_text,omitempty"` // Max length 100
+	UD21Text *string `json:"ud21_text,omitempty" validate:"max=100"`
+	UD22Text *string `json:"ud22_text,omitempty" validate:"max=100"`
+	UD23Text *string `json:"ud23_text,omitempty" validate:"max=100"`
+	UD24Text *string `json:"ud24_text,omitempty" validate:"max=100"`
+	UD25Text *string `json:"ud25_text,omitempty" validate:"max=100"`
+	UD26Text *string `json:"ud26_text,omitempty" validate:"max=100"`
+	UD27Text *string `json:"ud27_text,omitempty" validate:"max=100"`
+	UD28Text *string `json:"ud28_text,omitempty" validate:"max=100"`
+	UD29Text *string `json:"ud29_text,omitempty" validate:"max=100"`
+	UD30Text *string `json:"ud30_text,omitempty" validate:"max=100"`
 }
 
 type StudentUDAreaDateResponse struct {
@@ -241,42 +241,42 @@ type StudentUDAreaFieldsRequest struct {
 }
 
 type StudentUDAreaFlagRequest struct {
-	UD1Flag  *string `json:"ud1_flg,omitempty"`  // Max length 1
-	UD2Flag  *string `json:"ud2_flg,omitempty"`  // Max length 1
-	UD3Flag  *string `json:"ud3_flg,omitempty"`  // Max length 1
-	UD4Flag  *string `json:"ud4_flg,omitempty"`  // Max length 1
-	UD5Flag  *string `json:"ud5_flg,omitempty"`  // Max length 1
-	UD6Flag  *string `json:"ud6_flg,omitempty"`  // Max length 1
-	UD7Flag  *string `json:"ud7_flg,omitempty"`  // Max length 1
-	UD8Flag  *string `json:"ud8_flg,omitempty"`  // Max length 1
-	UD9Flag  *string `json:"ud9_flg,omitempty"`  // Max length 1
-	UD10Flag *string `json:"ud10_flg,omitempty"` // Max length 1
+	UD1Flag  *string `json:"ud1_flg,omitempty" validate:"max=1"`
+	UD2Flag  *string `json:"ud2_flg,omitempty" validate:"max=1"`
+	UD3Flag  *string `json:"ud3_flg,omitempty" validate:"max=1"`
+	UD4Flag  *string `json:"ud4_flg,omitempty" validate:"max=1"`
+	UD5Flag  *string `json:"ud5_flg,omitempty" validate:"max=1"`
+	UD6Flag  *string `json:"ud6_flg,omitempty" validate:"max=1"`
+	UD7Flag  *string `json:"ud7_flg,omitempty" validate:"max=1"`
+	UD8Flag  *string `json:"ud8_flg,omitempty" validate:"max=1"`
+	UD9Flag  *string `json:"ud9_flg,omitempty" validate:"max=1"`
+	UD10Flag *string `json:"ud10_flg,omitempty" validate:"max=1"`
 }
 
 type StudentUDAreaCodeRequest struct {
-	UD11Code *string `json:"ud11_code,omitempty"` // Max length 3
-	UD12Code *string `json:"ud12_code,omitempty"` // Max length 3
-	UD13Code *string `json:"ud13_code,omitempty"` // Max length 3
-	UD14Code *string `json:"ud14_code,omitempty"` // Max length 3
-	UD15Code *string `json:"ud15_code,omitempty"` // Max length 3
-	UD16Code *string `json:"ud16_code,omitempty"` // Max length 3
-	UD17Code *string `json:"ud17_code,omitempty"` // Max length 3
-	UD18Code *string `json:"ud18_code,omitempty"` // Max length 3
-	UD19Code *string `json:"ud19_code,omitempty"` // Max length 3
-	UD20Code *string `json:"ud20_code,omitempty"` // Max length 3
+	UD11Code *string `json:"ud11_code,omitempty" validate:"max=3"`
+	UD12Code *string `json:"ud12_code,omitempty" validate:"max=3"`
+	UD13Code *string `json:"ud13_code,omitempty" validate:"max=3"`
+	UD14Code *string `json:"ud14_code,omitempty" validate:"max=3"`
+	UD15Code *string `json:"ud15_code,omitempty" validate:"max=3"`
+	UD16Code *string `json:"ud16_code,omitempty" validate:"max=3"`
+	UD17Code *string `json:"ud17_code,omitempty" validate:"max=3"`
+	UD18Code *string `json:"ud18_code,omitempty" validate:"max=3"`
+	UD19Code *string `json:"ud19_code,omitempty" validate:"max=3"`
+	UD20Code *string `json:"ud20_code,omitempty" validate:"max=3"`
 }
 
 type StudentUDAreaTextRequest struct {
-	UD21Text *string `json:"ud21_text,omitempty"` // Max length 100
-	UD22Text *string `json:"ud22_text,omitempty"` // Max length 100
-	UD23Text *string `json:"ud23_text,omitempty"` // Max length 100
-	UD24Text *string `json:"ud24_text,omitempty"` // Max length 100
-	UD25Text *string `json:"ud25_text,omitempty"` // Max length 100
-	UD26Text *string `json:"ud26_text,omitempty"` // Max length 100
-	UD27Text *string `json:"ud27_text,omitempty"` // Max length 100
-	UD28Text *string `json:"ud28_text,omitempty"` // Max length 100
-	UD29Text *string `json:"ud29_text,omitempty"` // Max length 100
-	UD30Text *string `json:"ud30_text,omitempty"` // Max length 100
+	UD21Text *string `json:"ud21_text,omitempty" validate:"max=100"`
+	UD22Text *string `json:"ud22_text,omitempty" validate:"max=100"`
+	UD23Text *string `json:"ud23_text,omitempty" validate:"max=100"`
+	UD24Text *string `json:"ud24_text,omitempty" validate:"max=100"`
+	UD25Text *string `json:"ud25_text,omitempty" validate:"max=100"`
+	UD26Text *string `json:"ud26_text,omitempty" validate:"max=100"`
+	UD27Text *string `json:"ud27_text,omitempty" validate:"max=100"`
+	UD28Text *string `json:"ud28_text,omitempty" validate:"max=100"`
+	UD29Text *string `json:"ud29_text,omitempty" validate:"max=100"`
+	UD30Text *string `json:"ud30_text,omitempty" validate:"max=100"`
 }
 
 type StudentUDAreaDateRequest struct {
@@ -309,42 +309,42 @@ type UDFieldsResponse struct {
 }
 
 type UDFlagResponse struct {
-	UD1Flag  *string `json:"ud1_flg,omitempty"`  // Max length 1
-	UD2Flag  *string `json:"ud2_flg,omitempty"`  // Max length 1
-	UD3Flag  *string `json:"ud3_flg,omitempty"`  // Max length 1
-	UD4Flag  *string `json:"ud4_flg,omitempty"`  // Max length 1
-	UD5Flag  *string `json:"ud5_flg,omitempty"`  // Max length 1
-	UD6Flag  *string `json:"ud6_flg,omitempty"`  // Max length 1
-	UD7Flag  *string `json:"ud7_flg,omitempty"`  // Max length 1
-	UD8Flag  *string `json:"ud8_flg,omitempty"`  // Max length 1
-	UD9Flag  *string `json:"ud9_flg,omitempty"`  // Max length 1
-	UD10Flag *string `json:"ud10_flg,omitempty"` // Max length 1
+	UD1Flag  *string `json:"ud1_flg,omitempty" validate:"max=1"`
+	UD2Flag  *string `json:"ud2_flg,omitempty" validate:"max=1"`
+	UD3Flag  *string `json:"ud3_flg,omitempty" validate:"max=1"`
+	UD4Flag  *string `json:"ud4_flg,omitempty" validate:"max=1"`
+	UD5Flag  *string `json:"ud5_flg,omitempty" validate:"max=1"`
+	UD6Flag  *string `json:"ud6_flg,omitempty" validate:"max=1"`
+	UD7Flag  *string `json:"ud7_flg,omitempty" validate:"max=1"`
+	UD8Flag  *string `json:"ud8_flg,omitempty" validate:"max=1"`
+	UD9Flag  *string `json:"ud9_flg,omitempty" validate:"max=1"`
+	UD10Flag *string `json:"ud10_flg,omitempty" validate:"max=1"`
 }
 
 type UDCodeResponse struct {
-	UD11Code *string `json:"ud11_code,omitempty"` // Max length 3
-	UD12Code *string `json:"ud12_code,omitempty"` // Max length 3
-	UD13Code *string `json:"ud13_code,omitempty"` // Max length 3
-	UD14Code *string `json:"ud14_code,omitempty"` // Max length 3
-	UD15Code *string `json:"ud15_code,omitempty"` // Max length 3
-	UD16Code *string `json:"ud16_code,omitempty"` // Max length 3
-	UD17Code *string `json:"ud17_code,omitempty"` // Max length 3
-	UD18Code *string `json:"ud18_code,omitempty"` // Max length 3
-	UD19Code *string `json:"ud19_code,omitempty"` // Max length 3
-	UD20Code *string `json:"ud20_code,omitempty"` // Max length 3
+	UD11Code *string `json:"ud11_code,omitempty" validate:"max=3"`
+	UD12Code *string `json:"ud12_code,omitempty" validate:"max=3"`
+	UD13Code *string `json:"ud13_code,omitempty" validate:"max=3"`
+	UD14Code *string `json:"ud14_code,omitempty" validate:"max=3"`
+	UD15Code *string `json:"ud15_code,omitempty" validate:"max=3"`
+	UD16Code *string `json:"ud16_code,omitempty" validate:"max=3"`
+	UD17Code *string `json:"ud17_code,omitempty" validate:"max=3"`
+	UD18Code *string `json:"ud18_code,omitempty" validate:"max=3"`
+	UD19Code *string `json:"ud19_code,omitempty" validate:"max=3"`
+	UD20Code *string `json:"ud20_code,omitempty" validate:"max=3"`
 }
 
 type UDTextResponse struct {
-	UD21Text *string `json:"ud21_text,omitempty"` // Max length 100
-	UD22Text *string `json:"ud22_text,omitempty"` // Max length 100
-	UD23Text *string `json:"ud23_text,omitempty"` // Max length 100
-	UD24Text *string `json:"ud24_text,omitempty"` // Max length 100
-	UD25Text *string `json:"ud25_text,omitempty"` // Max length 100
-	UD26Text *string `json:"ud26_text,omitempty"` // Max length 100
-	UD27Text *string `json:"ud27_text,omitempty"` // Max length 100
-	UD28Text *string `json:"ud28_text,omitempty"` // Max length 100
-	UD29Text *string `json:"ud29_text,omitempty"` // Max length 100
-	UD30Text *string `json:"ud30_text,omitempty"` // Max length 100
+	UD21Text *string `json:"ud21_text,omitempty" validate:"max=100"`
+	UD22Text *string `json:"ud22_text,omitempty" validate:"max=100"`
+	UD23Text *string `json:"ud23_text,omitempty" validate:"max=100"`
+	UD24Text *string `json:"ud24_text,omitempty" validate:"max=100"`
+	UD25Text *string `json:"ud25_text,omitempty" validate:"max=100"`
+	UD26Text *string `json:"ud26_text,omitempty" validate:"max=100"`
+	UD27Text *string `json:"ud27_text,omitempty" validate:"max=100"`
+	UD28Text *string `json:"ud28_text,omitempty" validate:"max=100"`
+	UD29Text *string `json:"ud29_text,omitempty" validate:"max=100"`
+	UD30Text *string `json:"ud30_text,omitempty" validate:"max=100"`
 }
 
 type UpdateStudentUDFieldsRequest struct {
@@ -358,42 +358,42 @@ type UDFieldsRequest struct {
 }
 
 type UDFlagRequest struct {
-	UD1Flag  *string `json:"ud1_flg,omitempty"`  // Max length 1
-	UD2Flag  *string `json:"ud2_flg,omitempty"`  // Max length 1
-	UD3Flag  *string `json:"ud3_flg,omitempty"`  // Max length 1
-	UD4Flag  *string `json:"ud4_flg,omitempty"`  // Max length 1
-	UD5Flag  *string `json:"ud5_flg,omitempty"`  // Max length 1
-	UD6Flag  *string `json:"ud6_flg,omitempty"`  // Max length 1
-	UD7Flag  *string `json:"ud7_flg,omitempty"`  // Max length 1
-	UD8Flag  *string `json:"ud8_flg,omitempty"`  // Max length 1
-	UD9Flag  *string `json:"ud9_flg,omitempty"`  // Max length 1
-	UD10Flag *string `json:"ud10_flg,omitempty"` // Max length 1
+	UD1Flag  *string `json:"ud1_flg,omitempty" validate:"max=1"`
+	UD2Flag  *string `json:"ud2_flg,omitempty" validate:"max=1"`
+	UD3Flag  *string `json:"ud3_flg,omitempty" validate:"max=1"`
+	UD4Flag  *string `json:"ud4_flg,omitempty" validate:"max=1"`
+	UD5Flag  *string `json:"ud5_flg,omitempty" validate:"max=1"`
+	UD6Flag  *string `json:"ud6_flg,omitempty" validate:"max=1"`
+	UD7Flag  *string `json:"ud7_flg,omitempty" validate:"max=1"`
+	UD8Flag  *string `json:"ud8_flg,omitempty" validate:"max=1"`
+	UD9Flag  *string `json:"ud9_flg,omitempty" validate:"max=1"`
+	UD10Flag *string `json:"ud10_flg,omitempty" validate:"max=1"`
 }
 
 type UDCodeRequest struct {
-	UD11Code *string `json:"ud11_code,omitempty"` // Max length 3
-	UD12Code *string `json:"ud12_code,omitempty"` // Max length 3
-	UD13Code *string `json:"ud13_code,omitempty"` // Max length 3
-	UD14Code *string `json:"ud14_code,omitempty"` // Max length 3
-	UD15Code *string `json:"ud15_code,omitempty"` // Max length 3
-	UD16Code *string `json:"ud16_code,omitempty"` // Max length 3
-	UD17Code *string `json:"ud17_code,omitempty"` // Max length 3
-	UD18Code *string `json:"ud18_code,omitempty"` // Max length 3
-	UD19Code *string `json:"ud19_code,omitempty"` // Max length 3
-	UD20Code *string `json:"ud20_code,omitempty"` // Max length 3
+	UD11Code *string `json:"ud11_code,omitempty" validate:"max=3"`
+	UD12Code *string `json:"ud12_code,omitempty" validate:"max=3"`
+	UD13Code *string `json:"ud13_code,omitempty" validate:"max=3"`
+	UD14Code *string `json:"ud14_code,omitempty" validate:"max=3"`
+	UD15Code *string `json:"ud15_code,omitempty" validate:"max=3"`
+	UD16Code *string `json:"ud16_code,omitempty" validate:"max=3"`
+	UD17Code *string `json:"ud17_code,omitempty" validate:"max=3"`
+	UD18Code *string `json:"ud18_code,omitempty" validate:"max=3"`
+	UD19Code *string `json:"ud19_code,omitempty" validate:"max=3"`
+	UD20Code *string `json:"ud20_code,omitempty" validate:"max=3"`
 }
 
 type UDTextRequest struct {
-	UD21Text *string `json:"ud21_text,omitempty"` // Max length 100
-	UD22Text *string `json:"ud22_text,omitempty"` // Max length 100
-	UD23Text *string `json:"ud23_text,omitempty"` // Max length 100
-	UD24Text *string `json:"ud24_text,omitempty"` // Max length 100
-	UD25Text *string `json:"ud25_text,omitempty"` // Max length 100
-	UD26Text *string `json:"ud26_text,omitempty"` // Max length 100
-	UD27Text *string `json:"ud27_text,omitempty"` // Max length 100
-	UD28Text *string `json:"ud28_text,omitempty"` // Max length 100
-	UD29Text *string `json:"ud29_text,omitempty"` // Max length 100
-	UD30Text *string `json:"ud30_text,omitempty"` // Max length 100
+	UD21Text *string `json:"ud21_text,omitempty" validate:"max=100"`
+	UD22Text *string `json:"ud22_text,omitempty" validate:"max=100"`
+	UD23Text *string `json:"ud23_text,omitempty" validate:"max=100"`
+	UD24Text *string `json:"ud24_text,omitempty" validate:"max=100"`
+	UD25Text *string `json:"ud25_text,omitempty" validate:"max=100"`
+	UD26Text *string `json:"ud26_text,omitempty" validate:"max=100"`
+	UD27Text *string `json:"ud27_text,omitempty" validate:"max=100"`
+	UD28Text *string `json:"ud28_text,omitempty" validate:"max=100"`
+	UD29Text *string `json:"ud29_text,omitempty" validate:"max=100"`
+	UD30Text *string `json:"ud30_text,omitempty" validate:"max=100"`
 }
 
 type StudentUDFieldOptionResponse struct {
@@ -496,23 +496,23 @@ type UDFields struct {
 }
 
 type UDText struct {
-	UD1Text  *string `json:"ud1_text,omitempty"`  // Max length 100
-	UD2Text  *string `json:"ud2_text,omitempty"`  // Max length 100
-	UD3Text  *string `json:"ud3_text,omitempty"`  // Max length 100
-	UD4Text  *string `json:"ud4_text,omitempty"`  // Max length 100
-	UD5Text  *string `json:"ud5_text,omitempty"`  // Max length 100
-	UD6Text  *string `json:"ud6_text,omitempty"`  // Max length 100
-	UD7Text  *string `json:"ud7_text,omitempty"`  // Max length 100
-	UD8Text  *string `json:"ud8_text,omitempty"`  // Max length 100
-	UD9Text  *string `json:"ud9_text,omitempty"`  // Max length 100
-	UD10Text *string `json:"ud10_text,omitempty"` // Max length 100
+	UD1Text  *string `json:"ud1_text,omitempty" validate:"max=100"`
+	UD2Text  *string `json:"ud2_text,omitempty" validate:"max=100"`
+	UD3Text  *string `json:"ud3_text,omitempty" validate:"max=100"`
+	UD4Text  *string `json:"ud4_text,omitempty" validate:"max=100"`
+	UD5Text  *string `json:"ud5_text,omitempty" validate:"max=100"`
+	UD6Text  *string `json:"ud6_text,omitempty" validate:"max=100"`
+	UD7Text  *string `json:"ud7_text,omitempty" validate:"max=100"`
+	UD8Text  *string `json:"ud8_text,omitempty" validate:"max=100"`
+	UD9Text  *string `json:"ud9_text,omitempty" validate:"max=100"`
+	UD10Text *string `json:"ud10_text,omitempty" validate:"max=100"`
 }
 
 type AddStudentMedicalConditionRequest struct {
 	LastOccurance        *time.Time `json:"last_occ_date,omitempty"`
-	MedicalConditionCode string     `json:"mcond_code"` // Max length 3
+	MedicalConditionCode string     `json:"mcond_code" validate:"max=3"`
 	Severe               bool       `json:"severe_ind"`
-	TreatmentDetails     *string    `json:"treat_text,omitempty"` // Max length 4000
+	TreatmentDetails     *string    `json:"treat_text,omitempty" validate:"max=4000"`
 	Active               bool       `json:"active_flg"`
 	UDFields             UDFields   `json:"ud_fields"`
 }
@@ -520,7 +520,7 @@ type AddStudentMedicalConditionRequest struct {
 type UpdateStudentMedicalConditionRequest struct {
 	LastOccurance    *time.Time `json:"last_occ_date,omitempty"`
 	Severe           bool       `json:"severe_ind"`
-	TreatmentDetails *string    `json:"treat_text,omitempty"` // Max length 4000
+	TreatmentDetails *string    `json:"treat_text,omitempty" validate:"max=4000"`
 	Active           bool       `json:"active_flg"`
 	UDFields         UDFields   `json:"ud_fields"`
 }
@@ -535,13 +535,13 @@ type StudentMedicalConditionNoteResponse struct {
 }
 
 type AddStudentMedicalConditionNoteRequest struct {
-	Date string  `json:"note_date"`           // Must be a date
-	Text *string `json:"note_text,omitempty"` // Max length 4000
+	Date string  `json:"note_date" validate:"datetime=2006-01-02"` // TODO: Confirm date format
+	Text *string `json:"note_text,omitempty" validate:"max=4000"`
 }
 
 type UpdateStudentMedicalConditionNoteRequest struct {
-	Date string  `json:"note_date"`           // Must be a date
-	Text *string `json:"note_text,omitempty"` // Max length 4000
+	Date string  `json:"note_date" validate:"datetime=2006-01-02"` // TODO: Confirm date format
+	Text *string `json:"note_text,omitempty" validate:"max=4000"`
 }
 
 type StudentIllnessResponse struct {
@@ -561,28 +561,28 @@ type StudentIllnessResponse struct {
 }
 
 type AddStudentIllnessRequest struct {
-	IllnessDate          string `json:"ill_date"`   // Must be a date
-	IllnessTime          string `json:"ill_time"`   // Must be a time
-	MedicalConditionCode string `json:"mcond_code"` // Max length 3
+	IllnessDate          string `json:"ill_date" validate:"datetime=2006-01-02"` // TODO: Confirm date format
+	IllnessTime          string `json:"ill_time" validate:"datetime=2006-01-02"` // TODO: Confirm date format
+	MedicalConditionCode string `json:"mcond_code" validate:"max=3"`
 
-	TreatmentCode      *string `json:"treat_code,omitempty"` // Max length 3
-	DischargeDate      *string `json:"disch_date,omitempty"` // Must be a date
-	DischargeTime      *string `json:"disch_time,omitempty"` // Must be a time
+	TreatmentCode      *string `json:"treat_code,omitempty" validate:"max=3"`
+	DischargeDate      *string `json:"disch_date,omitempty" validate:"datetime=2006-01-02"` // TODO: Confirm date format
+	DischargeTime      *string `json:"disch_time,omitempty" validate:"datetime=2006-01-02"` // TODO: Confirm date format
 	Hospitalised       bool    `json:"host_flg"`
-	IllnessDescription *string `json:"ill_desc,omitempty"` // Max length 60
-	IllnessNotes       *string `json:"ill_note,omitempty"` // Max length 4000
+	IllnessDescription *string `json:"ill_desc,omitempty" validate:"max=60"`
+	IllnessNotes       *string `json:"ill_note,omitempty" validate:"max=4000"`
 }
 
 type UpdateStudentIllnessRequest struct {
-	IllnessDate          string  `json:"ill_date"`             // Must be a date
-	IllnessTime          string  `json:"ill_time"`             // Must be a time
-	MedicalConditionCode string  `json:"mcond_code"`           // Max length 3
-	TreatmentCode        string  `json:"treat_code,omitempty"` // Max length 3
-	DischargeDate        string  `json:"disch_date,omitempty"` // Must be a date
-	DischargeTime        string  `json:"disch_time,omitempty"` // Must be a time
+	IllnessDate          string  `json:"ill_date" validate:"datetime=2006-01-02"` // TODO: Confirm date format
+	IllnessTime          string  `json:"ill_time" validate:"datetime=2006-01-02"` // TODO: Confirm date format
+	MedicalConditionCode string  `json:"mcond_code" validate:"max=3"`
+	TreatmentCode        string  `json:"treat_code,omitempty" validate:"max=3"`
+	DischargeDate        string  `json:"disch_date,omitempty" validate:"datetime=2006-01-02"` // TODO: Confirm date format
+	DischargeTime        string  `json:"disch_time,omitempty" validate:"datetime=2006-01-02"` // TODO: Confirm date format
 	Hospitalised         bool    `json:"host_flg"`
-	IllnessDescription   *string `json:"ill_desc,omitempty"` // Max length 60
-	IllnessNotes         *string `json:"ill_note,omitempty"` // Max length 4000
+	IllnessDescription   *string `json:"ill_desc,omitempty" validate:"max=60"`
+	IllnessNotes         *string `json:"ill_note,omitempty" validate:"max=4000"`
 }
 
 type StudentImmunisationResponse struct {
@@ -593,7 +593,7 @@ type StudentImmunisationResponse struct {
 }
 
 type AddStudentImmunisationRequest struct {
-	ImmunisationCode string `json:"imm_code"` // Max length 2
+	ImmunisationCode string `json:"imm_code" validate:"max=2"`
 	ImmunisationYear *int   `json:"imm_year,omitempty"`
 }
 
@@ -603,15 +603,15 @@ type UpdateStudentImmunisationRequest struct {
 
 type StudentImmunisationRegisterResponse struct {
 	CompanyCode   string     `json:"cmpy_code"`
-	AIRStateDate  *time.Time `json:"air_state_date,omitempty"` // Must be a date
-	NextDueDate   *time.Time `json:"next_due_date,omitempty"`  // Must be a date
+	AIRStateDate  *time.Time `json:"air_state_date,omitempty" validate:"datetime=2006-01-02"` // TODO: Confirm date format
+	NextDueDate   *time.Time `json:"next_due_date,omitempty" validate:"datetime=2006-01-02"`  // TODO: Confirm date format
 	StudentCode   string     `json:"stud_code"`
 	StatusCode    *string    `json:"status_code,omitempty"`
 	HasAttachment bool       `json:"has_attachment"`
 }
 
 type UpdateStudentImmunisationRegisterRequest struct {
-	NextDueDate *string `json:"next_due_date,omitempty"` // Must be a date
+	NextDueDate *string `json:"next_due_date,omitempty" validate:"datetime=2006-01-02"` // TODO: Confirm date format
 	StatusCode  *string `json:"status_code,omitempty"`
 }
 
@@ -647,30 +647,30 @@ type StudentMedicationResponse struct {
 type AddStudentMedicationRequest struct {
 	Active                bool                 `json:"active_flg"`
 	Administer            MedicationAdminister `json:"administer"`
-	DoctorPhone           *string              `json:"doc_phone,omitempty"`   // Max length 25
-	EndDate               *string              `json:"end_date,omitempty"`    // Must be a date
-	ExpiryDate            *string              `json:"expiry_date,omitempty"` // Must be a date
-	FurtherDetails        *string              `json:"med_detl,omitempty"`    // Max length 200
-	MethodOfUse           *string              `json:"med_meth,omitempty"`    // Max length 200
-	Name                  *string              `json:"med_text,omitempty"`    // Max length 200
+	DoctorPhone           *string              `json:"doc_phone,omitempty" validate:"max=25"`
+	EndDate               *string              `json:"end_date,omitempty" validate:"datetime=2006-01-02"`    // TODO: Confirm date format
+	ExpiryDate            *string              `json:"expiry_date,omitempty" validate:"datetime=2006-01-02"` // TODO: Confirm date format
+	FurtherDetails        *string              `json:"med_detl,omitempty" validate:"max=200"`
+	MethodOfUse           *string              `json:"med_meth,omitempty" validate:"max=200"`
+	Name                  *string              `json:"med_text,omitempty" validate:"max=200"`
 	MinTimeBetweenDoses   *int                 `json:"min_time_between_doses,omitempty"`
-	PrescribingDoctor     *string              `json:"script_doc,omitempty"` // Max length 30
-	StartDate             *string              `json:"start_date,omitempty"` // Must be a date
+	PrescribingDoctor     *string              `json:"script_doc,omitempty" validate:"max=30"`
+	StartDate             *string              `json:"start_date,omitempty" validate:"datetime=2006-01-02"` // TODO: Confirm date format
 	StaffTrainingRequired bool                 `json:"training"`
 }
 
 type UpdateStudentMedicationRequest struct {
 	Active            bool                 `json:"active_flg"`
 	Administer        MedicationAdminister `json:"administer"`
-	DoctorPhone       *string              `json:"doc_phone,omitempty"`   // Max length 25
-	EndDate           *string              `json:"end_date,omitempty"`    // Must be a date
-	ExpiryDate        *string              `json:"expiry_date,omitempty"` // Must be a date
-	FurtherDetails    *string              `json:"med_detl,omitempty"`    // Max length 200
-	MethodOfUse       *string              `json:"med_meth,omitempty"`    // Max length 200
-	Name              *string              `json:"med_text,omitempty"`    // Max length 200
-	MedicationUID     string               `json:"medication_uid"`        // Must be a UUID
-	PrescribingDoctor *string              `json:"script_doc,omitempty"`  // Max length 30
-	StartDate         *string              `json:"start_date,omitempty"`  // Must be a date
+	DoctorPhone       *string              `json:"doc_phone,omitempty" validate:"max=25"`
+	EndDate           *string              `json:"end_date,omitempty" validate:"datetime=2006-01-02"`    // TODO: Confirm date format
+	ExpiryDate        *string              `json:"expiry_date,omitempty" validate:"datetime=2006-01-02"` // TODO: Confirm date format
+	FurtherDetails    *string              `json:"med_detl,omitempty" validate:"max=200"`
+	MethodOfUse       *string              `json:"med_meth,omitempty" validate:"max=200"`
+	Name              *string              `json:"med_text,omitempty" validate:"max=200"`
+	MedicationUID     string               `json:"medication_uid"` // Must be a UUID
+	PrescribingDoctor *string              `json:"script_doc,omitempty" validate:"max=30"`
+	StartDate         *string              `json:"start_date,omitempty" validate:"datetime=2006-01-02"` // TODO: Confirm date format
 	StudentCode       string               `json:"stud_code"`
 	Training          bool                 `json:"training"`
 }
@@ -686,13 +686,13 @@ type StudentMedicationNoteResponse struct {
 }
 
 type AddStudentMedicationNoteRequest struct {
-	Date string  `json:"note_date"`           // Must be a date
-	Text *string `json:"note_text,omitempty"` // Max length 4000
+	Date string  `json:"note_date" validate:"datetime=2006-01-02"` // TODO: Confirm date format
+	Text *string `json:"note_text,omitempty" validate:"max=4000"`
 }
 
 type UpdateStudentMedicationNoteRequest struct {
-	Date string  `json:"note_date"`           // Must be a date
-	Text *string `json:"note_text,omitempty"` // Max length 4000
+	Date string  `json:"note_date" validate:"datetime=2006-01-02"` // TODO: Confirm date format
+	Text *string `json:"note_text,omitempty" validate:"max=4000"`
 }
 
 type StudentMedicationScheduleResponse struct {
@@ -702,9 +702,9 @@ type StudentMedicationScheduleResponse struct {
 	MedicationUID        string       `json:"medication_uid"` // Must be a UUID
 	ID                   string       `json:"sched_uid"`      // Must be a UUID
 	Dose                 *string      `json:"med_dose,omitempty"`
-	DoseTime             string       `json:"med_time"`                  // Must be a time
-	StartDate            *string      `json:"shed_start_date,omitempty"` // Must be a date
-	EndDate              *string      `json:"shed_end_date,omitempty"`   // Must be a date
+	DoseTime             string       `json:"med_time"`                                                 // TODO: Must be a time
+	StartDate            *string      `json:"shed_start_date,omitempty" validate:"datetime=2006-01-02"` // TODO: Confirm date format
+	EndDate              *string      `json:"shed_end_date,omitempty" validate:"datetime=2006-01-02"`   // TODO: Confirm date format
 	Days                 DaysResponse `json:"days"`
 }
 
@@ -720,10 +720,10 @@ type DaysResponse struct {
 
 type AddStudentMedicationScheduleRequest struct {
 	Dose      string `json:"med_dose"`
-	Time      string `json:"med_time"`        // Must be a time
-	StartDate string `json:"shed_start_date"` // Must be a date
+	Time      string `json:"med_time"`                                       // Must be a time
+	StartDate string `json:"shed_start_date" validate:"datetime=2006-01-02"` // TODO: Confirm date format
 
-	EndDate *string      `json:"shed_end_date,omitempty"` // Must be a date
+	EndDate *string      `json:"shed_end_date,omitempty" validate:"datetime=2006-01-02"` // TODO: Confirm date format
 	Days    *DaysRequest `json:"days,omitempty"`
 }
 
@@ -739,10 +739,10 @@ type DaysRequest struct {
 
 type UpdateStudentMedicationScheduleRequest struct {
 	Dose      string `json:"med_dose"`
-	Time      string `json:"med_time"`        // Must be a time
-	StartDate string `json:"shed_start_date"` // Must be a date
+	Time      string `json:"med_time"`                                       // Must be a time
+	StartDate string `json:"shed_start_date" validate:"datetime=2006-01-02"` // TODO: Confirm date format
 
-	EndDate *string      `json:"shed_end_date,omitempty"` // Must be a date
+	EndDate *string      `json:"shed_end_date,omitempty" validate:"datetime=2006-01-02"` // TODO: Confirm date format
 	Days    *DaysRequest `json:"days,omitempty"`
 }
 
@@ -757,15 +757,15 @@ type StudentMedicalStandardNoteResponse struct {
 }
 
 type AddStudentMedicalStandardNoteRequest struct {
-	Category string `json:"note_cat"`  // Max length 3
-	Date     string `json:"note_date"` // Must be a datetime (yyyy-mm-ddTHH:mm:ss.fff)
-	Text     string `json:"note_text"` // Max length 4000
+	Category string `json:"note_cat" validate:"max=3"`
+	Date     string `json:"note_date" validate:"datetime=2006-01-02T03:04:05.000"` // TODO: Confirm this works
+	Text     string `json:"note_text" validate:"max=4000"`
 }
 
 type UpdateStudentMedicalStandardNoteRequest struct {
-	Category string `json:"note_cat"`  // Max length 3
-	Date     string `json:"note_date"` // Must be a datetime (yyyy-mm-ddTHH:mm:ss.fff)
-	Text     string `json:"note_text"` // Max length 4000
+	Category string `json:"note_cat" validate:"max=3"`
+	Date     string `json:"note_date" validate:"datetime=2006-01-02T03:04:05.000"` // TODO: Confirm this works
+	Text     string `json:"note_text" validate:"max=4000"`
 }
 
 type StudentMedicalConfidentialNoteResponse struct {
@@ -779,15 +779,15 @@ type StudentMedicalConfidentialNoteResponse struct {
 }
 
 type AddStudentMedicalConfidentialNoteRequest struct {
-	Category string `json:"note_cat"`  // Max length 3
-	Date     string `json:"note_date"` // Must be a datetime (yyyy-mm-ddTHH:mm:ss.fff)
-	Text     string `json:"note_text"` // Max length 4000
+	Category string `json:"note_cat" validate:"max=3"`
+	Date     string `json:"note_date" validate:"datetime=2006-01-02T03:04:05.000"` // TODO: Confirm this works
+	Text     string `json:"note_text" validate:"max=4000"`
 }
 
 type UpdateStudentMedicalConfidentialNoteRequest struct {
-	Category string `json:"note_cat"`  // Max length 3
-	Date     string `json:"note_date"` // Must be a datetime (yyyy-mm-ddTHH:mm:ss.fff)
-	Text     string `json:"note_text"` // Max length 4000
+	Category string `json:"note_cat" validate:"max=3"`
+	Date     string `json:"note_date" validate:"datetime=2006-01-02T03:04:05.000"` // TODO: Confirm this works
+	Text     string `json:"note_text" validate:"max=4000"`
 }
 
 type StudentPractitionerResponse struct {
@@ -800,16 +800,16 @@ type StudentPractitionerResponse struct {
 }
 
 type AddStudentPractitionerRequest struct {
-	Name                 string `json:"doct_name"`  // Max length 30
-	PractitionerTypeCode string `json:"ptype_code"` // Max length 3
+	Name                 string `json:"doct_name" validate:"max=30"`
+	PractitionerTypeCode string `json:"ptype_code" validate:"max=3"`
 
-	Phone *string `json:"doct_phone,omitempty"` // Max length 25
+	Phone *string `json:"doct_phone,omitempty" validate:"max=25"`
 }
 
 type UpdateStudentPractitionerRequest struct {
-	Name                 *string `json:"doct_name,omitempty"`  // Max length 50
-	Phone                *string `json:"doct_phone,omitempty"` // Max length 20
-	PractitionerTypeCode *string `json:"ptype_code,omitempty"` // Max length 10
+	Name                 *string `json:"doct_name,omitempty" validate:"max=50"`
+	Phone                *string `json:"doct_phone,omitempty" validate:"max=20"`
+	PractitionerTypeCode *string `json:"ptype_code,omitempty" validate:"max=10"`
 }
 
 type StudentMedicalSupplementaryResponse struct {
@@ -820,12 +820,12 @@ type StudentMedicalSupplementaryResponse struct {
 }
 
 type AddStudentMedicalSupplementaryRequest struct {
-	Code              string  `json:"msupp_code"`          // Max length 3
-	AdditionalDetails *string `json:"comm_text,omitempty"` // Max length 200
+	Code              string  `json:"msupp_code" validate:"max=3"`
+	AdditionalDetails *string `json:"comm_text,omitempty" validate:"max=200"`
 }
 
 type UpdateStudentMedicalSupplementaryRequest struct {
-	AdditionalDetails *string `json:"comm_text,omitempty"` // Max length 200
+	AdditionalDetails *string `json:"comm_text,omitempty" validate:"max=200"`
 }
 
 // Assessment
