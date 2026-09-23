@@ -1,106 +1,104 @@
 package tassstudent
 
 import (
-	"time"
-
 	tasscommon "github.com/woodleighschool/tass-go-sdk/tass/modules/common"
 )
 
 type StudentResponse struct {
-	AltID                *string    `json:"alt_id,omitempty"`
-	Boarder              bool       `json:"boarder"`
-	Campus               *string    `json:"campus,omitempty"`
-	CEIDER               *string    `json:"ceider,omitempty"`
-	CompanyCode          string     `json:"cmpy_code"`
-	ComparativeReporting string     `json:"compare_flg"`
-	DateOfArrival        *time.Time `json:"date_arrival,omitempty"`
-	DistanceEducation    bool       `json:"distance_ed"`
-	DateOfBirth          *time.Time `json:"dob,omitempty"`
-	DateOfEntry          *time.Time `json:"doe,omitempty"`
-	DateOfLeaving        *time.Time `json:"dol,omitempty"`
-	Email                *string    `json:"e_mail,omitempty"`
-	EntryYear            *string    `json:"entry_lev,omitempty"`
-	FFPOS                bool       `json:"ffpos"`
-	FirstName            *string    `json:"first_name,omitempty"`
-	FormClass            *string    `json:"form_cls,omitempty"`
-	FTE                  *string    `json:"fte"`
-	Gender               string     `json:"gender"`
-	House                *string    `json:"house,omitempty"`
-	IDM                  *string    `json:"idm_id,omitempty"`
-	MobilePhone          *string    `json:"mob_phone,omitempty"`
-	MultiParenting       bool       `json:"multipar_flg"`
-	NextYear             string     `json:"next_yr_ind"`
-	OtherName            *string    `json:"other_name,omitempty"`
-	ParentCode           *string    `json:"par_code,omitempty"`
-	PCTutorGroup         *string    `json:"pctut_grp,omitempty"`
-	PreferredName        *string    `json:"preferred_name,omitempty"`
-	PreferredSurname     *string    `json:"preferred_surname,omitempty"`
-	PreviousSchool       *string    `json:"prev_school,omitempty"`
-	PrivacyFlag          bool       `json:"privacy_flg"`
-	Religion             *string    `json:"religion,omitempty"`
-	ResidencyStatus      bool       `json:"resident_sts"`
-	SMSFlag              bool       `json:"sms_flg"`
-	StudentCode          string     `json:"stud_code"`
-	StudentGovernmentID  *string    `json:"stud_govt_id,omitempty"`
-	StudentID            *string    `json:"stud_id,omitempty"`
-	Surname              string     `json:"surname"`
-	UpdatedOn            *time.Time `json:"update_on,omitempty"`
-	USI                  *string    `json:"usi,omitempty"`
-	VisaExpiry           *time.Time `json:"visa_expiry,omitempty"`
-	VisaSubclass         *string    `json:"visa_subclass,omitempty"`
-	WebAccess            bool       `json:"web_access_ind"`
-	YearGroup            *string    `json:"year_grp,omitempty"`
+	AltID                *string              `json:"alt_id,omitempty"`
+	Boarder              bool                 `json:"boarder"`
+	Campus               *string              `json:"campus,omitempty"`
+	CEIDER               *string              `json:"ceider,omitempty"`
+	CompanyCode          string               `json:"cmpy_code"`
+	ComparativeReporting string               `json:"compare_flg"`
+	DateOfArrival        *tasscommon.Date     `json:"date_arrival,omitempty"`
+	DistanceEducation    bool                 `json:"distance_ed"`
+	DateOfBirth          *tasscommon.Date     `json:"dob,omitempty"`
+	DateOfEntry          *tasscommon.Date     `json:"doe,omitempty"`
+	DateOfLeaving        *tasscommon.Date     `json:"dol,omitempty"`
+	Email                *string              `json:"e_mail,omitempty"`
+	EntryYear            *int                 `json:"entry_lev,omitempty"`
+	FFPOS                bool                 `json:"ffpos"`
+	FirstName            *string              `json:"first_name,omitempty"`
+	FormClass            *string              `json:"form_cls,omitempty"`
+	FTE                  *float64             `json:"fte"`
+	Gender               string               `json:"gender"`
+	House                *string              `json:"house,omitempty"`
+	IDM                  *string              `json:"idm_id,omitempty"`
+	MobilePhone          *string              `json:"mob_phone,omitempty"`
+	MultiParenting       bool                 `json:"multipar_flg"`
+	NextYear             string               `json:"next_yr_ind"`
+	OtherName            *string              `json:"other_name,omitempty"`
+	ParentCode           *string              `json:"par_code,omitempty"`
+	PCTutorGroup         *string              `json:"pctut_grp,omitempty"`
+	PreferredName        *string              `json:"preferred_name,omitempty"`
+	PreferredSurname     *string              `json:"preferred_surname,omitempty"`
+	PreviousSchool       *string              `json:"prev_school,omitempty"`
+	PrivacyFlag          bool                 `json:"privacy_flg"`
+	Religion             *string              `json:"religion,omitempty"`
+	ResidencyStatus      *string              `json:"resident_sts"`
+	SMSFlag              bool                 `json:"sms_flg"`
+	StudentCode          string               `json:"stud_code"`
+	StudentGovernmentID  *string              `json:"stud_govt_id,omitempty"`
+	StudentID            *string              `json:"stud_id,omitempty"`
+	Surname              string               `json:"surname"`
+	UpdatedOn            *tasscommon.DateTime `json:"update_on,omitempty"`
+	USI                  *string              `json:"usi,omitempty"`
+	VisaExpiry           *tasscommon.Date     `json:"visa_expiry,omitempty"`
+	VisaSubclass         *string              `json:"visa_subclass,omitempty"`
+	WebAccess            bool                 `json:"web_access_ind"`
+	YearGroup            *int                 `json:"year_grp,omitempty"`
 }
 
 type UpdateStudentRequest struct {
-	ComparativeReporting string    `json:"compare_flg" validate:"max=1"`
-	DateOfEntry          time.Time `json:"doe"`
-	FirstName            string    `json:"first_name" validate:"max=50"`
-	FTE                  string    `json:"fte"`
-	Gender               string    `json:"gender" validate:"max=3"`
-	PreferredName        string    `json:"preferred_name" validate:"max=20"`
-	PreferredSurname     string    `json:"preferred_surname" validate:"max=50"`
-	Surname              string    `json:"surname" validate:"max=30"`
-	YearGroup            string    `json:"year_grp"`
+	ComparativeReporting string          `json:"compare_flg" validate:"max=1"`
+	DateOfEntry          tasscommon.Date `json:"doe"`
+	FirstName            string          `json:"first_name" validate:"max=50"`
+	FTE                  float64         `json:"fte"`
+	Gender               string          `json:"gender" validate:"max=3"`
+	PreferredName        string          `json:"preferred_name" validate:"max=20"`
+	PreferredSurname     string          `json:"preferred_surname" validate:"max=50"`
+	Surname              string          `json:"surname" validate:"max=30"`
+	YearGroup            int             `json:"year_grp"`
 
-	AltID             *string    `json:"alt_id,omitempty" validate:"max=40"`
-	Boarder           *bool      `json:"boarder,omitempty"`
-	Campus            *string    `json:"campus,omitempty" validate:"max=3"`
-	CEIDER            *string    `json:"ceider,omitempty" validate:"max=9"`
-	DateOfArrival     *time.Time `json:"date_arrival,omitempty"`
-	DistanceEducation *bool      `json:"distance_ed,omitempty"`
-	DateOfBirth       *time.Time `json:"dob,omitempty"`
-	DateOfLeaving     *time.Time `json:"dol,omitempty"`
-	Email             *string    `json:"e_mail,omitempty" validate:"max=60"`
-	EntryYear         *string    `json:"entry_lev,omitempty"`
-	FFPOS             *bool      `json:"ffpos"`
-	FormClass         *string    `json:"form_cls,omitempty" validate:"max=2"`
-	House             *string    `json:"house,omitempty" validate:"max=2"`
-	IDM               *string    `json:"idm_id,omitempty" validate:"max=100"`
-	MobilePhone       *string    `json:"mob_phone,omitempty" validate:"max=30"`
-	NextYear          *string    `json:"next_yr_ind" validate:"max=1"`
-	OtherName         *string    `json:"other_name,omitempty" validate:"max=50"`
-	PCTutorGroup      *string    `json:"pctut_grp,omitempty" validate:"max=5"`
-	PreviousSchool    *string    `json:"prev_school,omitempty" validate:"max=5"`
-	PrivacyFlag       *bool      `json:"privacy_flg"`
-	Religion          *string    `json:"religion,omitempty" validate:"max=2"`
-	ResidencyStatus   *bool      `json:"resident_sts" validate:"max=3"`
-	SMSFlag           *bool      `json:"sms_flg"`
-	StudentCode       *string    `json:"stud_code" validate:"max=8"`
-	USI               *string    `json:"usi,omitempty" validate:"max=10"`
-	VisaExpiry        *time.Time `json:"visa_expiry,omitempty"`
-	VisaSubclass      *string    `json:"visa_subclass,omitempty" validate:"max=6"`
-	WebAccess         *bool      `json:"web_access_ind"`
+	AltID             *string          `json:"alt_id,omitempty" validate:"max=40"`
+	Boarder           *bool            `json:"boarder,omitempty"`
+	Campus            *string          `json:"campus,omitempty" validate:"max=3"`
+	CEIDER            *string          `json:"ceider,omitempty" validate:"max=9"`
+	DateOfArrival     *tasscommon.Date `json:"date_arrival,omitempty"`
+	DistanceEducation *bool            `json:"distance_ed,omitempty"`
+	DateOfBirth       *tasscommon.Date `json:"dob,omitempty"`
+	DateOfLeaving     *tasscommon.Date `json:"dol,omitempty"`
+	Email             *string          `json:"e_mail,omitempty" validate:"max=60"`
+	EntryYear         *int             `json:"entry_lev,omitempty"`
+	FFPOS             *bool            `json:"ffpos"`
+	FormClass         *string          `json:"form_cls,omitempty" validate:"max=2"`
+	House             *string          `json:"house,omitempty" validate:"max=2"`
+	IDM               *string          `json:"idm_id,omitempty" validate:"max=100"`
+	MobilePhone       *string          `json:"mob_phone,omitempty" validate:"max=30"`
+	NextYear          *string          `json:"next_yr_ind" validate:"max=1"`
+	OtherName         *string          `json:"other_name,omitempty" validate:"max=50"`
+	PCTutorGroup      *string          `json:"pctut_grp,omitempty" validate:"max=5"`
+	PreviousSchool    *string          `json:"prev_school,omitempty" validate:"max=5"`
+	PrivacyFlag       *bool            `json:"privacy_flg"`
+	Religion          *string          `json:"religion,omitempty" validate:"max=2"`
+	ResidencyStatus   *string          `json:"resident_sts" validate:"max=3"`
+	SMSFlag           *bool            `json:"sms_flg"`
+	StudentCode       *string          `json:"stud_code" validate:"max=8"`
+	USI               *string          `json:"usi,omitempty" validate:"max=10"`
+	VisaExpiry        *tasscommon.Date `json:"visa_expiry,omitempty"`
+	VisaSubclass      *string          `json:"visa_subclass,omitempty" validate:"max=6"`
+	WebAccess         *bool            `json:"web_access_ind"`
 }
 
 type StudentStandardNoteResponse struct {
-	CompanyCode   string    `json:"cmpy_code"`
-	StudentCode   string    `json:"stud_code"`
-	NoteCategory  *string   `json:"note_cat,omitempty"`
-	NoteDate      time.Time `json:"note_date"`
-	NoteText      *string   `json:"note_text,omitempty"`
-	NoteID        string    `json:"note_uid"`
-	HasAttachment bool      `json:"has_attachment"`
+	CompanyCode   string          `json:"cmpy_code"`
+	StudentCode   string          `json:"stud_code"`
+	NoteCategory  *string         `json:"note_cat,omitempty"`
+	NoteDate      tasscommon.Date `json:"note_date"`
+	NoteText      *string         `json:"note_text,omitempty"`
+	NoteID        string          `json:"note_uid"`
+	HasAttachment bool            `json:"has_attachment"`
 }
 
 type AddStudentStandardNoteRequest struct {
@@ -144,15 +142,15 @@ type StudentPhotoChangesResponse struct {
 }
 
 type StudentPhotoChange struct {
-	StudentCode string    `json:"stud_code"`
-	UpdatedOn   time.Time `json:"photo_update_on"`
+	StudentCode string              `json:"stud_code"`
+	UpdatedOn   tasscommon.DateTime `json:"photo_update_on"`
 }
 
 type StudentUDAreaResponse struct {
 	CompanyCode string                      `json:"cmpy_code"`
 	AreaCode    string                      `json:"area_code"`
 	StudentCode string                      `json:"stud_code"`
-	UpdatedOn   *time.Time                  `json:"update_on,omitempty"`
+	UpdatedOn   *tasscommon.DateTime        `json:"update_on,omitempty"`
 	UDFields    StudentUDAreaFieldsResponse `json:"ud_fields"`
 }
 
@@ -204,16 +202,16 @@ type StudentUDAreaTextResponse struct {
 }
 
 type StudentUDAreaDateResponse struct {
-	UD31Date *time.Time `json:"ud31_date,omitempty"`
-	UD32Date *time.Time `json:"ud32_date,omitempty"`
-	UD40Date *time.Time `json:"ud33_date,omitempty"`
-	UD33Date *time.Time `json:"ud34_date,omitempty"`
-	UD34Date *time.Time `json:"ud35_date,omitempty"`
-	UD35Date *time.Time `json:"ud36_date,omitempty"`
-	UD36Date *time.Time `json:"ud37_date,omitempty"`
-	UD37Date *time.Time `json:"ud38_date,omitempty"`
-	UD38Date *time.Time `json:"ud39_date,omitempty"`
-	UD39Date *time.Time `json:"ud40_date,omitempty"`
+	UD31Date *tasscommon.Date `json:"ud31_date,omitempty"`
+	UD32Date *tasscommon.Date `json:"ud32_date,omitempty"`
+	UD40Date *tasscommon.Date `json:"ud33_date,omitempty"`
+	UD33Date *tasscommon.Date `json:"ud34_date,omitempty"`
+	UD34Date *tasscommon.Date `json:"ud35_date,omitempty"`
+	UD35Date *tasscommon.Date `json:"ud36_date,omitempty"`
+	UD36Date *tasscommon.Date `json:"ud37_date,omitempty"`
+	UD37Date *tasscommon.Date `json:"ud38_date,omitempty"`
+	UD38Date *tasscommon.Date `json:"ud39_date,omitempty"`
+	UD39Date *tasscommon.Date `json:"ud40_date,omitempty"`
 }
 
 type StudentUDAreaAttachmentResponse struct {
@@ -280,16 +278,16 @@ type StudentUDAreaTextRequest struct {
 }
 
 type StudentUDAreaDateRequest struct {
-	UD31Date *time.Time `json:"ud31_date,omitempty"`
-	UD32Date *time.Time `json:"ud32_date,omitempty"`
-	UD40Date *time.Time `json:"ud33_date,omitempty"`
-	UD33Date *time.Time `json:"ud34_date,omitempty"`
-	UD34Date *time.Time `json:"ud35_date,omitempty"`
-	UD35Date *time.Time `json:"ud36_date,omitempty"`
-	UD36Date *time.Time `json:"ud37_date,omitempty"`
-	UD37Date *time.Time `json:"ud38_date,omitempty"`
-	UD38Date *time.Time `json:"ud39_date,omitempty"`
-	UD39Date *time.Time `json:"ud40_date,omitempty"`
+	UD31Date *tasscommon.Date `json:"ud31_date,omitempty"`
+	UD32Date *tasscommon.Date `json:"ud32_date,omitempty"`
+	UD40Date *tasscommon.Date `json:"ud33_date,omitempty"`
+	UD33Date *tasscommon.Date `json:"ud34_date,omitempty"`
+	UD34Date *tasscommon.Date `json:"ud35_date,omitempty"`
+	UD35Date *tasscommon.Date `json:"ud36_date,omitempty"`
+	UD36Date *tasscommon.Date `json:"ud37_date,omitempty"`
+	UD37Date *tasscommon.Date `json:"ud38_date,omitempty"`
+	UD38Date *tasscommon.Date `json:"ud39_date,omitempty"`
+	UD39Date *tasscommon.Date `json:"ud40_date,omitempty"`
 }
 
 type UpdateStudentUDAreaRequest struct {
@@ -401,21 +399,21 @@ type StudentUDFieldOptionResponse struct {
 }
 
 type StudentMCEECDYAResponse struct {
-	CompanyCode            string     `json:"cmpy_code"`
-	StudentCode            string     `json:"stud_code"`
-	ArrivalYear            *int       `json:"arrive_yr,omitempty"`
-	Parent1LOTE            *string    `json:"mlote_code,omitempty"`
-	Parent1NonSchoolLevel  *string    `json:"mnse_code,omitempty"`
-	Parent1OccupationGroup *string    `json:"mocc_code,omitempty"`
-	Parent1SchoolLevel     *string    `json:"mse_code,omitempty"`
-	Parent2LOTE            *string    `json:"flote_code,omitempty"`
-	Parent2NonSchoolLevel  *string    `json:"fnse_code,omitempty"`
-	Parent2OccupationGroup *string    `json:"focc_code,omitempty"`
-	Parent2SchoolLevel     *string    `json:"fse_code,omitempty"`
-	IndiginousStatus       *string    `json:"s_indig_sts,omitempty"`
-	CountryOfBirth         *string    `json:"scob_code,omitempty"`
-	LOTE                   *string    `json:"slote_code,omitempty"`
-	UpdatedOn              *time.Time `json:"update_on,omitempty"`
+	CompanyCode            string               `json:"cmpy_code"`
+	StudentCode            string               `json:"stud_code"`
+	ArrivalYear            *int                 `json:"arrive_yr,omitempty"`
+	Parent1LOTE            *string              `json:"mlote_code,omitempty"`
+	Parent1NonSchoolLevel  *string              `json:"mnse_code,omitempty"`
+	Parent1OccupationGroup *string              `json:"mocc_code,omitempty"`
+	Parent1SchoolLevel     *string              `json:"mse_code,omitempty"`
+	Parent2LOTE            *string              `json:"flote_code,omitempty"`
+	Parent2NonSchoolLevel  *string              `json:"fnse_code,omitempty"`
+	Parent2OccupationGroup *string              `json:"focc_code,omitempty"`
+	Parent2SchoolLevel     *string              `json:"fse_code,omitempty"`
+	IndiginousStatus       *string              `json:"s_indig_sts,omitempty"`
+	CountryOfBirth         *string              `json:"scob_code,omitempty"`
+	LOTE                   *string              `json:"slote_code,omitempty"`
+	UpdatedOn              *tasscommon.DateTime `json:"update_on,omitempty"`
 }
 
 type UpdateStudentMCEECDYARequest struct {
@@ -479,16 +477,16 @@ type UpdateAsthmaManagementRequest struct {
 }
 
 type StudentMedicalConditionResponse struct {
-	CompanyCode          string     `json:"cmpy_code"`
-	LastOccurance        *time.Time `json:"last_occ_date,omitempty"`
-	MedicalConditionCode string     `json:"mcond_code"`
-	Severe               bool       `json:"severe_ind"`
-	StudentCode          string     `json:"stud_code"`
-	TreatmentDetails     *string    `json:"treat_text,omitempty"`
-	Active               bool       `json:"active_flg"`
-	UDFields             UDFields   `json:"ud_fields"`
-	HasAttachment        bool       `json:"has_attachment"`
-	HasNote              bool       `json:"has_note"`
+	CompanyCode          string           `json:"cmpy_code"`
+	LastOccurance        *tasscommon.Date `json:"last_occ_date,omitempty"`
+	MedicalConditionCode string           `json:"mcond_code"`
+	Severe               bool             `json:"severe_ind"`
+	StudentCode          string           `json:"stud_code"`
+	TreatmentDetails     *string          `json:"treat_text,omitempty"`
+	Active               bool             `json:"active_flg"`
+	UDFields             UDFields         `json:"ud_fields"`
+	HasAttachment        bool             `json:"has_attachment"`
+	HasNote              bool             `json:"has_note"`
 }
 
 type UDFields struct {
@@ -509,29 +507,29 @@ type UDText struct {
 }
 
 type AddStudentMedicalConditionRequest struct {
-	LastOccurance        *time.Time `json:"last_occ_date,omitempty"`
-	MedicalConditionCode string     `json:"mcond_code" validate:"max=3"`
-	Severe               bool       `json:"severe_ind"`
-	TreatmentDetails     *string    `json:"treat_text,omitempty" validate:"max=4000"`
-	Active               bool       `json:"active_flg"`
-	UDFields             UDFields   `json:"ud_fields"`
+	LastOccurance        *tasscommon.Date `json:"last_occ_date,omitempty"`
+	MedicalConditionCode string           `json:"mcond_code" validate:"max=3"`
+	Severe               bool             `json:"severe_ind"`
+	TreatmentDetails     *string          `json:"treat_text,omitempty" validate:"max=4000"`
+	Active               bool             `json:"active_flg"`
+	UDFields             UDFields         `json:"ud_fields"`
 }
 
 type UpdateStudentMedicalConditionRequest struct {
-	LastOccurance    *time.Time `json:"last_occ_date,omitempty"`
-	Severe           bool       `json:"severe_ind"`
-	TreatmentDetails *string    `json:"treat_text,omitempty" validate:"max=4000"`
-	Active           bool       `json:"active_flg"`
-	UDFields         UDFields   `json:"ud_fields"`
+	LastOccurance    *tasscommon.Date `json:"last_occ_date,omitempty"`
+	Severe           bool             `json:"severe_ind"`
+	TreatmentDetails *string          `json:"treat_text,omitempty" validate:"max=4000"`
+	Active           bool             `json:"active_flg"`
+	UDFields         UDFields         `json:"ud_fields"`
 }
 
 type StudentMedicalConditionNoteResponse struct {
-	CompanyCode          string    `json:"cmpy_code"`
-	StudentCode          string    `json:"stud_code"`
-	MedicalConditionCode string    `json:"mcond_code"`
-	Date                 time.Time `json:"note_date"`
-	Text                 *string   `json:"note_text,omitempty"`
-	ID                   string    `json:"note_uid"` // Must be a UUID
+	CompanyCode          string          `json:"cmpy_code"`
+	StudentCode          string          `json:"stud_code"`
+	MedicalConditionCode string          `json:"mcond_code"`
+	Date                 tasscommon.Date `json:"note_date"`
+	Text                 *string         `json:"note_text,omitempty"`
+	ID                   string          `json:"note_uid"` // Must be a UUID
 }
 
 type AddStudentMedicalConditionNoteRequest struct {
@@ -545,19 +543,19 @@ type UpdateStudentMedicalConditionNoteRequest struct {
 }
 
 type StudentIllnessResponse struct {
-	CompanyCode          string     `json:"cmpy_code"`
-	StudentCode          string     `json:"stud_code"`
-	IllnessUID           string     `json:"illness_uid"`
-	IllnessDate          time.Time  `json:"ill_date"`
-	IllnessTime          *time.Time `json:"ill_time,omitempty"`
-	MedicalConditionCode *string    `json:"mcond_code,omitempty"`
-	TreatmentCode        *string    `json:"treat_code,omitempty"`
-	DischargeDate        *time.Time `json:"disch_date,omitempty"`
-	DischargeTime        *time.Time `json:"disch_time,omitempty"`
-	Hospitalised         bool       `json:"host_flg"`
-	IllnessDescription   *string    `json:"ill_desc,omitempty"`
-	IllnessNotes         *string    `json:"ill_note,omitempty"`
-	HasMedications       bool       `json:"has_medications"`
+	CompanyCode          string           `json:"cmpy_code"`
+	StudentCode          string           `json:"stud_code"`
+	IllnessUID           string           `json:"illness_uid"`
+	IllnessDate          tasscommon.Date  `json:"ill_date"`
+	IllnessTime          *tasscommon.Date `json:"ill_time,omitempty"`
+	MedicalConditionCode *string          `json:"mcond_code,omitempty"`
+	TreatmentCode        *string          `json:"treat_code,omitempty"`
+	DischargeDate        *tasscommon.Date `json:"disch_date,omitempty"`
+	DischargeTime        *tasscommon.Date `json:"disch_time,omitempty"`
+	Hospitalised         bool             `json:"host_flg"`
+	IllnessDescription   *string          `json:"ill_desc,omitempty"`
+	IllnessNotes         *string          `json:"ill_note,omitempty"`
+	HasMedications       bool             `json:"has_medications"`
 }
 
 type AddStudentIllnessRequest struct {
@@ -602,12 +600,12 @@ type UpdateStudentImmunisationRequest struct {
 }
 
 type StudentImmunisationRegisterResponse struct {
-	CompanyCode   string     `json:"cmpy_code"`
-	AIRStateDate  *time.Time `json:"air_state_date,omitempty" validate:"datetime=2006-01-02"` // TODO: Confirm date format
-	NextDueDate   *time.Time `json:"next_due_date,omitempty" validate:"datetime=2006-01-02"`  // TODO: Confirm date format
-	StudentCode   string     `json:"stud_code"`
-	StatusCode    *string    `json:"status_code,omitempty"`
-	HasAttachment bool       `json:"has_attachment"`
+	CompanyCode   string           `json:"cmpy_code"`
+	AIRStateDate  *tasscommon.Date `json:"air_state_date,omitempty" validate:"datetime=2006-01-02"` // TODO: Confirm date format
+	NextDueDate   *tasscommon.Date `json:"next_due_date,omitempty" validate:"datetime=2006-01-02"`  // TODO: Confirm date format
+	StudentCode   string           `json:"stud_code"`
+	StatusCode    *string          `json:"status_code,omitempty"`
+	HasAttachment bool             `json:"has_attachment"`
 }
 
 type UpdateStudentImmunisationRegisterRequest struct {
@@ -627,8 +625,8 @@ type StudentMedicationResponse struct {
 	Administer            *MedicationAdminister `json:"administer,omitempty"` // Uses MedicationAdminster enum
 	CompanyCode           string                `json:"cmpy_code"`
 	DoctorPhone           *string               `json:"doc_phone,omitempty"`
-	EndDate               *time.Time            `json:"end_date,omitempty"`
-	ExpiryDate            *time.Time            `json:"expiry_date,omitempty"`
+	EndDate               *tasscommon.Date      `json:"end_date,omitempty"`
+	ExpiryDate            *tasscommon.Date      `json:"expiry_date,omitempty"`
 	MedicalConditionCode  string                `json:"mcond_code"`
 	FurtherDetails        *string               `json:"med_detl,omitempty"`
 	MethodOfUse           *string               `json:"med_meth,omitempty"`
@@ -636,7 +634,7 @@ type StudentMedicationResponse struct {
 	MedicationUID         string                `json:"medication_uid"` // Must be a UUID
 	MinTimeBetweenDoses   *int                  `json:"min_time_between_doses,omitempty"`
 	PrescribingDoctor     *string               `json:"script_doc,omitempty"`
-	StartDate             *time.Time            `json:"start_date,omitempty"`
+	StartDate             *tasscommon.Date      `json:"start_date,omitempty"`
 	StudentCode           string                `json:"stud_code"`
 	StaffTrainingRequired bool                  `json:"training"`
 	HasAttachment         bool                  `json:"has_attachment"`
@@ -676,13 +674,13 @@ type UpdateStudentMedicationRequest struct {
 }
 
 type StudentMedicationNoteResponse struct {
-	CompanyCode          string    `json:"cmpy_code"`
-	StudentCode          string    `json:"stud_code"`
-	MedicalConditionCode string    `json:"mcond_code"`
-	MedicationUID        string    `json:"medication_uid"` // Must be a UUID
-	Date                 time.Time `json:"note_date"`
-	Text                 *string   `json:"note_text,omitempty"`
-	ID                   string    `json:"note_uid"` // Must be a UUID
+	CompanyCode          string          `json:"cmpy_code"`
+	StudentCode          string          `json:"stud_code"`
+	MedicalConditionCode string          `json:"mcond_code"`
+	MedicationUID        string          `json:"medication_uid"` // Must be a UUID
+	Date                 tasscommon.Date `json:"note_date"`
+	Text                 *string         `json:"note_text,omitempty"`
+	ID                   string          `json:"note_uid"` // Must be a UUID
 }
 
 type AddStudentMedicationNoteRequest struct {
@@ -747,13 +745,13 @@ type UpdateStudentMedicationScheduleRequest struct {
 }
 
 type StudentMedicalStandardNoteResponse struct {
-	CompanyCode   string    `json:"cmpy_code"`
-	StudentCode   string    `json:"stud_code"`
-	Category      *string   `json:"note_cat,omitempty"`
-	Date          time.Time `json:"note_date"`
-	Text          *string   `json:"note_text,omitempty"`
-	ID            string    `json:"note_uid"` // Must be a UUID
-	HasAttachment bool      `json:"has_attachment"`
+	CompanyCode   string          `json:"cmpy_code"`
+	StudentCode   string          `json:"stud_code"`
+	Category      *string         `json:"note_cat,omitempty"`
+	Date          tasscommon.Date `json:"note_date"`
+	Text          *string         `json:"note_text,omitempty"`
+	ID            string          `json:"note_uid"` // Must be a UUID
+	HasAttachment bool            `json:"has_attachment"`
 }
 
 type AddStudentMedicalStandardNoteRequest struct {
@@ -769,13 +767,13 @@ type UpdateStudentMedicalStandardNoteRequest struct {
 }
 
 type StudentMedicalConfidentialNoteResponse struct {
-	CompanyCode   string    `json:"cmpy_code"`
-	StudentCode   string    `json:"stud_code"`
-	Category      *string   `json:"note_cat,omitempty"`
-	Date          time.Time `json:"note_date"`
-	Text          *string   `json:"note_text,omitempty"`
-	ID            string    `json:"note_uid"` // Must be a UUID
-	HasAttachment bool      `json:"has_attachment"`
+	CompanyCode   string          `json:"cmpy_code"`
+	StudentCode   string          `json:"stud_code"`
+	Category      *string         `json:"note_cat,omitempty"`
+	Date          tasscommon.Date `json:"note_date"`
+	Text          *string         `json:"note_text,omitempty"`
+	ID            string          `json:"note_uid"` // Must be a UUID
+	HasAttachment bool            `json:"has_attachment"`
 }
 
 type AddStudentMedicalConfidentialNoteRequest struct {
@@ -892,31 +890,31 @@ type ObjectiveResult struct {
 // Attendance
 
 type StudentAttendanceResponse struct {
-	CompanyCode              string     `json:"cmpy_code"`
-	StudentCode              string     `json:"stud_code"`
-	AbsentDate               time.Time  `json:"absent_date"`
-	AbsentTime               *time.Time `json:"absent_time,omitempty"`
-	AbsentType               string     `json:"absent_type"`
-	ReasonCode               *string    `json:"reas_code,omitempty"`
-	DoctorsCertificateFlag   bool       `json:"dcert_flg"`
-	ParentAcknowledgedFlag   bool       `json:"par_flg"`
-	ParentAcknowledgmentDate *time.Time `json:"par_date,omitempty"`
-	CorrespondanceSent       bool       `json:"corr_flg"`
-	CorrespondanceSentDate   *time.Time `json:"corr_date,omitempty"`
-	PeriodCode               *string    `json:"prd_code,omitempty"`
-	SourceReference          *string    `json:"ref_num,omitempty"`
-	AbsentFromTime           *time.Time `json:"abs_from_time,omitempty"`
-	AbsentToTime             *time.Time `json:"abs_to_time,omitempty"`
-	ID                       int        `json:"key_num"`
-	TimetableID              *int       `json:"tt_id,omitempty"`
-	Comment                  *string    `json:"note_text,omitempty"`
-	YearGroup                *int       `json:"year_grp,omitempty"`
-	Boarder                  bool       `json:"boarder"`
-	House                    *string    `json:"house,omitempty"`
-	PCTutorGroup             *string    `json:"pctut_grp,omitempty"`
-	Gender                   *string    `json:"gender,omitempty"`
-	CampusCode               *string    `json:"campus_code,omitempty"`
-	HasAttachment            bool       `json:"has_attachment"`
+	CompanyCode              string           `json:"cmpy_code"`
+	StudentCode              string           `json:"stud_code"`
+	AbsentDate               tasscommon.Date  `json:"absent_date"`
+	AbsentTime               *tasscommon.Date `json:"absent_time,omitempty"`
+	AbsentType               string           `json:"absent_type"`
+	ReasonCode               *string          `json:"reas_code,omitempty"`
+	DoctorsCertificateFlag   bool             `json:"dcert_flg"`
+	ParentAcknowledgedFlag   bool             `json:"par_flg"`
+	ParentAcknowledgmentDate *tasscommon.Date `json:"par_date,omitempty"`
+	CorrespondanceSent       bool             `json:"corr_flg"`
+	CorrespondanceSentDate   *tasscommon.Date `json:"corr_date,omitempty"`
+	PeriodCode               *string          `json:"prd_code,omitempty"`
+	SourceReference          *string          `json:"ref_num,omitempty"`
+	AbsentFromTime           *tasscommon.Date `json:"abs_from_time,omitempty"`
+	AbsentToTime             *tasscommon.Date `json:"abs_to_time,omitempty"`
+	ID                       int              `json:"key_num"`
+	TimetableID              *int             `json:"tt_id,omitempty"`
+	Comment                  *string          `json:"note_text,omitempty"`
+	YearGroup                *int             `json:"year_grp,omitempty"`
+	Boarder                  bool             `json:"boarder"`
+	House                    *string          `json:"house,omitempty"`
+	PCTutorGroup             *string          `json:"pctut_grp,omitempty"`
+	Gender                   *string          `json:"gender,omitempty"`
+	CampusCode               *string          `json:"campus_code,omitempty"`
+	HasAttachment            bool             `json:"has_attachment"`
 }
 
 type AbsenceReasonOptionsResponse struct {

@@ -12,7 +12,7 @@ import (
 // CODEGEN(none): op=GetAllPurchaseOrders, path=/{cmpy_code}/finance/purchasing/purchaseorders
 func (c *Client) GetAllPurchaseOrders(ctx context.Context) ([]PurchaseOrderResponse, error) {
 	var result []PurchaseOrderResponse
-	body, err := c.t.request(ctx, http.MethodGet, "/finance/purchasing/purchaseorders", nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, "/finance/purchasing/purchaseorders", nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -28,7 +28,7 @@ func (c *Client) AddPurchaseOrder(ctx context.Context, payload AddPurchaseOrderR
 	if err := tasscommon.Validate(payload); err != nil {
 		return PurchaseOrderResponse{}, err
 	}
-	body, err := c.t.request(ctx, http.MethodPost, "/finance/purchasing/purchaseorders", nil, payload, http.StatusCreated)
+	body, err := c.t.Request(ctx, http.MethodPost, "/finance/purchasing/purchaseorders", nil, payload, http.StatusCreated)
 	if err != nil {
 		return PurchaseOrderResponse{}, err
 	}
@@ -42,7 +42,7 @@ func (c *Client) AddPurchaseOrder(ctx context.Context, payload AddPurchaseOrderR
 func (c *Client) GetPurchaseOrderByID(ctx context.Context, orderNumber int) (PurchaseOrderResponse, error) {
 	var result PurchaseOrderResponse
 	url := fmt.Sprintf("/finance/purchasing/purchaseorders/%d", orderNumber)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return PurchaseOrderResponse{}, err
 	}
@@ -58,7 +58,7 @@ func (c *Client) UpdatePurchaseOrder(ctx context.Context, orderNumber int, paylo
 	if err := tasscommon.Validate(payload); err != nil {
 		return err
 	}
-	_, err := c.t.request(ctx, http.MethodPut, url, nil, payload, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodPut, url, nil, payload, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -68,7 +68,7 @@ func (c *Client) UpdatePurchaseOrder(ctx context.Context, orderNumber int, paylo
 // CODEGEN(none): op=DeletePurchaseOrder, path=/{cmpy_code}/finance/purchasing/purchaseorders/{order_num}
 func (c *Client) DeletePurchaseOrder(ctx context.Context, orderNumber int) error {
 	url := fmt.Sprintf("/finance/purchasing/purchaseorders/%d", orderNumber)
-	_, err := c.t.request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -78,7 +78,7 @@ func (c *Client) DeletePurchaseOrder(ctx context.Context, orderNumber int) error
 // CODEGEN(none): op=CancelPurchaseOrder, path=/{cmpy_code}/finance/purchasing/purchaseorders/{order_num}/cancel
 func (c *Client) CancelPurchaseOrder(ctx context.Context, orderNumber int) error {
 	url := fmt.Sprintf("/finance/purchasing/purchaseorders/%d/cancel", orderNumber)
-	_, err := c.t.request(ctx, http.MethodPost, url, nil, nil, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodPost, url, nil, nil, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -89,7 +89,7 @@ func (c *Client) CancelPurchaseOrder(ctx context.Context, orderNumber int) error
 func (c *Client) GetPurchaseOrderAttachments(ctx context.Context, orderNumber int) ([]tasscommon.FileResponse, error) {
 	var result []tasscommon.FileResponse
 	url := fmt.Sprintf("/finance/purchasing/purchaseorders/%d/attachments", orderNumber)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -106,7 +106,7 @@ func (c *Client) AddPurchaseOrderAttachment(ctx context.Context, orderNumber int
 	if err := tasscommon.Validate(payload); err != nil {
 		return tasscommon.NewAttachmentResponse{}, err
 	}
-	body, err := c.t.request(ctx, http.MethodPost, url, nil, payload, http.StatusCreated)
+	body, err := c.t.Request(ctx, http.MethodPost, url, nil, payload, http.StatusCreated)
 	if err != nil {
 		return tasscommon.NewAttachmentResponse{}, err
 	}
@@ -120,7 +120,7 @@ func (c *Client) AddPurchaseOrderAttachment(ctx context.Context, orderNumber int
 func (c *Client) GetPurchaseOrderAttachment(ctx context.Context, orderNumber int, attachmentID string) ([]byte, error) {
 	var result []byte
 	url := fmt.Sprintf("/finance/purchasing/purchaseorders/%d/attachments/%s", orderNumber, attachmentID)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -133,7 +133,7 @@ func (c *Client) GetPurchaseOrderAttachment(ctx context.Context, orderNumber int
 // CODEGEN(none): op=DeletePurchaseOrderAttachment, path=/{cmpy_code}/finance/purchasing/purchaseorders/{order_num}/attachments/{attach_id}
 func (c *Client) DeletePurchaseOrderAttachment(ctx context.Context, orderNumber int, attachmentID string) error {
 	url := fmt.Sprintf("/finance/purchasing/purchaseorders/%d/attachments/%s", orderNumber, attachmentID)
-	_, err := c.t.request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
 	if err != nil {
 		return err
 	}

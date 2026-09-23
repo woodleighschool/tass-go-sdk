@@ -11,7 +11,7 @@ import (
 func (c *Client) GetAllEmployeeLeaveEntitlements(ctx context.Context, employeeCode string) ([]EmployeeLeaveBalanceResponse, error) {
 	var result []EmployeeLeaveBalanceResponse
 	url := fmt.Sprintf("/payroll/leaveentitlements/%s", employeeCode)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}

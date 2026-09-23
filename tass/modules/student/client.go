@@ -8,8 +8,8 @@ import (
 )
 
 type transport interface {
-	request(context.Context, string, string, url.Values, any, ...int) ([]byte, error)
-	upload(context.Context, string, tasscommon.FileRequest, ...int) ([]byte, error)
+	Request(context.Context, string, string, url.Values, any, ...int) ([]byte, error)
+	Upload(context.Context, string, tasscommon.FileRequest, ...int) ([]byte, error)
 }
 
 type Client struct {

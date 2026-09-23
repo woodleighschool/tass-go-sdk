@@ -11,7 +11,7 @@ import (
 func (c *Client) GetStudentCommunicationRules(ctx context.Context, studentCode string) (StudentCommunicationRulesResponse, error) {
 	var result StudentCommunicationRulesResponse
 	url := fmt.Sprintf("/students/%s/communicationrules", studentCode)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return StudentCommunicationRulesResponse{}, err
 	}
@@ -25,7 +25,7 @@ func (c *Client) GetStudentCommunicationRules(ctx context.Context, studentCode s
 func (c *Client) GetStudentCommunicationRulesByCommType(ctx context.Context, studentCode string, communicationType string) (StudentCommunicationRulesResponse, error) {
 	var result StudentCommunicationRulesResponse
 	url := fmt.Sprintf("/students/%s/communicationrules/%s", studentCode, communicationType)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return StudentCommunicationRulesResponse{}, err
 	}
@@ -38,7 +38,7 @@ func (c *Client) GetStudentCommunicationRulesByCommType(ctx context.Context, stu
 // CODEGEN(none): op=GetAllStudentCommunicationRules, path=/{cmpy_code}/students/communicationrules
 func (c *Client) GetAllStudentCommunicationRules(ctx context.Context) ([]StudentCommunicationRulesResponse, error) {
 	var result []StudentCommunicationRulesResponse
-	body, err := c.t.request(ctx, http.MethodGet, "/students/communicationrules", nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, "/students/communicationrules", nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -52,7 +52,7 @@ func (c *Client) GetAllStudentCommunicationRules(ctx context.Context) ([]Student
 func (c *Client) GetAllStudentCommunicationRulesByCommType(ctx context.Context, communicationType string) ([]StudentCommunicationRulesResponse, error) {
 	var result []StudentCommunicationRulesResponse
 	url := fmt.Sprintf("/students/communicationrules/%s", communicationType)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}

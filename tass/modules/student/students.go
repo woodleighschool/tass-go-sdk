@@ -13,7 +13,7 @@ import (
 // CODEGEN(none): op=GetAllStudents, path=/{cmpy_code}/students
 func (c *Client) GetAllStudents(ctx context.Context) ([]StudentResponse, error) {
 	var result []StudentResponse
-	body, err := c.t.request(ctx, http.MethodGet, "/students", nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, "/students", nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -24,10 +24,10 @@ func (c *Client) GetAllStudents(ctx context.Context) ([]StudentResponse, error) 
 }
 
 // CODEGEN(none): op=GetStudentByID, path=/{cmpy_code}/students/{stud_code}
-func (c *Client) GetStudentByID(ctx context.Context, studentCode string) (StudentResponse, error) {
+func (c *Client) GetStudent(ctx context.Context, studentCode string) (StudentResponse, error) {
 	var result StudentResponse
 	url := fmt.Sprintf("/students/%s", studentCode)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return StudentResponse{}, err
 	}
@@ -38,12 +38,12 @@ func (c *Client) GetStudentByID(ctx context.Context, studentCode string) (Studen
 }
 
 // CODEGEN(none): op=UpdateStudentByID, path=/{cmpy_code}/students/{stud_code}
-func (c *Client) UpdateStudentByID(ctx context.Context, studentCode string, payload UpdateStudentRequest) error {
+func (c *Client) UpdateStudent(ctx context.Context, studentCode string, payload UpdateStudentRequest) error {
 	url := fmt.Sprintf("/students/%s", studentCode)
 	if err := tasscommon.Validate(payload); err != nil {
 		return err
 	}
-	_, err := c.t.request(ctx, http.MethodPut, url, nil, payload, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodPut, url, nil, payload, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -51,9 +51,9 @@ func (c *Client) UpdateStudentByID(ctx context.Context, studentCode string, payl
 }
 
 // CODEGEN(none): op=PatchStudentByID, path=/{cmpy_code}/students/{stud_code}
-func (c *Client) PatchStudentByID(ctx context.Context, studentCode string, payload []tasscommon.Operation) error {
+func (c *Client) PatchStudent(ctx context.Context, studentCode string, payload []tasscommon.Operation) error {
 	url := fmt.Sprintf("/students/%s", studentCode)
-	_, err := c.t.request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -64,7 +64,7 @@ func (c *Client) PatchStudentByID(ctx context.Context, studentCode string, paylo
 func (c *Client) GetAllStudentStandardNotes(ctx context.Context, studentCode string) ([]StudentStandardNoteResponse, error) {
 	var result []StudentStandardNoteResponse
 	url := fmt.Sprintf("/students/%s/notes/standard", studentCode)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func (c *Client) AddStudentStandardNote(ctx context.Context, studentCode string,
 	if err := tasscommon.Validate(payload); err != nil {
 		return StudentStandardNoteResponse{}, err
 	}
-	body, err := c.t.request(ctx, http.MethodPost, url, nil, payload, http.StatusCreated)
+	body, err := c.t.Request(ctx, http.MethodPost, url, nil, payload, http.StatusCreated)
 	if err != nil {
 		return StudentStandardNoteResponse{}, err
 	}
@@ -95,7 +95,7 @@ func (c *Client) AddStudentStandardNote(ctx context.Context, studentCode string,
 func (c *Client) GetStudentStandardNoteByID(ctx context.Context, studentCode string, noteID string) (StudentStandardNoteResponse, error) {
 	var result StudentStandardNoteResponse
 	url := fmt.Sprintf("/students/%s/notes/%s", studentCode, noteID)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return StudentStandardNoteResponse{}, err
 	}
@@ -111,7 +111,7 @@ func (c *Client) UpdateStudentStandardNote(ctx context.Context, studentCode stri
 	if err := tasscommon.Validate(payload); err != nil {
 		return err
 	}
-	_, err := c.t.request(ctx, http.MethodPut, url, nil, payload, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodPut, url, nil, payload, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -121,7 +121,7 @@ func (c *Client) UpdateStudentStandardNote(ctx context.Context, studentCode stri
 // CODEGEN(none): op=PatchStudentStandardNote, path=/{cmpy_code}/students/{stud_code}/notes/standard/{note_uid}
 func (c *Client) PatchStudentStandardNote(ctx context.Context, studentCode string, noteID string, payload []tasscommon.Operation) error {
 	url := fmt.Sprintf("/students/%s/notes/standard/%s", studentCode, noteID)
-	_, err := c.t.request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -131,7 +131,7 @@ func (c *Client) PatchStudentStandardNote(ctx context.Context, studentCode strin
 // CODEGEN(none): op=DeleteStudentStandardNote, path=/{cmpy_code}/students/{stud_code}/notes/standard/{note_uid}
 func (c *Client) DeleteStudentStandardNote(ctx context.Context, studentCode string, noteID string) error {
 	url := fmt.Sprintf("/students/%s/notes/standard/%s", studentCode, noteID)
-	_, err := c.t.request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -142,7 +142,7 @@ func (c *Client) DeleteStudentStandardNote(ctx context.Context, studentCode stri
 func (c *Client) GetAllStudentStandardNoteAttachments(ctx context.Context, studentCode string, noteID string) ([]tasscommon.FileResponse, error) {
 	var result []tasscommon.FileResponse
 	url := fmt.Sprintf("/students/%s/notes/standard/%s/attachments", studentCode, noteID)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -159,7 +159,7 @@ func (c *Client) AddStudentStandardNoteAttachment(ctx context.Context, studentCo
 	if err := tasscommon.Validate(payload); err != nil {
 		return tasscommon.NewAttachmentResponse{}, err
 	}
-	body, err := c.t.upload(ctx, url, payload, http.StatusCreated)
+	body, err := c.t.Upload(ctx, url, payload, http.StatusCreated)
 	if err != nil {
 		return tasscommon.NewAttachmentResponse{}, err
 	}
@@ -173,7 +173,7 @@ func (c *Client) AddStudentStandardNoteAttachment(ctx context.Context, studentCo
 func (c *Client) GetStudentStandardNoteAttachment(ctx context.Context, studentCode string, noteID string, attachmentID string) ([]byte, error) {
 	var result []byte
 	url := fmt.Sprintf("/students/%s/notes/standard/%s/attachments/%s", studentCode, noteID, attachmentID)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -186,7 +186,7 @@ func (c *Client) GetStudentStandardNoteAttachment(ctx context.Context, studentCo
 // CODEGEN(none): op=DeleteStudentStandardNoteAttachment, path=/{cmpy_code}/students/{stud_code}/notes/standard/{note_uid}/attachments/{attach_id}
 func (c *Client) DeleteStudentStandardNoteAttachment(ctx context.Context, studentCode string, noteID string, attachmentID string) error {
 	url := fmt.Sprintf("/students/%s/notes/standard/%s/attachments/%s", studentCode, noteID, attachmentID)
-	_, err := c.t.request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -197,7 +197,7 @@ func (c *Client) DeleteStudentStandardNoteAttachment(ctx context.Context, studen
 func (c *Client) GetAllStudentConfidentialNotes(ctx context.Context, studentCode string) ([]StudentConfidentialNoteResponse, error) {
 	var result []StudentConfidentialNoteResponse
 	url := fmt.Sprintf("/students/%s/notes/confidential", studentCode)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -214,7 +214,7 @@ func (c *Client) AddStudentConfidentialNote(ctx context.Context, studentCode str
 	if err := tasscommon.Validate(payload); err != nil {
 		return StudentConfidentialNoteResponse{}, err
 	}
-	body, err := c.t.request(ctx, http.MethodPost, url, nil, payload, http.StatusCreated)
+	body, err := c.t.Request(ctx, http.MethodPost, url, nil, payload, http.StatusCreated)
 	if err != nil {
 		return StudentConfidentialNoteResponse{}, err
 	}
@@ -228,7 +228,7 @@ func (c *Client) AddStudentConfidentialNote(ctx context.Context, studentCode str
 func (c *Client) GetStudentConfidentialNoteByID(ctx context.Context, studentCode string, noteID string) (StudentConfidentialNoteResponse, error) {
 	var result StudentConfidentialNoteResponse
 	url := fmt.Sprintf("/students/%s/notes/confidential/%s", studentCode, noteID)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return StudentConfidentialNoteResponse{}, err
 	}
@@ -244,7 +244,7 @@ func (c *Client) UpdateStudentConfidentialNote(ctx context.Context, studentCode 
 	if err := tasscommon.Validate(payload); err != nil {
 		return err
 	}
-	_, err := c.t.request(ctx, http.MethodPut, url, nil, payload, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodPut, url, nil, payload, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -254,7 +254,7 @@ func (c *Client) UpdateStudentConfidentialNote(ctx context.Context, studentCode 
 // CODEGEN(none): op=PatchStudentConfidentialNote, path=/{cmpy_code}/students/{stud_code}/notes/confidential/{note_uid}
 func (c *Client) PatchStudentConfidentialNote(ctx context.Context, studentCode string, noteID string, payload []tasscommon.Operation) error {
 	url := fmt.Sprintf("/students/%s/notes/confidential/%s", studentCode, noteID)
-	_, err := c.t.request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -264,7 +264,7 @@ func (c *Client) PatchStudentConfidentialNote(ctx context.Context, studentCode s
 // CODEGEN(none): op=DeleteStudentConfidentialNote, path=/{cmpy_code}/students/{stud_code}/notes/confidential/{note_uid}
 func (c *Client) DeleteStudentConfidentialNote(ctx context.Context, studentCode string, noteID string) error {
 	url := fmt.Sprintf("/students/%s/notes/confidential/%s", studentCode, noteID)
-	_, err := c.t.request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -275,7 +275,7 @@ func (c *Client) DeleteStudentConfidentialNote(ctx context.Context, studentCode 
 func (c *Client) GetAllStudentConfidentialNoteAttachments(ctx context.Context, studentCode string, noteID string) ([]tasscommon.FileResponse, error) {
 	var result []tasscommon.FileResponse
 	url := fmt.Sprintf("/students/%s/notes/confidential/%s/attachments", studentCode, noteID)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -292,7 +292,7 @@ func (c *Client) AddStudentConfidentialNoteAttachment(ctx context.Context, stude
 	if err := tasscommon.Validate(payload); err != nil {
 		return tasscommon.NewAttachmentResponse{}, err
 	}
-	body, err := c.t.upload(ctx, url, payload, http.StatusCreated)
+	body, err := c.t.Upload(ctx, url, payload, http.StatusCreated)
 	if err != nil {
 		return tasscommon.NewAttachmentResponse{}, err
 	}
@@ -306,7 +306,7 @@ func (c *Client) AddStudentConfidentialNoteAttachment(ctx context.Context, stude
 func (c *Client) GetStudentConfidentialNoteAttachment(ctx context.Context, studentCode string, noteID string, attachmentID string) ([]byte, error) {
 	var result []byte
 	url := fmt.Sprintf("/students/%s/notes/confidential/%s/attachments/%s", studentCode, noteID, attachmentID)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -319,7 +319,7 @@ func (c *Client) GetStudentConfidentialNoteAttachment(ctx context.Context, stude
 // CODEGEN(none): op=DeleteStudentConfidentialNoteAttachment, path=/{cmpy_code}/students/{stud_code}/notes/confidential/{note_uid}/attachments/{attach_id}
 func (c *Client) DeleteStudentConfidentialNoteAttachment(ctx context.Context, studentCode string, noteID string, attachmentID string) error {
 	url := fmt.Sprintf("/students/%s/notes/confidential/%s/attachments/%s", studentCode, noteID, attachmentID)
-	_, err := c.t.request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -333,7 +333,7 @@ func (c *Client) GetStudentPhotoChanges(ctx context.Context, changeKey string) (
 	if err != nil {
 		return StudentPhotoChangesResponse{}, err
 	}
-	body, err := c.t.request(ctx, http.MethodGet, "/students/photos/changes", query, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, "/students/photos/changes", query, nil, http.StatusOK)
 	if err != nil {
 		return StudentPhotoChangesResponse{}, err
 	}
@@ -347,7 +347,7 @@ func (c *Client) GetStudentPhotoChanges(ctx context.Context, changeKey string) (
 func (c *Client) GetStudentPhoto(ctx context.Context, studentCode string) ([]byte, error) {
 	var result []byte
 	url := fmt.Sprintf("/students/%s/photo", studentCode)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -363,7 +363,7 @@ func (c *Client) AddStudentPhoto(ctx context.Context, studentCode string, payloa
 	if err := tasscommon.Validate(payload); err != nil {
 		return err
 	}
-	_, err := c.t.upload(ctx, url, payload, http.StatusCreated)
+	_, err := c.t.Upload(ctx, url, payload, http.StatusCreated)
 	if err != nil {
 		return err
 	}
@@ -374,7 +374,7 @@ func (c *Client) AddStudentPhoto(ctx context.Context, studentCode string, payloa
 func (c *Client) GetAllStudentUDAreas(ctx context.Context, studentCode string) ([]StudentUDAreaResponse, error) {
 	var result []StudentUDAreaResponse
 	url := fmt.Sprintf("/students/%s/udareas", studentCode)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -388,7 +388,7 @@ func (c *Client) GetAllStudentUDAreas(ctx context.Context, studentCode string) (
 func (c *Client) GetStudentUDAreaByID(ctx context.Context, studentCode string, areaCode string) (StudentUDAreaResponse, error) {
 	var result StudentUDAreaResponse
 	url := fmt.Sprintf("/students/%s/udareas/%s", studentCode, areaCode)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return StudentUDAreaResponse{}, err
 	}
@@ -405,7 +405,7 @@ func (c *Client) AddStudentUDArea(ctx context.Context, studentCode string, areaC
 	if err := tasscommon.Validate(payload); err != nil {
 		return StudentUDAreaResponse{}, err
 	}
-	body, err := c.t.request(ctx, http.MethodPost, url, nil, payload, http.StatusCreated)
+	body, err := c.t.Request(ctx, http.MethodPost, url, nil, payload, http.StatusCreated)
 	if err != nil {
 		return StudentUDAreaResponse{}, err
 	}
@@ -421,7 +421,7 @@ func (c *Client) UpdateStudentUDArea(ctx context.Context, studentCode string, ar
 	if err := tasscommon.Validate(payload); err != nil {
 		return err
 	}
-	_, err := c.t.request(ctx, http.MethodPut, url, nil, payload, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodPut, url, nil, payload, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -431,7 +431,7 @@ func (c *Client) UpdateStudentUDArea(ctx context.Context, studentCode string, ar
 // CODEGEN(none): op=PatchStudentUDArea, path=/{cmpy_code}/students/{stud_code}/udareas/{area_code}
 func (c *Client) PatchStudentUDArea(ctx context.Context, studentCode string, areaCode string, payload []tasscommon.Operation) error {
 	url := fmt.Sprintf("/students/%s/udareas/%s", studentCode, areaCode)
-	_, err := c.t.request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -441,7 +441,7 @@ func (c *Client) PatchStudentUDArea(ctx context.Context, studentCode string, are
 // CODEGEN(none): op=DeleteStudentUDArea, path=/{cmpy_code}/students/{stud_code}/udareas/{area_code}
 func (c *Client) DeleteStudentUDArea(ctx context.Context, studentCode string, areaCode string) error {
 	url := fmt.Sprintf("/students/%s/udareas/%s", studentCode, areaCode)
-	_, err := c.t.request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -452,7 +452,7 @@ func (c *Client) DeleteStudentUDArea(ctx context.Context, studentCode string, ar
 func (c *Client) GetStudentUDAreaAttachment(ctx context.Context, studentCode string, areaCode string, fieldID int, attachmentID string) ([]byte, error) {
 	var result []byte
 	url := fmt.Sprintf("/students/%s/udareas/%s/attachments/%d/%s", studentCode, areaCode, fieldID, attachmentID)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -465,7 +465,7 @@ func (c *Client) GetStudentUDAreaAttachment(ctx context.Context, studentCode str
 // CODEGEN(none): op=DeleteStudentUDAreaAttachment, path=/{cmpy_code}/students/{stud_code}/udareas/{area_code}/attachments/{field_number}/{attach_id}
 func (c *Client) DeleteStudentUDAreaAttachment(ctx context.Context, studentCode string, areaCode string, fieldID int, attachmentID string) error {
 	url := fmt.Sprintf("/students/%s/udareas/%s/attachments/%d/%s", studentCode, areaCode, fieldID, attachmentID)
-	_, err := c.t.request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -479,7 +479,7 @@ func (c *Client) AddStudentUDAreaAttachment(ctx context.Context, studentCode str
 	if err := tasscommon.Validate(payload); err != nil {
 		return tasscommon.NewAttachmentResponse{}, err
 	}
-	body, err := c.t.upload(ctx, url, payload, http.StatusCreated)
+	body, err := c.t.Upload(ctx, url, payload, http.StatusCreated)
 	if err != nil {
 		return tasscommon.NewAttachmentResponse{}, err
 	}
@@ -493,7 +493,7 @@ func (c *Client) AddStudentUDAreaAttachment(ctx context.Context, studentCode str
 func (c *Client) GetStudentUDFields(ctx context.Context, studentCode string) ([]StudentUDFieldsResponse, error) {
 	var result []StudentUDFieldsResponse
 	url := fmt.Sprintf("/students/%s/udfields", studentCode)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -509,7 +509,7 @@ func (c *Client) UpdateStudentUDFields(ctx context.Context, studentCode string, 
 	if err := tasscommon.Validate(payload); err != nil {
 		return err
 	}
-	_, err := c.t.request(ctx, http.MethodPut, url, nil, payload, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodPut, url, nil, payload, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -519,7 +519,7 @@ func (c *Client) UpdateStudentUDFields(ctx context.Context, studentCode string, 
 // CODEGEN(none): op=PatchStudentUDFields, path=/{cmpy_code}/students/{stud_code}/udfields
 func (c *Client) PatchStudentUDFields(ctx context.Context, studentCode string, payload []tasscommon.Operation) error {
 	url := fmt.Sprintf("/students/%s/udfields", studentCode)
-	_, err := c.t.request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -530,7 +530,7 @@ func (c *Client) PatchStudentUDFields(ctx context.Context, studentCode string, p
 func (c *Client) GetStudentMCEECDYA(ctx context.Context, studentCode string) (StudentMCEECDYAResponse, error) {
 	var result StudentMCEECDYAResponse
 	url := fmt.Sprintf("/students/%s/mceecdya", studentCode)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return StudentMCEECDYAResponse{}, err
 	}
@@ -546,7 +546,7 @@ func (c *Client) UpdateStudentMCEECDYA(ctx context.Context, studentCode string, 
 	if err := tasscommon.Validate(payload); err != nil {
 		return err
 	}
-	_, err := c.t.request(ctx, http.MethodPut, url, nil, payload, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodPut, url, nil, payload, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -556,7 +556,7 @@ func (c *Client) UpdateStudentMCEECDYA(ctx context.Context, studentCode string, 
 // CODEGEN(none): op=PatchStudentMCEECDYA, path=/{cmpy_code}/students/{stud_code}/mceecdya
 func (c *Client) PatchStudentMCEECDYA(ctx context.Context, studentCode string, payload tasscommon.Operation) error {
 	url := fmt.Sprintf("/students/%s/mceecdya", studentCode)
-	_, err := c.t.request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
 	if err != nil {
 		return err
 	}

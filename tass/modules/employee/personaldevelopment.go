@@ -13,7 +13,7 @@ import (
 func (c *Client) GetAllEmployeePDActivities(ctx context.Context, employeeCode string) ([]EmployeePDActivityResponse, error) {
 	var result []EmployeePDActivityResponse
 	url := fmt.Sprintf("/employees/%s/pdactivities", employeeCode)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -30,7 +30,7 @@ func (c *Client) AddEmployeePDActivities(ctx context.Context, employeeCode strin
 	if err := tasscommon.Validate(payload); err != nil {
 		return EmployeePDActivityResponse{}, err
 	}
-	body, err := c.t.request(ctx, http.MethodPost, url, nil, payload, http.StatusCreated)
+	body, err := c.t.Request(ctx, http.MethodPost, url, nil, payload, http.StatusCreated)
 	if err != nil {
 		return EmployeePDActivityResponse{}, err
 	}
@@ -44,7 +44,7 @@ func (c *Client) AddEmployeePDActivities(ctx context.Context, employeeCode strin
 func (c *Client) GetEmployeePDActivity(ctx context.Context, employeeCode string, pdActivityCode int) (EmployeePDActivityResponse, error) {
 	var result EmployeePDActivityResponse
 	url := fmt.Sprintf("/employees/%s/pdactivities/%d", employeeCode, pdActivityCode)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return EmployeePDActivityResponse{}, err
 	}
@@ -60,7 +60,7 @@ func (c *Client) UpdateEmployeePDActivity(ctx context.Context, employeeCode stri
 	if err := tasscommon.Validate(payload); err != nil {
 		return err
 	}
-	_, err := c.t.request(ctx, http.MethodPut, url, nil, payload, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodPut, url, nil, payload, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -70,7 +70,7 @@ func (c *Client) UpdateEmployeePDActivity(ctx context.Context, employeeCode stri
 // CODEGEN(none): op=PatchEmployeePDActivity, path=/{cmpy_code}/employees/{emp_code}/pdactivities/{pdact_num}
 func (c *Client) PatchEmployeePDActivity(ctx context.Context, employeeCode string, pdActivityCode int, payload []tasscommon.Operation) error {
 	url := fmt.Sprintf("/employees/%s/pdactivities/%d", employeeCode, pdActivityCode)
-	_, err := c.t.request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -80,7 +80,7 @@ func (c *Client) PatchEmployeePDActivity(ctx context.Context, employeeCode strin
 // CODEGEN(none): op=DeleteEmployeePDActivity, path=/{cmpy_code}/employees/{emp_code}/pdactivities/{pdact_num}
 func (c *Client) DeleteEmployeePDActivity(ctx context.Context, employeeCode string, pdActivityCode int) error {
 	url := fmt.Sprintf("/employees/%s/pdactivities/%d", employeeCode, pdActivityCode)
-	_, err := c.t.request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -91,7 +91,7 @@ func (c *Client) DeleteEmployeePDActivity(ctx context.Context, employeeCode stri
 func (c *Client) GetEmployeePDActivityAttachment(ctx context.Context, employeeCode string, pdActivityCode int, udFieldID int, attachmentID string) ([]byte, error) {
 	var result []byte
 	url := fmt.Sprintf("/employees/%s/pdactivities/%d/attachments/%d/%s", employeeCode, pdActivityCode, udFieldID, attachmentID)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -104,7 +104,7 @@ func (c *Client) GetEmployeePDActivityAttachment(ctx context.Context, employeeCo
 // CODEGEN(none): op=DeleteEmployeePDActivityAttachment, path=/{cmpy_code}/employees/{emp_code}/pdactivities/{pdact_num}/attachments/{field_number}/{attach_id}
 func (c *Client) DeleteEmployeePDActivityAttachment(ctx context.Context, employeeCode string, pdActivityCode int, udFieldID int, attachmentID string) error {
 	url := fmt.Sprintf("/employees/%s/pdactivities/%d/attachments/%d/%s", employeeCode, pdActivityCode, udFieldID, attachmentID)
-	_, err := c.t.request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -115,7 +115,7 @@ func (c *Client) DeleteEmployeePDActivityAttachment(ctx context.Context, employe
 func (c *Client) AddEmployeePDActivityAttachment(ctx context.Context, employeeCode string, pdActivityCode int, udFieldID int, payload tasscommon.FileRequest) (tasscommon.NewAttachmentResponse, error) {
 	var result tasscommon.NewAttachmentResponse
 	url := fmt.Sprintf("/employees/%s/pdactivities/%d/attachments/%d", employeeCode, pdActivityCode, udFieldID)
-	body, err := c.t.upload(ctx, url, payload, http.StatusCreated)
+	body, err := c.t.Upload(ctx, url, payload, http.StatusCreated)
 	if err != nil {
 		return tasscommon.NewAttachmentResponse{}, err
 	}

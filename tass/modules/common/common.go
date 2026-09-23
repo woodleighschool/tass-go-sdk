@@ -1,24 +1,72 @@
 package tasscommon
 
-import "time"
+import (
+	"encoding/json"
+	"fmt"
+	"time"
+)
+
+type DateTime time.Time
+
+func (d *DateTime) UnmarshalJSON(b []byte) error {
+	var s string
+
+	if err := json.Unmarshal(b, &s); err != nil {
+		return fmt.Errorf("failed to unmarshal date")
+	}
+	t, err := time.Parse("2006-01-02T03:04:05.000", s)
+	if err != nil {
+		return fmt.Errorf("failed to parse date")
+	}
+	*d = DateTime(t)
+	return nil
+}
+
+func (d DateTime) MarshalJSON() ([]byte, error) {
+	t := time.Time(d)
+	formatted := t.Format("2006-01-02T03:04:05.000")
+	return json.Marshal(formatted)
+}
+
+type Date time.Time
+
+func (d *Date) UnmarshalJSON(b []byte) error {
+	var s string
+
+	if err := json.Unmarshal(b, &s); err != nil {
+		return fmt.Errorf("failed to unmarshal date")
+	}
+	t, err := time.Parse("2006-01-02", s)
+	if err != nil {
+		return fmt.Errorf("failed to parse date")
+	}
+	*d = Date(t)
+	return nil
+}
+
+func (d Date) MarshalJSON() ([]byte, error) {
+	t := time.Time(d)
+	formatted := t.Format("2006-01-02")
+	return json.Marshal(formatted)
+}
 
 type FileDetails struct {
 	Name         *string    `json:"file_name,omitempty"`
 	Size         *int       `json:"file_size,omitempty"`
-	DateUploaded *time.Time `json:"date_uploaded,omitempty"`
+	DateUploaded *time.Time `json:"date_Uploaded,omitempty"`
 	AttachmentID *string    `json:"attach_id,omitempty"`
 }
 
 type FileResponse struct {
 	FileName     *string    `json:"file_name,omitempty"`
 	FileSize     *int       `json:"file_size,omitempty"`
-	DateUploaded *time.Time `json:"date_uploaded,omitempty"`
+	DateUploaded *time.Time `json:"date_Uploaded,omitempty"`
 	AttachmentID *string    `json:"attach_id,omitempty"`
 }
 
 type IFormFile string
 
-// FileRequest is a custom struct for uploading files to TASS API
+// FileRequest is a custom struct for Uploading files to TASS API
 type FileRequest struct {
 	FileName             *string           `json:"file_name,omitempty"`
 	FileContent          IFormFile         `json:"file_content,omitempty"`

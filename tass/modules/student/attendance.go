@@ -12,7 +12,7 @@ import (
 // CODEGEN(none): op=GetAllStudentAttendances, path=/{cmpy_code}/students/attendance
 func (c *Client) GetAllStudentAttendances(ctx context.Context) ([]StudentAttendanceResponse, error) {
 	var result []StudentAttendanceResponse
-	body, err := c.t.request(ctx, http.MethodGet, "/students/absences", nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, "/students/absences", nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -26,7 +26,7 @@ func (c *Client) GetAllStudentAttendances(ctx context.Context) ([]StudentAttenda
 func (c *Client) GetStudentAttendanceAttachments(ctx context.Context, studentCode string, absenceID int) ([]tasscommon.FileResponse, error) {
 	var result []tasscommon.FileResponse
 	url := fmt.Sprintf("/students/%s/attendance/%d/attachments", studentCode, absenceID)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -40,7 +40,7 @@ func (c *Client) GetStudentAttendanceAttachments(ctx context.Context, studentCod
 func (c *Client) GetStudentAttendanceAttachment(ctx context.Context, studentCode string, absenceID int, attachmentID string) ([]byte, error) {
 	var result []byte
 	url := fmt.Sprintf("/students/%s/attendance/%d/attachments/%s", studentCode, absenceID, attachmentID)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}

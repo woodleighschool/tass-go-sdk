@@ -1,66 +1,64 @@
 package tassemployee
 
 import (
-	"time"
-
 	tasscommon "github.com/woodleighschool/tass-go-sdk/tass/modules/common"
 )
 
 // Employees
 
 type EmployeeResponse struct {
-	AddressLine1          *string           `json:"add1_text,omitempty"`
-	AddressLine2          *string           `json:"add2_text,omitempty"`
-	AlternateID           *string           `json:"alt_id,omitempty"`
-	BirthDate             *time.Time        `json:"birth_date,omitempty"`
-	CessationType         *string           `json:"cessation_type,omitempty"`
-	City                  *string           `json:"city_text,omitempty"`
-	CompanyCode           string            `json:"cmpy_code"`
-	CountryCode           *string           `json:"country_code,omitempty"`
-	CountryText           *string           `json:"country_text,omitempty"`
-	Deceased              bool              `json:"deceased_flg"`
-	DriversLicense        *string           `json:"driv_lic_text,omitempty"`
-	Email                 *string           `json:"e_mail,omitempty"`
-	EmployeeCode          string            `json:"emp_code"`
-	FirstName             *string           `json:"first_name,omitempty"`
-	Gender                *string           `json:"gender,omitempty"`
-	IndiginousStatus      *IndiginousStatus `json:"indig_status,omitempty"`
-	Initials              *string           `json:"initials,omitempty"`
-	Role                  *string           `json:"main_activity,omitempty"`
-	MaritalStatus         *string           `json:"marital_stat_flag,omitempty"`
-	MobilePhone           *string           `json:"mob_phone,omitempty"`
-	NextOfKinAddressLine1 *string           `json:"nok_add1_text,omitempty"`
-	NextOfKinAddressLine2 *string           `json:"nok_add2_text,omitempty"`
-	NextOfKinCity         *string           `json:"nok_city_text,omitempty"`
-	NextOfKinCountry      *string           `json:"nok_country_text,omitempty"`
-	NextOfKinName         *string           `json:"nok_name_text,omitempty"`
-	NextOfKinHomePhone    *string           `json:"nok_phone_h_text,omitempty"`
-	NextOfKinWorkPhone    *string           `json:"nok_phone_w_text,omitempty"`
-	NextOfKinPostCode     *string           `json:"nok_post_code,omitempty"`
-	NextOfKinRelationship *string           `json:"nok_relat_text,omitempty"`
-	NextOfKinState        *string           `json:"nok_state_text,omitempty"`
-	OtherNames            *string           `json:"other_name,omitempty"`
-	HomePhone             *string           `json:"phone_h_text,omitempty"`
-	WorkPhone             *string           `json:"phone_w_text,omitempty"`
-	PositionText          *string           `json:"position_text,omitempty"`
-	PositionTitle         *string           `json:"position_title,omitempty"`
-	PostCode              *string           `json:"post_code,omitempty"`
-	PreferredName         *string           `json:"preferred_name,omitempty"`
-	PreviousPayrollID     *string           `json:"previous_payroll_id,omitempty"`
-	SchoolEmail           *string           `json:"school_email,omitempty"`
-	SMSFlag               bool              `json:"sms_flg"`
-	StartDate             *time.Time        `json:"start_date,omitempty"`
-	State                 *string           `json:"state_text,omitempty"`
-	Status                *string           `json:"status_text,omitempty"`
-	Surname               *string           `json:"surname,omitempty"`
-	Suffix                *string           `json:"suffix,omitempty"`
-	SupervisorCode        *string           `json:"supervisor_code,omitempty"`
-	Supervisor2Code       *string           `json:"supervisor2_code,omitempty"`
-	TeacherCode           *string           `json:"tch_code,omitempty"`
-	TerminationDate       *time.Time        `json:"term_date,omitempty"`
-	Title                 *string           `json:"title,omitempty"`
-	UpdatedOn             *time.Time        `json:"update_on,omitempty"`
-	VendorCode            *string           `json:"vend_code,omitempty"`
+	AddressLine1          *string              `json:"add1_text,omitempty"`
+	AddressLine2          *string              `json:"add2_text,omitempty"`
+	AlternateID           *string              `json:"alt_id,omitempty"`
+	BirthDate             *tasscommon.Date     `json:"birth_date,omitempty"`
+	CessationType         *string              `json:"cessation_type,omitempty"`
+	City                  *string              `json:"city_text,omitempty"`
+	CompanyCode           string               `json:"cmpy_code"`
+	CountryCode           *string              `json:"country_code,omitempty"`
+	CountryText           *string              `json:"country_text,omitempty"`
+	Deceased              bool                 `json:"deceased_flg"`
+	DriversLicense        *string              `json:"driv_lic_text,omitempty"`
+	Email                 *string              `json:"e_mail,omitempty"`
+	EmployeeCode          string               `json:"emp_code"`
+	FirstName             *string              `json:"first_name,omitempty"`
+	Gender                *string              `json:"gender,omitempty"`
+	IndiginousStatus      *IndiginousStatus    `json:"indig_status,omitempty"`
+	Initials              *string              `json:"initials,omitempty"`
+	Role                  *string              `json:"main_activity,omitempty"`
+	MaritalStatus         *string              `json:"marital_stat_flag,omitempty"`
+	MobilePhone           *string              `json:"mob_phone,omitempty"`
+	NextOfKinAddressLine1 *string              `json:"nok_add1_text,omitempty"`
+	NextOfKinAddressLine2 *string              `json:"nok_add2_text,omitempty"`
+	NextOfKinCity         *string              `json:"nok_city_text,omitempty"`
+	NextOfKinCountry      *string              `json:"nok_country_text,omitempty"`
+	NextOfKinName         *string              `json:"nok_name_text,omitempty"`
+	NextOfKinHomePhone    *string              `json:"nok_phone_h_text,omitempty"`
+	NextOfKinWorkPhone    *string              `json:"nok_phone_w_text,omitempty"`
+	NextOfKinPostCode     *string              `json:"nok_post_code,omitempty"`
+	NextOfKinRelationship *string              `json:"nok_relat_text,omitempty"`
+	NextOfKinState        *string              `json:"nok_state_text,omitempty"`
+	OtherNames            *string              `json:"other_name,omitempty"`
+	HomePhone             *string              `json:"phone_h_text,omitempty"`
+	WorkPhone             *string              `json:"phone_w_text,omitempty"`
+	PositionText          *string              `json:"position_text,omitempty"`
+	PositionTitle         *string              `json:"position_title,omitempty"`
+	PostCode              *string              `json:"post_code,omitempty"`
+	PreferredName         *string              `json:"preferred_name,omitempty"`
+	PreviousPayrollID     *string              `json:"previous_payroll_id,omitempty"`
+	SchoolEmail           *string              `json:"school_email,omitempty"`
+	SMSFlag               bool                 `json:"sms_flg"`
+	StartDate             *tasscommon.Date     `json:"start_date,omitempty"`
+	State                 *string              `json:"state_text,omitempty"`
+	Status                *string              `json:"status_text,omitempty"`
+	Surname               *string              `json:"surname,omitempty"`
+	Suffix                *string              `json:"suffix,omitempty"`
+	SupervisorCode        *string              `json:"supervisor_code,omitempty"`
+	Supervisor2Code       *string              `json:"supervisor2_code,omitempty"`
+	TeacherCode           *string              `json:"tch_code,omitempty"`
+	TerminationDate       *tasscommon.Date     `json:"term_date,omitempty"`
+	Title                 *string              `json:"title,omitempty"`
+	UpdatedOn             *tasscommon.DateTime `json:"update_on,omitempty"`
+	VendorCode            *string              `json:"vend_code,omitempty"`
 }
 
 type EmployeeRequest struct {
@@ -120,13 +118,13 @@ type AddEmployeeRequest EmployeeRequest
 type UpdateEmployeeRequest EmployeeRequest
 
 type EmployeeStandardNoteResponse struct {
-	CompanyCode   string     `json:"cmpy_code"`
-	EmployeeCode  string     `json:"emp_code"`
-	Category      *string    `json:"note_cat,omitempty"`
-	Date          *time.Time `json:"note_date,omitempty"`
-	Text          *string    `json:"note_text,omitempty"`
-	ID            string     `json:"note_uid"` // TODO: UUID? Must be a UUID
-	HasAttachment bool       `json:"has_attachment"`
+	CompanyCode   string               `json:"cmpy_code"`
+	EmployeeCode  string               `json:"emp_code"`
+	Category      *string              `json:"note_cat,omitempty"`
+	Date          *tasscommon.DateTime `json:"note_date,omitempty"`
+	Text          *string              `json:"note_text,omitempty"`
+	ID            string               `json:"note_uid"` // TODO: UUID? Must be a UUID
+	HasAttachment bool                 `json:"has_attachment"`
 }
 
 type AddEmployeeStandardNoteRequest struct {
@@ -142,13 +140,13 @@ type UpdateEmployeeStandardNoteRequest struct {
 }
 
 type EmployeeConfidentialNoteResponse struct {
-	CompanyCode   string     `json:"cmpy_code"`
-	EmployeeCode  string     `json:"emp_code"`
-	Category      *string    `json:"note_cat,omitempty"`
-	Date          *time.Time `json:"note_date,omitempty" validate:"datetime=2026-01-02T03:04:05.000"` // TODO: Confirm this works
-	Text          *string    `json:"note_text,omitempty"`
-	ID            string     `json:"note_uid"` // TODO: UUID? Must be a UUID
-	HasAttachment bool       `json:"has_attachment"`
+	CompanyCode   string               `json:"cmpy_code"`
+	EmployeeCode  string               `json:"emp_code"`
+	Category      *string              `json:"note_cat,omitempty"`
+	Date          *tasscommon.DateTime `json:"note_date,omitempty"`
+	Text          *string              `json:"note_text,omitempty"`
+	ID            string               `json:"note_uid"` // TODO: UUID? Must be a UUID
+	HasAttachment bool                 `json:"has_attachment"`
 }
 
 type AddEmployeeConfidentialNoteRequest struct {
@@ -170,20 +168,20 @@ type EmployeePhotoChangesResponse struct {
 }
 
 type EmployeePhotoChange struct {
-	EmployeeCode string    `json:"emp_code"`
-	UpdatedOn    time.Time `json:"photo_update_on"`
+	EmployeeCode string              `json:"emp_code"`
+	UpdatedOn    tasscommon.DateTime `json:"photo_update_on"`
 }
 
 type EmployeeQualificationResponse struct {
-	CompanyCode     string     `json:"cmpy_code"`
-	EmployeeCode    string     `json:"emp_code"`
-	InstitutionCode *string    `json:"inst_code,omitempty"` // GetAllQualificationInstitutionOptions
-	Category        *string    `json:"qual_cat,omitempty"`  // GetAllQualificationCategoryOptions
-	Text            *string    `json:"qual_text,omitempty"`
-	ID              string     `json:"qual_uid"` // TODO: UUID? Must be a UUID
-	ReminderFlag    bool       `json:"reminder_flg"`
-	ValidDate       *time.Time `json:"valid_date,omitempty"`
-	HasAttachment   bool       `json:"has_attachment"`
+	CompanyCode     string           `json:"cmpy_code"`
+	EmployeeCode    string           `json:"emp_code"`
+	InstitutionCode *string          `json:"inst_code,omitempty"` // GetAllQualificationInstitutionOptions
+	Category        *string          `json:"qual_cat,omitempty"`  // GetAllQualificationCategoryOptions
+	Text            *string          `json:"qual_text,omitempty"`
+	ID              string           `json:"qual_uid"` // TODO: UUID? Must be a UUID
+	ReminderFlag    bool             `json:"reminder_flg"`
+	ValidDate       *tasscommon.Date `json:"valid_date,omitempty"`
+	HasAttachment   bool             `json:"has_attachment"`
 }
 
 type AddEmployeeQualificationRequest struct {
@@ -208,7 +206,7 @@ type EmployeeUDAreaResponse struct {
 	CompanyCode  string                          `json:"cmpy_code"`
 	AreaCode     string                          `json:"area_code"`
 	EmployeeCode string                          `json:"emp_code"`
-	UpdatedOn    *time.Time                      `json:"update_on,omitempty"`
+	UpdatedOn    *tasscommon.DateTime            `json:"update_on,omitempty"`
 	UDFields     tasscommon.UDAreaFieldsResponse `json:"ud_fields"`
 }
 
@@ -223,20 +221,20 @@ type UpdateEmployeeUDAreaRequest struct {
 // Personal Development
 
 type EmployeePDActivityResponse struct {
-	CompanyCode  string             `json:"cmpy_code"`
-	CostAmount   *float64           `json:"cost_amt,omitempty"`
-	Duration     *float64           `json:"duration,omitempty"`
-	EmployeeCode string             `json:"emp_code"`
-	FinishDate   *time.Time         `json:"finish_date,omitempty"`
-	OtherAmount  *float64           `json:"other_amt,omitempty"`
-	ProviderCode *string            `json:"pd_prov_code,omitempty"`
-	Status       *string            `json:"pd_stat_code,omitempty"`
-	Type         *string            `json:"pd_type_code,omitempty"`
-	ID           int                `json:"pdact_num"`
-	Details      *string            `json:"pdact_text,omitempty"`
-	StartDate    *time.Time         `json:"start_date,omitempty"`
-	UpdatedOn    *time.Time         `json:"updated_on,omitempty"`
-	UDFields     PDUDFieldsResponse `json:"ud_fields"`
+	CompanyCode  string               `json:"cmpy_code"`
+	CostAmount   *float64             `json:"cost_amt,omitempty"`
+	Duration     *float64             `json:"duration,omitempty"`
+	EmployeeCode string               `json:"emp_code"`
+	FinishDate   *tasscommon.Date     `json:"finish_date,omitempty"`
+	OtherAmount  *float64             `json:"other_amt,omitempty"`
+	ProviderCode *string              `json:"pd_prov_code,omitempty"`
+	Status       *string              `json:"pd_stat_code,omitempty"`
+	Type         *string              `json:"pd_type_code,omitempty"`
+	ID           int                  `json:"pdact_num"`
+	Details      *string              `json:"pdact_text,omitempty"`
+	StartDate    *tasscommon.Date     `json:"start_date,omitempty"`
+	UpdatedOn    *tasscommon.DateTime `json:"updated_on,omitempty"`
+	UDFields     PDUDFieldsResponse   `json:"ud_fields"`
 }
 
 type AddEmployeePDActivityRequest struct {
@@ -339,15 +337,15 @@ type PDActivityUDTextUpdateRequest struct {
 // Payroll
 
 type EmployeeLeaveBalanceResponse struct {
-	AccrualCode         string     `json:"acr_code"`
-	CompanyCode         string     `json:"cmpy_code"`
-	EmployeeCode        string     `json:"emp_code"`
-	CurrentEntitlement  *float64   `json:"ent_qty,omitempty"`
-	EntitlementCalcDate *time.Time `json:"lst_up_date,omitempty"`
-	NonAccrualDays      *int       `json:"non_acr_day_qty,omitempty"`
-	NTSCode             *string    `json:"nts_code,omitempty"` // TODO: Review
-	RateAmount          *float64   `json:"rate_amt,omitempty"`
-	CommencementDate    *string    `json:"str_ent_date,omitempty"`
+	AccrualCode         string               `json:"acr_code"`
+	CompanyCode         string               `json:"cmpy_code"`
+	EmployeeCode        string               `json:"emp_code"`
+	CurrentEntitlement  *float64             `json:"ent_qty,omitempty"`
+	EntitlementCalcDate *tasscommon.DateTime `json:"lst_up_date,omitempty"`
+	NonAccrualDays      *int                 `json:"non_acr_day_qty,omitempty"`
+	NTSCode             *string              `json:"nts_code,omitempty"` // TODO: Review
+	RateAmount          *float64             `json:"rate_amt,omitempty"`
+	CommencementDate    *string              `json:"str_ent_date,omitempty"`
 }
 
 // Enums

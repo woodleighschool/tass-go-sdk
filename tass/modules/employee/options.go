@@ -12,7 +12,7 @@ import (
 // CODEGEN(none): op=GetAllCountryOptions, path=/{cmpy_code}/options/employees/countries
 func (c *Client) GetAllCountryOptions(ctx context.Context) ([]tasscommon.OptionsResponse, error) {
 	var result []tasscommon.OptionsResponse
-	body, err := c.t.request(ctx, http.MethodGet, "/options/employees/countries", nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, "/options/employees/countries", nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -25,7 +25,7 @@ func (c *Client) GetAllCountryOptions(ctx context.Context) ([]tasscommon.Options
 // CODEGEN(none): op=GetAllEmployeeStatusOptions, path=/{cmpy_code}/options/employees/statuses
 func (c *Client) GetAllEmployeeStatusOptions(ctx context.Context) ([]tasscommon.OptionsResponse, error) {
 	var result []tasscommon.OptionsResponse
-	body, err := c.t.request(ctx, http.MethodGet, "/options/employees/statuses", nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, "/options/employees/statuses", nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -38,7 +38,7 @@ func (c *Client) GetAllEmployeeStatusOptions(ctx context.Context) ([]tasscommon.
 // CODEGEN(none): op=GetAllGenderOptions, path=/{cmpy_code}/options/employees/genders
 func (c *Client) GetAllGenderOptions(ctx context.Context) ([]tasscommon.OptionsResponse, error) {
 	var result []tasscommon.OptionsResponse
-	body, err := c.t.request(ctx, http.MethodGet, "/options/employees/genders", nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, "/options/employees/genders", nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -51,7 +51,7 @@ func (c *Client) GetAllGenderOptions(ctx context.Context) ([]tasscommon.OptionsR
 // CODEGEN(none): op=GetAllIndigneousTypeOptions, path=/{cmpy_code}/options/employees/indigenoustype
 func (c *Client) GetAllIndigneousTypeOptions(ctx context.Context) ([]tasscommon.OptionsResponse, error) {
 	var result []tasscommon.OptionsResponse
-	body, err := c.t.request(ctx, http.MethodGet, "/options/employees/indigenoustype", nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, "/options/employees/indigenoustype", nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -64,7 +64,7 @@ func (c *Client) GetAllIndigneousTypeOptions(ctx context.Context) ([]tasscommon.
 // CODEGEN(none): op=GetAllMainActivityOptions, path=/{cmpy_code}/options/employees/mainactivities
 func (c *Client) GetAllMainActivityOptions(ctx context.Context) ([]tasscommon.OptionsResponse, error) {
 	var result []tasscommon.OptionsResponse
-	body, err := c.t.request(ctx, http.MethodGet, "/options/employees/mainactivities", nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, "/options/employees/mainactivities", nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -77,7 +77,7 @@ func (c *Client) GetAllMainActivityOptions(ctx context.Context) ([]tasscommon.Op
 // CODEGEN(none): op=GetAllMaritalStatusOptions, path=/{cmpy_code}/options/employees/maritalstatuses
 func (c *Client) GetAllMaritalStatusOptions(ctx context.Context) ([]tasscommon.OptionsResponse, error) {
 	var result []tasscommon.OptionsResponse
-	body, err := c.t.request(ctx, http.MethodGet, "/options/employees/maritalstatuses", nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, "/options/employees/maritalstatuses", nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -90,7 +90,7 @@ func (c *Client) GetAllMaritalStatusOptions(ctx context.Context) ([]tasscommon.O
 // CODEGEN(none): op=GetAllTerminationReasonOptions, path=/{cmpy_code}/options/employees/terminationreasons
 func (c *Client) GetAllTerminationReasonOptions(ctx context.Context) ([]tasscommon.OptionsResponse, error) {
 	var result []tasscommon.OptionsResponse
-	body, err := c.t.request(ctx, http.MethodGet, "/options/employees/terminationreasons", nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, "/options/employees/terminationreasons", nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -103,7 +103,7 @@ func (c *Client) GetAllTerminationReasonOptions(ctx context.Context) ([]tasscomm
 // CODEGEN(none): op=GetAllTitleOptions, path=/{cmpy_code}/options/employees/titles
 func (c *Client) GetAllTitleOptions(ctx context.Context) ([]tasscommon.OptionsResponse, error) {
 	var result []tasscommon.OptionsResponse
-	body, err := c.t.request(ctx, http.MethodGet, "/options/employees/titles", nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, "/options/employees/titles", nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -116,7 +116,7 @@ func (c *Client) GetAllTitleOptions(ctx context.Context) ([]tasscommon.OptionsRe
 // CODEGEN(none): op=GetAllVendorOptions, path=/{cmpy_code}/options/employees/vendors
 func (c *Client) GetAllVendorOptions(ctx context.Context) ([]tasscommon.OptionsResponse, error) {
 	var result []tasscommon.OptionsResponse
-	body, err := c.t.request(ctx, http.MethodGet, "/options/employees/vendors", nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, "/options/employees/vendors", nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -129,7 +129,7 @@ func (c *Client) GetAllVendorOptions(ctx context.Context) ([]tasscommon.OptionsR
 // CODEGEN(none): op=GetAllEmployeeNoteCategoryOptions, path=/{cmpy_code}/options/employees/notes/categories
 func (c *Client) GetAllEmployeeNoteCategoryOptions(ctx context.Context) ([]tasscommon.OptionsResponse, error) {
 	var result []tasscommon.OptionsResponse
-	body, err := c.t.request(ctx, http.MethodGet, "/options/employees/notes/categories", nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, "/options/employees/notes/categories", nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -142,7 +142,7 @@ func (c *Client) GetAllEmployeeNoteCategoryOptions(ctx context.Context) ([]tassc
 // CODEGEN(none): op=GetAllPDProviderOptions, path=/{cmpy_code}/options/employees/pdactivities/providers
 func (c *Client) GetAllPDProviderOptions(ctx context.Context) ([]tasscommon.OptionsResponse, error) {
 	var result []tasscommon.OptionsResponse
-	body, err := c.t.request(ctx, http.MethodGet, "/options/employees/pdactivities/providers", nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, "/options/employees/pdactivities/providers", nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -155,7 +155,7 @@ func (c *Client) GetAllPDProviderOptions(ctx context.Context) ([]tasscommon.Opti
 // CODEGEN(none): op=GetAllPDStatusOptions, path=/{cmpy_code}/options/employees/pdactivities/statuses
 func (c *Client) GetAllPDStatusOptions(ctx context.Context) ([]tasscommon.OptionsResponse, error) {
 	var result []tasscommon.OptionsResponse
-	body, err := c.t.request(ctx, http.MethodGet, "/options/employees/pdactivities/statuses", nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, "/options/employees/pdactivities/statuses", nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -168,7 +168,7 @@ func (c *Client) GetAllPDStatusOptions(ctx context.Context) ([]tasscommon.Option
 // CODEGEN(none): op=GetAllPDTypesOptions, path=/{cmpy_code}/options/employees/pdactivities/types
 func (c *Client) GetAllPDTypesOptions(ctx context.Context) ([]tasscommon.OptionsResponse, error) {
 	var result []tasscommon.OptionsResponse
-	body, err := c.t.request(ctx, http.MethodGet, "/options/employees/pdactivities/types", nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, "/options/employees/pdactivities/types", nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -181,7 +181,7 @@ func (c *Client) GetAllPDTypesOptions(ctx context.Context) ([]tasscommon.Options
 // CODEGEN(none): op=GetAllPDUDFieldOptions, path=/{cmpy_code}/options/employees/pdactivities/udfields
 func (c *Client) GetAllPDUDFieldOptions(ctx context.Context) ([]tasscommon.UDFieldOptionsResponse, error) {
 	var result []tasscommon.UDFieldOptionsResponse
-	body, err := c.t.request(ctx, http.MethodGet, "/options/employees/pdactivities/udfields", nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, "/options/employees/pdactivities/udfields", nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -194,7 +194,7 @@ func (c *Client) GetAllPDUDFieldOptions(ctx context.Context) ([]tasscommon.UDFie
 // CODEGEN(none): op=GetAllQualificationCategoryOptions, path=/{cmpy_code}/options/employees/qualifications/categories
 func (c *Client) GetAllQualificationCategoryOptions(ctx context.Context) ([]tasscommon.OptionsResponse, error) {
 	var result []tasscommon.OptionsResponse
-	body, err := c.t.request(ctx, http.MethodGet, "/options/employees/qualifications/categories", nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, "/options/employees/qualifications/categories", nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -207,7 +207,7 @@ func (c *Client) GetAllQualificationCategoryOptions(ctx context.Context) ([]tass
 // CODEGEN(none): op=GetAllQualificationInstitutionOptions, path=/{cmpy_code}/options/employees/qualifications/institutions
 func (c *Client) GetAllQualificationInstitutionOptions(ctx context.Context) ([]tasscommon.OptionsResponse, error) {
 	var result []tasscommon.OptionsResponse
-	body, err := c.t.request(ctx, http.MethodGet, "/options/employees/qualifications/institutions", nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, "/options/employees/qualifications/institutions", nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -220,7 +220,7 @@ func (c *Client) GetAllQualificationInstitutionOptions(ctx context.Context) ([]t
 // CODEGEN(none): op=GetAllUDAreaOptions, path=/{cmpy_code}/options/employees/udareas
 func (c *Client) GetAllUDAreaOptions(ctx context.Context) ([]tasscommon.UDAreaOptionsResponse, error) {
 	var result []tasscommon.UDAreaOptionsResponse
-	body, err := c.t.request(ctx, http.MethodGet, "/options/employees/udareas", nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, "/options/employees/udareas", nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -234,7 +234,7 @@ func (c *Client) GetAllUDAreaOptions(ctx context.Context) ([]tasscommon.UDAreaOp
 func (c *Client) GetSingleUDAreaOptions(ctx context.Context, areaCode string) (tasscommon.UDAreaOptionsResponse, error) {
 	var result tasscommon.UDAreaOptionsResponse
 	url := fmt.Sprintf("/options/employees/udareas/%s", areaCode)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, http.StatusOK)
 	if err != nil {
 		return tasscommon.UDAreaOptionsResponse{}, err
 	}
@@ -247,7 +247,7 @@ func (c *Client) GetSingleUDAreaOptions(ctx context.Context, areaCode string) (t
 // CODEGEN(none): op=GetAllAccrualCodeOptions, path=/{cmpy_code}/options/payroll/leaveentitlements/accrualcodes
 func (c *Client) GetAllAccrualCodeOptions(ctx context.Context) ([]tasscommon.OptionsResponse, error) {
 	var result []tasscommon.OptionsResponse
-	body, err := c.t.request(ctx, http.MethodGet, "/options/payroll/leaveentitlements/accrualcodes", nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, "/options/payroll/leaveentitlements/accrualcodes", nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}

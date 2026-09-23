@@ -12,7 +12,7 @@ import (
 // CODEGEN(none): op=GetAllGeneralLedgerAccounts, path=/{cmpy_code}/finance/generalledger/accounts
 func (c *Client) GetAllGeneralLedgerAccounts(ctx context.Context) ([]GeneralLedgerAccountResponse, error) {
 	var result []GeneralLedgerAccountResponse
-	body, err := c.t.request(ctx, http.MethodGet, "/finance/generalledger/accounts", nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, "/finance/generalledger/accounts", nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -28,7 +28,7 @@ func (c *Client) AddGeneralLedgerAccount(ctx context.Context, payload AddGeneral
 	if err := tasscommon.Validate(payload); err != nil {
 		return GeneralLedgerAccountResponse{}, err
 	}
-	body, err := c.t.request(ctx, http.MethodPost, "/finance/generalledger/accounts", nil, payload, http.StatusCreated)
+	body, err := c.t.Request(ctx, http.MethodPost, "/finance/generalledger/accounts", nil, payload, http.StatusCreated)
 	if err != nil {
 		return GeneralLedgerAccountResponse{}, err
 	}
@@ -42,7 +42,7 @@ func (c *Client) AddGeneralLedgerAccount(ctx context.Context, payload AddGeneral
 func (c *Client) GetGeneralLedgerAccount(ctx context.Context, accountCode string) (GeneralLedgerAccountResponse, error) {
 	var result GeneralLedgerAccountResponse
 	url := fmt.Sprintf("/finance/generalledger/accounts/%s", accountCode)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return GeneralLedgerAccountResponse{}, err
 	}
@@ -58,7 +58,7 @@ func (c *Client) UpdateGeneralLedgerAccount(ctx context.Context, accountCode str
 	if err := tasscommon.Validate(payload); err != nil {
 		return err
 	}
-	_, err := c.t.request(ctx, http.MethodPut, url, nil, payload, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodPut, url, nil, payload, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -68,7 +68,7 @@ func (c *Client) UpdateGeneralLedgerAccount(ctx context.Context, accountCode str
 // CODEGEN(none): op=PatchGeneralLedgerAccount, path=/{cmpy_code}/finance/generalledger/accounts/{acct_code}
 func (c *Client) PatchGeneralLedgerAccount(ctx context.Context, accountCode string, payload []tasscommon.Operation) error {
 	url := fmt.Sprintf("/finance/generalledger/accounts/%s", accountCode)
-	_, err := c.t.request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -79,7 +79,7 @@ func (c *Client) PatchGeneralLedgerAccount(ctx context.Context, accountCode stri
 func (c *Client) GetAccountBudgets(ctx context.Context, accountCode string) ([]AccountBudgetResponse, error) {
 	var result []AccountBudgetResponse
 	url := fmt.Sprintf("/finance/generalledger/accounts/%s/budgets", accountCode)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -96,7 +96,7 @@ func (c *Client) AddGeneralLedgerAccountBudget(ctx context.Context, accountCode 
 	if err := tasscommon.Validate(payload); err != nil {
 		return AccountBudgetResponse{}, err
 	}
-	body, err := c.t.request(ctx, http.MethodPost, url, nil, payload, http.StatusCreated)
+	body, err := c.t.Request(ctx, http.MethodPost, url, nil, payload, http.StatusCreated)
 	if err != nil {
 		return AccountBudgetResponse{}, err
 	}
@@ -112,7 +112,7 @@ func (c *Client) UpdateGeneralLedgerAccountBudget(ctx context.Context, accountCo
 	if err := tasscommon.Validate(payload); err != nil {
 		return err
 	}
-	_, err := c.t.request(ctx, http.MethodPut, url, nil, payload, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodPut, url, nil, payload, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -123,7 +123,7 @@ func (c *Client) UpdateGeneralLedgerAccountBudget(ctx context.Context, accountCo
 func (c *Client) GetAccountBalances(ctx context.Context, accountCode string) ([]AccountBalanceResponse, error) {
 	var result []AccountBalanceResponse
 	url := fmt.Sprintf("/finance/generalledger/accounts/%s/balances", accountCode)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -137,7 +137,7 @@ func (c *Client) GetAccountBalances(ctx context.Context, accountCode string) ([]
 func (c *Client) GetAccountTransactions(ctx context.Context, accountCode string, yearNumber int, periodNumber int) ([]AccountTransactionResponse, error) {
 	var result []AccountTransactionResponse
 	url := fmt.Sprintf("/finance/generalledger/accounts/%s/transactions/%d/%d", accountCode, yearNumber, periodNumber)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -151,7 +151,7 @@ func (c *Client) GetAccountTransactions(ctx context.Context, accountCode string,
 func (c *Client) GetAllAccountTransactions(ctx context.Context, yearNumber int, periodNumber int) ([]AccountTransactionResponse, error) {
 	var result []AccountTransactionResponse
 	url := fmt.Sprintf("/finance/generalledger/accounts/transactions/%d/%d", yearNumber, periodNumber)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -165,7 +165,7 @@ func (c *Client) GetAllAccountTransactions(ctx context.Context, yearNumber int, 
 func (c *Client) GetAccountReportingCodes(ctx context.Context, accountCode string) (AccountReportingCodesResponse, error) {
 	var result AccountReportingCodesResponse
 	url := fmt.Sprintf("/finance/generalledger/accounts/%s/reportingcodes", accountCode)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return AccountReportingCodesResponse{}, err
 	}
@@ -181,7 +181,7 @@ func (c *Client) UpdateAccountReportingCodes(ctx context.Context, accountCode st
 	if err := tasscommon.Validate(payload); err != nil {
 		return err
 	}
-	_, err := c.t.request(ctx, http.MethodPut, url, nil, payload, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodPut, url, nil, payload, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -191,7 +191,7 @@ func (c *Client) UpdateAccountReportingCodes(ctx context.Context, accountCode st
 // CODEGEN(none): op=PatchAccountReportingCodes, path=/{cmpy_code}/finance/generalledger/accounts/{acct_code}/reportingcodes
 func (c *Client) PatchAccountReportingCodes(ctx context.Context, accountCode string, payload []tasscommon.Operation) error {
 	url := fmt.Sprintf("/finance/generalledger/accounts/%s/reportingcodes", accountCode)
-	_, err := c.t.request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodPatch, url, nil, payload, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -202,7 +202,7 @@ func (c *Client) PatchAccountReportingCodes(ctx context.Context, accountCode str
 func (c *Client) GetAccountResponsibilities(ctx context.Context, accountCode string) ([]AccountResponsibilityResponse, error) {
 	var result []AccountResponsibilityResponse
 	url := fmt.Sprintf("/finance/generalledger/accounts/%s/responsibilities", accountCode)
-	body, err := c.t.request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, url, nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -219,7 +219,7 @@ func (c *Client) AddAccountResponsibility(ctx context.Context, accountCode strin
 	if err := tasscommon.Validate(payload); err != nil {
 		return AccountResponsibilityResponse{}, err
 	}
-	body, err := c.t.request(ctx, http.MethodPost, url, nil, payload, http.StatusCreated)
+	body, err := c.t.Request(ctx, http.MethodPost, url, nil, payload, http.StatusCreated)
 	if err != nil {
 		return AccountResponsibilityResponse{}, err
 	}
@@ -235,7 +235,7 @@ func (c *Client) UpdateAccountResponsibility(ctx context.Context, accountCode st
 	if err := tasscommon.Validate(payload); err != nil {
 		return err
 	}
-	_, err := c.t.request(ctx, http.MethodPut, url, nil, payload, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodPut, url, nil, payload, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -245,7 +245,7 @@ func (c *Client) UpdateAccountResponsibility(ctx context.Context, accountCode st
 // CODEGEN(none): op=DeleteAccountResponsibility, path=/{cmpy_code}/finance/generalledger/accounts/{acct_code}/responsibilities/{source_flg}/{user_code}
 func (c *Client) DeleteAccountResponsibility(ctx context.Context, accountCode string, userType string, userCode string) error {
 	url := fmt.Sprintf("/finance/generalledger/accounts/%s/responsibilities/%s/%s", accountCode, userType, userCode)
-	_, err := c.t.request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodDelete, url, nil, nil, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -255,7 +255,7 @@ func (c *Client) DeleteAccountResponsibility(ctx context.Context, accountCode st
 // CODEGEN(none): op=GetAllJournals, path=/{cmpy_code}/finance/generalledger/journals
 func (c *Client) GetAllJournals(ctx context.Context) ([]JournalResponse, error) {
 	var result []JournalResponse
-	body, err := c.t.request(ctx, http.MethodGet, "/finance/generalledger/journals", nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, "/finance/generalledger/journals", nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}
@@ -271,7 +271,7 @@ func (c *Client) AddGeneralLedgerTaxJournal(ctx context.Context, payload AddTaxJ
 	if err := tasscommon.Validate(payload); err != nil {
 		return AddTaxJournalResponse{}, err
 	}
-	body, err := c.t.request(ctx, http.MethodPost, "/finance/generalledger/journals/tax", nil, payload, http.StatusCreated)
+	body, err := c.t.Request(ctx, http.MethodPost, "/finance/generalledger/journals/tax", nil, payload, http.StatusCreated)
 	if err != nil {
 		return AddTaxJournalResponse{}, err
 	}
@@ -287,7 +287,7 @@ func (c *Client) UpdateGeneralLedgerTaxJournal(ctx context.Context, journalNumbe
 	if err := tasscommon.Validate(payload); err != nil {
 		return err
 	}
-	_, err := c.t.request(ctx, http.MethodPut, url, nil, payload, http.StatusNoContent)
+	_, err := c.t.Request(ctx, http.MethodPut, url, nil, payload, http.StatusNoContent)
 	if err != nil {
 		return err
 	}
@@ -299,7 +299,7 @@ func (c *Client) AddGeneralLedgerGeneralJournal(ctx context.Context, payload Add
 	if err := tasscommon.Validate(payload); err != nil {
 		return AddGeneralJournalResponse{}, err
 	}
-	body, err := c.t.request(ctx, http.MethodPost, "/finance/generalledger/journals/general", nil, payload, http.StatusCreated)
+	body, err := c.t.Request(ctx, http.MethodPost, "/finance/generalledger/journals/general", nil, payload, http.StatusCreated)
 	if err != nil {
 		return AddGeneralJournalResponse{}, err
 	}
@@ -314,7 +314,7 @@ func (c *Client) UpdateGeneralLedgerGeneralJournal(ctx context.Context, journalN
 	if err := tasscommon.Validate(payload); err != nil {
 		return err
 	}
-	_, err := c.t.request(ctx, http.MethodPut, url, nil, payload, http.StatusCreated)
+	_, err := c.t.Request(ctx, http.MethodPut, url, nil, payload, http.StatusCreated)
 	if err != nil {
 		return err
 	}

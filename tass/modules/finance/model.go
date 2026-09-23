@@ -1,6 +1,8 @@
 package tassfinance
 
-import "time"
+import (
+	tasscommon "github.com/woodleighschool/tass-go-sdk/tass/modules/common"
+)
 
 // Purchasing
 
@@ -18,14 +20,14 @@ type PurchaseOrderResponse struct {
 	OrderNumber        *int                                 `json:"order_num,omitempty"`
 	Year               *int                                 `json:"year_num,omitempty"`
 	Period             *int                                 `json:"period_num,omitempty"`
-	OrderDate          *time.Time                           `json:"order_date,omitempty"`
-	DueDate            *time.Time                           `json:"due_date,omitempty"`
+	OrderDate          *tasscommon.Date                     `json:"order_date,omitempty"`
+	DueDate            *tasscommon.Date                     `json:"due_date,omitempty"`
 	Status             PurchaseOrderStatus                  `json:"status_ind,omitempty"`
 	Printed            bool                                 `json:"printed_flag"`
 	AuthorisationCode  *string                              `json:"authorise_code,omitempty"`
 	WarehouseCode      *string                              `json:"ware_code,omitempty"`
 	Comment            *string                              `json:"comment_text,omitempty"`
-	CancelDate         *time.Time                           `json:"cancel_date,omitempty"`
+	CancelDate         *tasscommon.Date                     `json:"cancel_date,omitempty"`
 	RequisitionNumber  *int                                 `json:"req_num,omitempty"`
 	HasAttachments     bool                                 `json:"has_attachments"`
 	SupplierDetails    PurchaseOrderSupplierDetailsResponse `json:"supplier_details"`
@@ -188,10 +190,10 @@ type GLAccountOptionsResponse struct {
 }
 
 type YearPeriodOptionsResponse struct {
-	Year      *int       `json:"year_num,omitempty"`
-	Period    *int       `json:"period_num,omitempty"`
-	StartDate *time.Time `json:"start_date,omitempty"`
-	EndDate   *time.Time `json:"end_date,omitempty"`
+	Year      *int             `json:"year_num,omitempty"`
+	Period    *int             `json:"period_num,omitempty"`
+	StartDate *tasscommon.Date `json:"start_date,omitempty"`
+	EndDate   *tasscommon.Date `json:"end_date,omitempty"`
 }
 
 type CodeFormatRulesResponse struct {
@@ -328,20 +330,20 @@ type PeriodBalanceResponse struct {
 }
 
 type AccountTransactionResponse struct {
-	CompanyCode           string    `json:"cmpy_code"`
-	AccountCode           string    `json:"acct_code"`
-	Year                  int       `json:"year_num"`
-	Period                int       `json:"period_num"`
-	JournalCode           *string   `json:"jour_code,omitempty"`
-	JournalNumber         int       `json:"jour_num"`
-	JournalSequenceNumber int       `json:"jour_seq_num"`
-	Analysis              *string   `json:"analysis_text,omitempty"`
-	Date                  time.Time `json:"tran_date"`
-	Source                *string   `json:"ref_text"`
-	ReferenceNumber       int       `json:"ref_num"`
-	Description           *string   `json:"desc_text,omitempty"`
-	DebitAmount           *float64  `json:"debit_amt,omitempty"`
-	CreditAmount          *float64  `json:"credit_amt,omitempty"`
+	CompanyCode           string          `json:"cmpy_code"`
+	AccountCode           string          `json:"acct_code"`
+	Year                  int             `json:"year_num"`
+	Period                int             `json:"period_num"`
+	JournalCode           *string         `json:"jour_code,omitempty"`
+	JournalNumber         int             `json:"jour_num"`
+	JournalSequenceNumber int             `json:"jour_seq_num"`
+	Analysis              *string         `json:"analysis_text,omitempty"`
+	Date                  tasscommon.Date `json:"tran_date"`
+	Source                *string         `json:"ref_text"`
+	ReferenceNumber       int             `json:"ref_num"`
+	Description           *string         `json:"desc_text,omitempty"`
+	DebitAmount           *float64        `json:"debit_amt,omitempty"`
+	CreditAmount          *float64        `json:"credit_amt,omitempty"`
 }
 
 type AccountReportingCodesResponse struct {
@@ -420,7 +422,7 @@ type JournalResponse struct {
 	CompanyCode        string           `json:"cmpy_code"`
 	Code               string           `json:"jour_code"`
 	Number             int              `json:"jour_num"`
-	Date               *time.Time       `json:"jour_date,omitempty"`
+	Date               *tasscommon.Date `json:"jour_date,omitempty"`
 	Posted             bool             `json:"post_flag"`
 	Year               int              `json:"year_num"`
 	Period             int              `json:"period_num"`
@@ -538,7 +540,7 @@ type SupplierCreditResponse struct {
 	SupplierName             *string                                `json:"vend_name,omitempty"`
 	DebitID                  *int                                   `json:"debit_num,omitempty"`
 	DebitText                *string                                `json:"debit_text,omitempty"`
-	DebitDate                *time.Time                             `json:"debit_date,omitempty"`
+	DebitDate                *tasscommon.Date                       `json:"debit_date,omitempty"`
 	TotalCreditAmount        *float64                               `json:"total_amt,omitempty"`
 	TotalDistributedAmount   *float64                               `json:"dist_amt,omitempty"`
 	TotalUndistributedAmount *float64                               `json:"undist_amt,omitempty"`
@@ -548,7 +550,7 @@ type SupplierCreditResponse struct {
 	Period                   *int                                   `json:"period_num,omitempty"`
 	Comment1                 *string                                `json:"com1_text,omitempty"`
 	Comment2                 *string                                `json:"com2_text,omitempty"`
-	Date                     *time.Time                             `json:"post_date,omitempty"`
+	Date                     *tasscommon.Date                       `json:"post_date,omitempty"`
 	HasAttachments           *bool                                  `json:"has_attachments,omitempty"`
 	GeneralLedgerLines       []SupplierCreditGLLineResponse         `json:"gl_lines"`
 	AppliedInvoices          []SupplierCreditAppliedInvoiceResponse `json:"applied_invoices"`
@@ -566,12 +568,12 @@ type SupplierCreditGLLineResponse struct {
 }
 
 type SupplierCreditAppliedInvoiceResponse struct {
-	InvoiceCode   int        `json:"vouch_code"`
-	InvoiceDate   *time.Time `json:"vouch_date,omitempty"`
-	InvoiceNumber *string    `json:"inv_text,omitempty"`
-	TotalAmount   *float64   `json:"total_amt,omitempty"`
-	PaidAmount    *float64   `json:"paid_amt,omitempty"`
-	AppliedCredit *float64   `json:"apply_amt,omitempty"`
+	InvoiceCode   int              `json:"vouch_code"`
+	InvoiceDate   *tasscommon.Date `json:"vouch_date,omitempty"`
+	InvoiceNumber *string          `json:"inv_text,omitempty"`
+	TotalAmount   *float64         `json:"total_amt,omitempty"`
+	PaidAmount    *float64         `json:"paid_amt,omitempty"`
+	AppliedCredit *float64         `json:"apply_amt,omitempty"`
 }
 
 type AddSupplierCreditRequest struct {
@@ -632,10 +634,10 @@ type SupplierCreditApplyInvoicesResponse struct {
 }
 
 type SupplierCreditInvoiceDetailsResponse struct {
-	Code        int        `json:"vouch_code"`
-	Date        *time.Time `json:"vouch_date,omitempty"`
-	Reference   *string    `json:"inv_text,omitempty"`
-	ApplyAmount float64    `json:"apply_amt"`
+	Code        int              `json:"vouch_code"`
+	Date        *tasscommon.Date `json:"vouch_date,omitempty"`
+	Reference   *string          `json:"inv_text,omitempty"`
+	ApplyAmount float64          `json:"apply_amt"`
 }
 
 type SupplierCreditUnapplyInvoicesResponse struct {
@@ -643,10 +645,10 @@ type SupplierCreditUnapplyInvoicesResponse struct {
 }
 
 type SupplierCreditUnapplyInvoiceDetailsResponse struct {
-	Code          int        `json:"vouch_code"`
-	Date          *time.Time `json:"vouch_date,omitempty"`
-	Reference     *string    `json:"inv_text,omitempty"`
-	UnapplyAmount float64    `json:"unapply_amt"`
+	Code          int              `json:"vouch_code"`
+	Date          *tasscommon.Date `json:"vouch_date,omitempty"`
+	Reference     *string          `json:"inv_text,omitempty"`
+	UnapplyAmount float64          `json:"unapply_amt"`
 }
 
 type SupplierInvoiceResponse struct {
@@ -654,11 +656,11 @@ type SupplierInvoiceResponse struct {
 	SupplierCode        string                          `json:"vend_code"`
 	SupplierName        *string                         `json:"vend_name"`
 	SupplierInvoiceCode string                          `json:"inv_text"`
-	InvoiceDate         time.Time                       `json:"vouch_date"`
+	InvoiceDate         tasscommon.Date                 `json:"vouch_date"`
 	TotalAmount         float64                         `json:"total_amt"`
 	PaidAmount          float64                         `json:"paid_amt"`
 	DistributedAmount   float64                         `json:"dist_amt"`
-	DueDate             time.Time                       `json:"due_date"`
+	DueDate             tasscommon.Date                 `json:"due_date"`
 	PostedToGL          bool                            `json:"post_flag"`
 	Year                int                             `json:"year_num"`
 	Period              int                             `json:"period_num"`
@@ -694,10 +696,10 @@ type SupplierInvoiceLineResponse struct {
 }
 
 type SupplierInvoiceCreditResponse struct {
-	ID          int       `json:"debit_num"`
-	Reference   *string   `json:"debit_text,omitempty"`
-	Date        time.Time `json:"credit_date"`
-	ApplyAmount float64   `json:"apply_amt"`
+	ID          int             `json:"debit_num"`
+	Reference   *string         `json:"debit_text,omitempty"`
+	Date        tasscommon.Date `json:"credit_date"`
+	ApplyAmount float64         `json:"apply_amt"`
 }
 
 type SupplierInvoiceHoldPaymentResponse struct {
@@ -1009,19 +1011,19 @@ type UpdateSupplierPaymentInfoRequest struct {
 }
 
 type SupplierCreditStatusResponse struct {
-	CreditLimit                     *float64   `json:"limit_amt,omitempty"`
-	AccountBalance                  *float64   `json:"bal_amt,omitempty"`
-	HighestBalance                  *float64   `json:"highest_bal_amt,omitempty"`
-	CurrentAmount                   *float64   `json:"curr_amt,omitempty"`
-	OverdueAmountUnder30Days        *float64   `json:"over1_amt,omitempty"`
-	OverdueAmountBetween31And60Days *float64   `json:"over30_amt,omitempty"`
-	OverdueAmountBetween61And90Days *float64   `json:"over60_amt,omitempty"`
-	OverdueAmountOver90Days         *float64   `json:"over90_amt,omitempty"`
-	SetupDate                       *time.Time `json:"setup_date,omitempty"`
-	LastDebitDate                   *time.Time `json:"last_debit_date,omitempty"`
-	LastPurchaseOrderDate           *time.Time `json:"last_po_date,omitempty"`
-	LastInvoiceDate                 *time.Time `json:"last_vouc_date,omitempty"`
-	LastPaymentDate                 *time.Time `json:"last_payment_date,omitempty"`
+	CreditLimit                     *float64         `json:"limit_amt,omitempty"`
+	AccountBalance                  *float64         `json:"bal_amt,omitempty"`
+	HighestBalance                  *float64         `json:"highest_bal_amt,omitempty"`
+	CurrentAmount                   *float64         `json:"curr_amt,omitempty"`
+	OverdueAmountUnder30Days        *float64         `json:"over1_amt,omitempty"`
+	OverdueAmountBetween31And60Days *float64         `json:"over30_amt,omitempty"`
+	OverdueAmountBetween61And90Days *float64         `json:"over60_amt,omitempty"`
+	OverdueAmountOver90Days         *float64         `json:"over90_amt,omitempty"`
+	SetupDate                       *tasscommon.Date `json:"setup_date,omitempty"`
+	LastDebitDate                   *tasscommon.Date `json:"last_debit_date,omitempty"`
+	LastPurchaseOrderDate           *tasscommon.Date `json:"last_po_date,omitempty"`
+	LastInvoiceDate                 *tasscommon.Date `json:"last_vouc_date,omitempty"`
+	LastPaymentDate                 *tasscommon.Date `json:"last_payment_date,omitempty"`
 }
 
 type UpdateSupplierCreditStatusRequest struct {
@@ -1029,13 +1031,13 @@ type UpdateSupplierCreditStatusRequest struct {
 }
 
 type SupplierNoteResponse struct {
-	CompanyCode    string     `json:"cmpy_code"`
-	SupplierCode   string     `json:"vend_code"`
-	ID             string     `json:"note_uid"` // Must be a UUID
-	Date           *time.Time `json:"note_date,omitempty"`
-	Category       *string    `json:"note_cat,omitempty"`
-	Text           *string    `json:"note_text,omitempty"`
-	HasAttachments bool       `json:"has_attachments"`
+	CompanyCode    string           `json:"cmpy_code"`
+	SupplierCode   string           `json:"vend_code"`
+	ID             string           `json:"note_uid"` // Must be a UUID
+	Date           *tasscommon.Date `json:"note_date,omitempty"`
+	Category       *string          `json:"note_cat,omitempty"`
+	Text           *string          `json:"note_text,omitempty"`
+	HasAttachments bool             `json:"has_attachments"`
 }
 
 type AddSupplierNoteRequest struct {

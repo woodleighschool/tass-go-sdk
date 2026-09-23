@@ -1,0 +1,645 @@
+# Progress
+Progress for testing functions and structs
+
+## Functions (Operations)
+- [ ] GET /students/attendance
+- [ ] GET /students/{stud_code}/attendance/{key_num}/attachments
+- [ ] GET /students/{stud_code}/attendance/{key_num}/attachments/{attach_id}
+- [ ] GET /options/student/attendance/absencereasons
+- [ ] GET /options/student/attendance/absencetypes
+- [ ] GET /options/students/attendance/campuses
+- [ ] GET /options/students/attendance/houses
+- [ ] GET /options/students/attendance/yeargroups
+- [ ] GET /students/{stud_code}/communicationrules
+- [ ] GET /students/{stud_code}/communicationrules/{commtype_code}
+- [ ] GET /students/communicationrules
+- [ ] GET /students/communicationrules/{commtype_code}
+- [ ] GET /options/students/communicationrules/genders
+- [ ] GET /options/students/communicationrules/types
+- [ ] GET /students
+- [ ] GET /students/{stud_code}
+- [ ] PUT /students/{stud_code}
+- [ ] PATCH /students/{stud_code}
+- [ ] GET /options/students/religions
+- [ ] GET /options/students/residencystatuses
+- [ ] GET /options/students/campuses
+- [ ] GET /options/students/feederschools
+- [ ] GET /options/students/houses
+- [ ] GET /options/students/yeargroups
+- [ ] GET /options/students/nextyearindicators
+- [ ] GET /options/students/comparativereportingtypes
+- [ ] GET /options/students/pctutorgroups
+- [ ] GET /students/{stud_code}/mceecdya
+- [ ] PUT /students/{stud_code}/mceecdya
+- [ ] PATCH /students/{stud_code}/mceecdya
+- [ ] GET /options/students/mceecdya/countries
+- [ ] GET /options/students/mceecdya/languages
+- [ ] GET /options/students/mceecdya/occupationalgroups
+- [ ] GET /options/students/mceecdya/indigenoustypes
+- [ ] GET /options/students/mceecdya/schooleducation
+- [ ] GET /options/students/mceecdya/nonschooleducation
+- [ ] GET /students/{stud_code}/notes/standard
+- [ ] POST /students/{stud_code}/notes/standard
+- [ ] GET /students/{stud_code}/notes/standard/{note_uid}
+- [ ] PUT /students/{stud_code}/notes/standard/{note_uid}
+- [ ] PATCH /students/{stud_code}/notes/standard/{note_uid}
+- [ ] DELETE /students/{stud_code}/notes/standard/{note_uid}
+- [ ] GET /students/{stud_code}/notes/standard/{note_uid}/attachments
+- [ ] POST /students/{stud_code}/notes/standard/{note_uid}/attachments
+- [ ] GET /students/{stud_code}/notes/standard/{note_uid}/attachments/{attach_id}
+- [ ] DELETE /students/{stud_code}/notes/standard/{note_uid}/attachments/{attach_id}
+- [ ] GET /students/{stud_code}/notes/confidential
+- [ ] POST /students/{stud_code}/notes/confidential
+- [ ] GET /students/{stud_code}/notes/confidential/{note_uid}
+- [ ] PUT /students/{stud_code}/notes/confidential/{note_uid}
+- [ ] PATCH /students/{stud_code}/notes/confidential/{note_uid}
+- [ ] DELETE /students/{stud_code}/notes/confidential/{note_uid}
+- [ ] GET /students/{stud_code}/notes/confidential/{note_uid}/attachments
+- [ ] POST /students/{stud_code}/notes/confidential/{note_uid}/attachments
+- [ ] GET /students/{stud_code}/notes/confidential/{note_uid}/attachments/{attach_id}
+- [ ] DELETE /students/{stud_code}/notes/confidential/{note_uid}/attachments/{attach_id}
+- [ ] GET /options/students/notes/categories
+- [ ] GET /students/photo/changes
+- [ ] GET /students/{stud_code}/photo
+- [ ] POST /students/{stud_code}/photo
+- [ ] GET /options/students/udareas
+- [ ] GET /options/students/udareas/{area_code}
+- [ ] GET /students/{stud_code}/udareas
+- [ ] GET /students/{stud_code}/udareas/{area_code}
+- [ ] POST /students/{stud_code}/udareas/{area_code}
+- [ ] PUT /students/{stud_code}/udareas/{area_code}
+- [ ] PATCH /students/{stud_code}/udareas/{area_code}
+- [ ] DELETE /students/{stud_code}/udareas/{area_code}
+- [ ] GET /students/{stud_code}/udareas/{area_code}/attachments/{field_number}/{attach_id}
+- [ ] DELETE /students/{stud_code}/udareas/{area_code}/attachments/{field_number}/{attach_id}
+- [ ] POST /students/{stud_code}/udareas/{area_code}/attachments/{field_number}
+- [ ] GET /students/{stud_code}/udfields
+- [ ] PUT /students/{stud_code}/udfields
+- [ ] PATCH /students/{stud_code}/udfields
+- [ ] GET /options/students/udfields
+- [ ] GET /payroll/leaveentitlements/{emp_code}
+- [ ] GET /options/payroll/leaveentitlements/accrualcodes
+- [ ] GET /students/{stud_code}/medical/asthmamanagement
+- [ ] PUT /students/{stud_code}/medical/asthmamanagement
+- [ ] PATCH /students/{stud_code}/medical/asthmamanagement
+- [ ] GET /students/{stud_code}/medical/conditions
+- [ ] POST /students/{stud_code}/medical/conditions
+- [ ] GET /students/{stud_code}/medical/conditions/{mcond_code}
+- [ ] PUT /students/{stud_code}/medical/conditions/{mcond_code}
+- [ ] PATCH /students/{stud_code}/medical/conditions/{mcond_code}
+- [ ] DELETE /students/{stud_code}/medical/conditions/{mcond_code}
+- [ ] GET /students/{stud_code}/medical/conditions/{mcond_code}/notes
+- [ ] POST /students/{stud_code}/medical/conditions/{mcond_code}/notes
+- [ ] GET /students/{stud_code}/medical/conditions/{mcond_code}/notes/{note_uid}
+- [ ] PUT /students/{stud_code}/medical/conditions/{mcond_code}/notes/{note_uid}
+- [ ] PATCH /students/{stud_code}/medical/conditions/{mcond_code}/notes/{note_uid}
+- [ ] DELETE /students/{stud_code}/medical/conditions/{mcond_code}/notes/{note_uid}
+- [ ] GET /students/{stud_code}/medical/conditions/{mcond_code}/attachments
+- [ ] POST /students/{stud_code}/medical/conditions/{mcond_code}/attachments
+- [ ] GET /students/{stud_code}/medical/conditions/{mcond_code}/attachments/{attach_id}
+- [ ] DELETE /students/{stud_code}/medical/conditions/{mcond_code}/attachments/{attach_id}
+- [ ] GET /options/students/medical/conditions/types
+- [ ] GET /students/{stud_code}/medical/illnesses
+- [ ] POST /students/{stud_code}/medical/illnesses
+- [ ] GET /students/{stud_code}/medical/illnesses/{illness_uid}
+- [ ] PUT /students/{stud_code}/medical/illnesses/{illness_uid}
+- [ ] PATCH /students/{stud_code}/medical/illnesses/{illness_uid}
+- [ ] DELETE /students/{stud_code}/medical/illnesses/{illness_uid}
+- [ ] GET /options/students/medical/illnesses/conditions
+- [ ] GET /options/students/medical/illnesses/treatments
+- [ ] GET /options/students/medical/immunisations/types
+- [ ] GET /students/{stud_code}/medical/immunisations
+- [ ] POST /students/{stud_code}/medical/immunisations
+- [ ] GET /students/{stud_code}/medical/immunisations/{imm_code}
+- [ ] DELETE /students/{stud_code}/medical/immunisations/{imm_code}
+- [ ] PUT /students/{stud_code}/medical/immunisations/{imm_code}
+- [ ] GET /options/students/medical/immunisations/register/statuses
+- [ ] GET /students/{stud_code}/medical/immunisations/register
+- [ ] PUT /students/{stud_code}/medical/immunisations/register
+- [ ] GET /students/{stud_code}/medical/immunisations/register/attachments
+- [ ] POST /students/{stud_code}/medical/immunisations/register/attachments
+- [ ] GET /students/{stud_code}/medical/immunisations/register/attachments/{attach_id}
+- [ ] DELETE /students/{stud_code}/medical/immunisations/register/attachments/{attach_id}
+- [ ] GET /students/{stud_code}/medical/conditions/{mcond_code}/medications
+- [ ] POST /students/{stud_code}/medical/conditions/{mcond_code}/medications
+- [ ] GET /students/{stud_code}/medical/conditions/{mcond_code}/medications/{medication_uid}
+- [ ] PUT /students/{stud_code}/medical/conditions/{mcond_code}/medications/{medication_uid}
+- [ ] PATCH /students/{stud_code}/medical/conditions/{mcond_code}/medications/{medication_uid}
+- [ ] DELETE /students/{stud_code}/medical/conditions/{mcond_code}/medications/{medication_uid}
+- [ ] GET /students/{stud_code}/medical/conditions/{mcond_code}/medications/{medication_uid}/notes
+- [ ] POST /students/{stud_code}/medical/conditions/{mcond_code}/medications/{medication_uid}/notes
+- [ ] GET /students/{stud_code}/medical/conditions/{mcond_code}/medications/{medication_uid}/notes/{note_uid}
+- [ ] PUT /students/{stud_code}/medical/conditions/{mcond_code}/medications/{medication_uid}/notes/{note_uid}
+- [ ] PATCH /students/{stud_code}/medical/conditions/{mcond_code}/medications/{medication_uid}/notes/{note_uid}
+- [ ] DELETE /students/{stud_code}/medical/conditions/{mcond_code}/medications/{medication_uid}/notes/{note_uid}
+- [ ] GET /students/{stud_code}/medical/conditions/{mcond_code}/medications/{medication_uid}/attachments
+- [ ] POST /students/{stud_code}/medical/conditions/{mcond_code}/medications/{medication_uid}/attachments
+- [ ] GET /students/{stud_code}/medical/conditions/{mcond_code}/medications/{medication_uid}/attachments/{attach_id}
+- [ ] DELETE /students/{stud_code}/medical/conditions/{mcond_code}/medications/{medication_uid}/attachments/{attach_id}
+- [ ] GET /students/{stud_code}/medical/conditions/{mcond_code}/medications/{medication_uid}/schedules
+- [ ] POST /students/{stud_code}/medical/conditions/{mcond_code}/medications/{medication_uid}/schedules
+- [ ] GET /students/{stud_code}/medical/conditions/{mcond_code}/medications/{medication_uid}/schedules/{sched_uid}
+- [ ] PUT /students/{stud_code}/medical/conditions/{mcond_code}/medications/{medication_uid}/schedules/{sched_uid}
+- [ ] PATCH /students/{stud_code}/medical/conditions/{mcond_code}/medications/{medication_uid}/schedules/{sched_uid}
+- [ ] DELETE /students/{stud_code}/medical/conditions/{mcond_code}/medications/{medication_uid}/schedules/{sched_uid}
+- [ ] GET /students/{stud_code}/medical/notes/standard
+- [ ] POST /students/{stud_code}/medical/notes/standard
+- [ ] GET /students/{stud_code}/medical/notes/standard/{note_uid}
+- [ ] PUT /students/{stud_code}/medical/notes/standard/{note_uid}
+- [ ] PATCH /students/{stud_code}/medical/notes/standard/{note_uid}
+- [ ] DELETE /students/{stud_code}/medical/notes/standard/{note_uid}
+- [ ] GET /students/{stud_code}/medical/notes/confidential
+- [ ] POST /students/{stud_code}/medical/notes/confidential
+- [ ] GET /students/{stud_code}/medical/notes/confidential/{note_uid}
+- [ ] PUT /students/{stud_code}/medical/notes/confidential/{note_uid}
+- [ ] PATCH /students/{stud_code}/medical/notes/confidential/{note_uid}
+- [ ] DELETE /students/{stud_code}/medical/notes/confidential/{note_uid}
+- [ ] GET /students/{stud_code}/medical/notes/standard/{note_uid}/attachments
+- [ ] POST /students/{stud_code}/medical/notes/standard/{note_uid}/attachments
+- [ ] GET /students/{stud_code}/medical/notes/standard/{note_uid}/attachments/{attach_id}
+- [ ] DELETE /students/{stud_code}/medical/notes/standard/{note_uid}/attachments/{attach_id}
+- [ ] GET /students/{stud_code}/medical/notes/confidential/{note_uid}/attachments
+- [ ] POST /students/{stud_code}/medical/notes/confidential/{note_uid}/attachments
+- [ ] GET /students/{stud_code}/medical/notes/confidential/{note_uid}/attachments/{attach_id}
+- [ ] DELETE /students/{stud_code}/medical/notes/confidential/{note_uid}/attachments/{attach_id}
+- [ ] GET /options/students/medical/notes/categories
+- [ ] GET /options/students/medical/practitioners/types
+- [ ] GET /students/{stud_code}/medical/practitioners
+- [ ] POST /students/{stud_code}/medical/practitioners
+- [ ] GET /students/{stud_code}/medical/practitioners/{prac_num}
+- [ ] DELETE /students/{stud_code}/medical/practitioners/{prac_num}
+- [ ] PUT /students/{stud_code}/medical/practitioners/{prac_num}
+- [ ] PATCH /students/{stud_code}/medical/practitioners/{prac_num}
+- [ ] GET /students/{stud_code}/medical/supplementaries
+- [ ] POST /students/{stud_code}/medical/supplementaries
+- [ ] GET /students/{stud_code}/medical/supplementaries/{msupp_code}
+- [ ] DELETE /students/{stud_code}/medical/supplementaries/{msupp_code}
+- [ ] PUT /students/{stud_code}/medical/supplementaries/{msupp_code}
+- [ ] PATCH /students/{stud_code}/medical/supplementaries/{msupp_code}
+- [ ] GET /options/students/medical/supplementaries/types
+- [ ] GET /finance/purchasing/purchaseorders
+- [ ] POST /finance/purchasing/purchaseorders
+- [ ] GET /finance/purchasing/purchaseorders/{order_num}
+- [ ] PUT /finance/purchasing/purchaseorders/{order_num}
+- [ ] DELETE /finance/purchasing/purchaseorders/{order_num}
+- [ ] POST /finance/purchasing/purchaseorders/{order_num}/cancel
+- [ ] GET /finance/purchasing/purchaseorders/{order_num}/attachments
+- [ ] POST /finance/purchasing/purchaseorders/{order_num}/attachments
+- [ ] GET /finance/purchasing/purchaseorders/{order_num}/attachments/{attach_id}
+- [ ] DELETE /finance/purchasing/purchaseorders/{order_num}/attachments/{attach_id}
+- [ ] GET /options/finance/purchasing/deliverypoints
+- [ ] GET /options/finance/purchasing/glaccounts
+- [ ] GET /options/finance/purchasing/statuses
+- [ ] GET /options/finance/purchasing/taxcodes
+- [ ] GET /options/finance/purchasing/termcodes
+- [ ] GET /options/finance/purchasing/vendors
+- [ ] GET /options/finance/generalledger/accounts/yearsperiods
+- [ ] GET /options/finance/generalledger/accounts/budgets
+- [ ] GET /options/finance/generalledger/accounts/groupcodes
+- [ ] GET /options/finance/generalledger/accounts/taxcodes
+- [ ] GET /options/finance/generalledger/accounts/typecodes
+- [ ] GET /options/finance/generalledger/accounts/formatrules
+- [ ] GET /options/finance/generalledger/accounts/transactions/journaltypes
+- [ ] GET /options/finance/generalledger/accounts/reportingcodes/reportingcodes
+- [ ] GET /finance/generalledger/accounts
+- [ ] POST /finance/generalledger/accounts
+- [ ] GET /finance/generalledger/accounts/{acct_code}
+- [ ] PUT /finance/generalledger/accounts/{acct_code}
+- [ ] PATCH /finance/generalledger/accounts/{acct_code}
+- [ ] GET /finance/generalledger/accounts/{acct_code}/budgets
+- [ ] POST /finance/generalledger/accounts/{acct_code}/budgets
+- [ ] PUT /finance/generalledger/accounts/{acct_code}/budgets
+- [ ] GET /finance/generalledger/accounts/{acct_code}/balances
+- [ ] GET /finance/generalledger/accounts/{acct_code}/transactions/{year_num}/{period_num}
+- [ ] GET /finance/generalledger/accounts/transactions/{year_num}/{period_num}
+- [ ] GET /finance/generalledger/accounts/{acct_code}/reportingcodes
+- [ ] PUT /finance/generalledger/accounts/{acct_code}/reportingcodes
+- [ ] PATCH /finance/generalledger/accounts/{acct_code}/reportingcodes
+- [ ] GET /finance/generalledger/accounts/{acct_code}/responsibilities
+- [ ] POST /finance/generalledger/accounts/{acct_code}/responsibilities
+- [ ] GET /options/finance/generalledger/accounts/responsibilities/teachers
+- [ ] GET /options/finance/generalledger/accounts/responsibilities/employees
+- [ ] GET /options/finance/generalledger/accounts/responsibilities/approvallevels
+- [ ] PUT /finance/generalledger/accounts/{acct_code}/responsibilities/{source_flg}/{user_code}
+- [ ] DELETE /finance/generalledger/accounts/{acct_code}/responsibilities/{source_flg}/{user_code}
+- [ ] GET /options/finance/generalledger/journals/types
+- [ ] GET /options/finance/generalledger/journals/glaccounts
+- [ ] GET /options/finance/generalledger/journals/taxcodes
+- [ ] GET /options/finance/generalledger/journals/yearsperiods
+- [ ] GET /finance/generalledger/journals
+- [ ] POST /finance/generalledger/journals/tax
+- [ ] PUT /finance/generalledger/journals/tax/{jour_num}
+- [ ] POST /finance/generalledger/journals/general
+- [ ] PUT /finance/generalledger/journals/general/{jour_num}
+- [ ] GET /finance/accountspayable/credits
+- [ ] POST /finance/accountspayable/credits
+- [ ] GET /finance/accountspayable/credits/{debit_num}
+- [ ] PUT /finance/accountspayable/credits/{debit_num}
+- [ ] POST /finance/accountspayable/credits/{debit_num}/apply
+- [ ] POST /finance/accountspayable/credits/{debit_num}/unapply
+- [ ] GET /finance/accountspayable/credits/{debit_num}/attachments
+- [ ] POST /finance/accountspayable/credits/{debit_num}/attachments
+- [ ] GET /finance/accountspayable/credits/{debit_num}/attachments/{attach_id}
+- [ ] DELETE /finance/accountspayable/credits/{debit_num}/attachments/{attach_id}
+- [ ] GET /options/finance/accountspayable/credits/taxcodes
+- [ ] GET /options/finance/accountspayable/credits/yearsperiods
+- [ ] GET /options/finance/accountspayable/credits/glaccounts
+- [ ] GET /options/finance/accountspayable/credits/suppliers
+- [ ] GET /finance/accountspayable/invoices
+- [ ] GET /options/finance/accountspayable/invoices/yearsperiods
+- [ ] GET /options/finance/accountspayable/invoices/glaccounts
+- [ ] GET /options/finance/accountspayable/invoices/termcodes
+- [ ] GET /options/finance/accountspayable/invoices/taxcodes
+- [ ] GET /options/finance/accountspayable/invoices/holdcodes
+- [ ] GET /options/finance/accountspayable/invoices/approvers
+- [ ] GET /finance/accountspayable/invoices/{vouch_code}/holdpayment
+- [ ] PUT /finance/accountspayable/invoices/{vouch_code}/holdpayment
+- [ ] POST /finance/accountspayable/invoices/purchaseorder
+- [ ] POST /finance/accountspayable/invoices/generalledger
+- [ ] PUT /finance/accountspayable/invoices/generalledger/{vouch_code}
+- [ ] PUT /finance/accountspayable/invoices/purchaseorder/{vouch_code}
+- [ ] POST /finance/accountspayable/invoices/purchaseorder/{vouch_code}/cancel
+- [ ] POST /finance/accountspayable/invoices/generalledger/{vouch_code}/cancel
+- [ ] GET /finance/accountspayable/invoices/purchaseorder/{vouch_code}/attachments
+- [ ] POST /finance/accountspayable/invoices/purchaseorder/{vouch_code}/attachments
+- [ ] GET /finance/accountspayable/invoices/purchaseorder/{vouch_code}/attachments/{attach_id}
+- [ ] DELETE /finance/accountspayable/invoices/purchaseorder/{vouch_code}/attachments/{attach_id}
+- [ ] GET /finance/accountspayable/invoices/{vouch_code}
+- [ ] GET /finance/accountspayable/suppliers
+- [ ] POST /finance/accountspayable/suppliers
+- [ ] GET /finance/accountspayable/suppliers/{vend_code}
+- [ ] PUT /finance/accountspayable/suppliers/{vend_code}
+- [ ] PATCH /finance/accountspayable/suppliers/{vend_code}
+- [ ] DELETE /finance/accountspayable/suppliers/{vend_code}
+- [ ] GET /finance/accountspayable/suppliers/{vend_code}/contacts
+- [ ] PUT /finance/accountspayable/suppliers/{vend_code}/contacts
+- [ ] PATCH /finance/accountspayable/suppliers/{vend_code}/contacts
+- [ ] GET /finance/accountspayable/suppliers/{vend_code}/accountinformation
+- [ ] PUT /finance/accountspayable/suppliers/{vend_code}/accountinformation
+- [ ] PATCH /finance/accountspayable/suppliers/{vend_code}/accountinformation
+- [ ] GET /finance/accountspayable/suppliers/{vend_code}/paymentinformation
+- [ ] PUT /finance/accountspayable/suppliers/{vend_code}/paymentinformation
+- [ ] PATCH /finance/accountspayable/suppliers/{vend_code}/paymentinformation
+- [ ] GET /finance/accountspayable/suppliers/{vend_code}/creditstatus
+- [ ] PUT /finance/accountspayable/suppliers/{vend_code}/creditstatus
+- [ ] GET /finance/accountspayable/suppliers/{vend_code}/notes
+- [ ] POST /finance/accountspayable/suppliers/{vend_code}/notes
+- [ ] GET /finance/accountspayable/suppliers/{vend_code}/notes/{note_uid}
+- [ ] PUT /finance/accountspayable/suppliers/{vend_code}/notes/{note_uid}
+- [ ] PATCH /finance/accountspayable/suppliers/{vend_code}/notes/{note_uid}
+- [ ] DELETE /finance/accountspayable/suppliers/{vend_code}/notes/{note_uid}
+- [ ] GET /finance/accountspayable/suppliers/{vend_code}/notes/{note_uid}/attachments
+- [ ] POST /finance/accountspayable/suppliers/{vend_code}/notes/{note_uid}/attachments
+- [ ] GET /finance/accountspayable/suppliers/{vend_code}/notes/{note_uid}/attachments/{attach_id}
+- [ ] DELETE /finance/accountspayable/suppliers/{vend_code}/notes/{note_uid}/attachments/{attach_id}
+- [ ] GET /options/finance/accountspayable/suppliers/types
+- [ ] GET /options/finance/accountspayable/suppliers/termcodes
+- [ ] GET /options/finance/accountspayable/suppliers/taxcodes
+- [ ] GET /options/finance/accountspayable/suppliers/holdcodes
+- [ ] GET /options/finance/accountspayable/suppliers/glaccounts
+- [ ] GET /options/finance/accountspayable/suppliers/bankaccounts
+- [ ] GET /options/finance/accountspayable/suppliers/notecategories
+- [ ] GET /employees/{emp_code}
+- [ ] PUT /employees/{emp_code}
+- [ ] PATCH /employees/{emp_code}
+- [ ] GET /employees
+- [ ] POST /employees
+- [ ] GET /options/employees/countries
+- [ ] GET /options/employees/statuses
+- [ ] GET /options/employees/genders
+- [ ] GET /options/employees/indigenoustypes
+- [ ] GET /options/employees/mainactivities
+- [ ] GET /options/employees/maritalstatuses
+- [ ] GET /options/employees/terminationreasons
+- [ ] GET /options/employees/titles
+- [ ] GET /options/employees/vendors
+- [ ] GET /employees/{emp_code}/notes/standard
+- [ ] POST /employees/{emp_code}/notes/standard
+- [ ] GET /employees/{emp_code}/notes/standard/{note_uid}
+- [ ] PUT /employees/{emp_code}/notes/standard/{note_uid}
+- [ ] PATCH /employees/{emp_code}/notes/standard/{note_uid}
+- [ ] DELETE /employees/{emp_code}/notes/standard/{note_uid}
+- [ ] GET /employees/{emp_code}/notes/standard/{note_uid}/attachments
+- [ ] POST /employees/{emp_code}/notes/standard/{note_uid}/attachments
+- [ ] GET /employees/{emp_code}/notes/standard/{note_uid}/attachments/{attach_id}
+- [ ] DELETE /employees/{emp_code}/notes/standard/{note_uid}/attachments/{attach_id}
+- [ ] GET /employees/{emp_code}/notes/confidential
+- [ ] POST /employees/{emp_code}/notes/confidential
+- [ ] GET /employees/{emp_code}/notes/confidential/{note_uid}
+- [ ] PUT /employees/{emp_code}/notes/confidential/{note_uid}
+- [ ] PATCH /employees/{emp_code}/notes/confidential/{note_uid}
+- [ ] DELETE /employees/{emp_code}/notes/confidential/{note_uid}
+- [ ] GET /employees/{emp_code}/notes/confidential/{note_uid}/attachments
+- [ ] POST /employees/{emp_code}/notes/confidential/{note_uid}/attachments
+- [ ] GET /employees/{emp_code}/notes/confidential/{note_uid}/attachments/{attach_id}
+- [ ] DELETE /employees/{emp_code}/notes/confidential/{note_uid}/attachments/{attach_id}
+- [ ] GET /options/employees/notes/categories
+- [ ] GET /employees/{emp_code}/pdactivities
+- [ ] POST /employees/{emp_code}/pdactivities
+- [ ] GET /employees/{emp_code}/pdactivities/{pdact_num}
+- [ ] PUT /employees/{emp_code}/pdactivities/{pdact_num}
+- [ ] PATCH /employees/{emp_code}/pdactivities/{pdact_num}
+- [ ] DELETE /employees/{emp_code}/pdactivities/{pdact_num}
+- [ ] GET /employees/{emp_code}/pdactivities/{pdact_num}/attachments/{field_number}/{attach_id}
+- [ ] DELETE /employees/{emp_code}/pdactivities/{pdact_num}/attachments/{field_number}/{attach_id}
+- [ ] POST /employees/{emp_code}/pdactivities/{pdact_num}/attachments/{field_number}
+- [ ] GET /options/employees/pdactivities/providers
+- [ ] GET /options/employees/pdactivities/statuses
+- [ ] GET /options/employees/pdactivities/types
+- [ ] GET /options/employees/pdactivities/udfields
+- [ ] GET /employees/photo/changes
+- [ ] GET /employees/{emp_code}/photo
+- [ ] POST /employees/{emp_code}/photo
+- [ ] GET /employees/{emp_code}/qualifications
+- [ ] POST /employees/{emp_code}/qualifications
+- [ ] GET /employees/{emp_code}/qualifications/{qual_uid}
+- [ ] PUT /employees/{emp_code}/qualifications/{qual_uid}
+- [ ] PATCH /employees/{emp_code}/qualifications/{qual_uid}
+- [ ] DELETE /employees/{emp_code}/qualifications/{qual_uid}
+- [ ] GET /employees/{emp_code}/qualifications/{qual_uid}/attachments
+- [ ] POST /employees/{emp_code}/qualifications/{qual_uid}/attachments
+- [ ] GET /employees/{emp_code}/qualifications/{qual_uid}/attachments/{attach_id}
+- [ ] DELETE /employees/{emp_code}/qualifications/{qual_uid}/attachments/{attach_id}
+- [ ] GET /options/employees/qualifications/categories
+- [ ] GET /options/employees/qualifications/institutions
+- [ ] GET /options/employees/udareas
+- [ ] GET /options/employees/udareas/{area_code}
+- [ ] GET /employees/{emp_code}/udareas
+- [ ] GET /employees/{emp_code}/udareas/{area_code}
+- [ ] POST /employees/{emp_code}/udareas/{area_code}
+- [ ] PUT /employees/{emp_code}/udareas/{area_code}
+- [ ] PATCH /employees/{emp_code}/udareas/{area_code}
+- [ ] DELETE /employees/{emp_code}/udareas/{area_code}
+- [ ] GET /employees/{emp_code}/udareas/{area_code}/attachments/{field_number}/{attach_id}
+- [ ] DELETE /employees/{emp_code}/udareas/{area_code}/attachments/{field_number}/{attach_id}
+- [ ] POST /employees/{emp_code}/udareas/{area_code}/attachments/{field_number}
+- [ ] GET /assessment/activities/{year}/{semester}
+- [ ] GET /assessment/activities/{activity_id}/students
+- [ ] GET /assessment/activities/{activity_id}/students/{stud_code}/results
+- [ ] PUT /assessment/activities/{activity_id}/students/{stud_code}/results
+---
+## Structs (Schemas)
+- [ ] AbsenceReasonOptionsResponse
+- [ ] AccountBalanceResponse
+- [ ] AccountBudgetResponse
+- [ ] AccountReportingCodesResponse
+- [ ] AccountResponsibilityResponse
+- [ ] AccountTransactionResponse
+- [ ] ActivityResponse
+- [ ] ActivityStudentResponse
+- [ ] ActivityStudentResultsResponse
+- [ ] AddAccountBudgetRequest
+- [ ] AddAccountResponsibilityRequest
+- [ ] AddEmployeeConfidentialNoteRequest
+- [ ] AddEmployeePDActivityRequest
+- [ ] AddEmployeeQualificationRequest
+- [ ] AddEmployeeRequest
+- [ ] AddEmployeeStandardNoteRequest
+- [ ] AddEmployeeUDAreaRequest
+- [ ] AddGeneralJournalRequest
+- [ ] AddGeneralJournalResponse
+- [ ] AddGeneralLedgerAccountRequest
+- [ ] AddPurchaseOrderDeliveryDetailsRequest
+- [ ] AddPurchaseOrderGLLineRequest
+- [ ] AddPurchaseOrderRequest
+- [ ] AddPurchaseOrderUDFieldsRequest
+- [ ] AddPurchaseOrderUDFlagsRequest
+- [ ] AddPurchaseOrderUDTextRequest
+- [ ] AddStudentConfidentialNoteRequest
+- [ ] AddStudentIllnessRequest
+- [ ] AddStudentImmunisationRequest
+- [ ] AddStudentMedicalConditionNoteRequest
+- [ ] AddStudentMedicalConditionRequest
+- [ ] AddStudentMedicalConfidentialNoteRequest
+- [ ] AddStudentMedicalStandardNoteRequest
+- [ ] AddStudentMedicalSupplementaryRequest
+- [ ] AddStudentMedicationNoteRequest
+- [ ] AddStudentMedicationRequest
+- [ ] AddStudentMedicationScheduleRequest
+- [ ] AddStudentPractitionerRequest
+- [ ] AddStudentStandardNoteRequest
+- [ ] AddStudentUDAreaRequest
+- [ ] AddSupplierCreditGLLineRequest
+- [ ] AddSupplierCreditRequest
+- [ ] AddSupplierInvoiceGeneralLedgerLineRequest
+- [ ] AddSupplierInvoiceGeneralLedgerRequest
+- [ ] AddSupplierInvoiceGeneralLedgerResponse
+- [ ] AddSupplierInvoicePurchaseOrderLineRequest
+- [ ] AddSupplierInvoicePurchaseOrderRequest
+- [ ] AddSupplierInvoicePurchaseOrderResponse
+- [ ] AddSupplierNoteRequest
+- [ ] AddSupplierRequest
+- [ ] AddTaxJournalRequest
+- [ ] AddTaxJournalResponse
+- [ ] AllowedCompanyDetails
+- [ ] ApplySupplierCreditRequest
+- [ ] AssessmentCriteriaResponse
+- [ ] AssessmentMethodResponse
+- [ ] AsthmaManagementResponse
+- [ ] AttachmentDetails
+- [ ] BudgetPeriod
+- [ ] CancelSupplierInvoiceGeneralLedgerResponse
+- [ ] CancelSupplierInvoicePurchaseOrderResponse
+- [ ] CodeFormatRulesResponse
+- [ ] CodeStructureResponse
+- [ ] CreditApplicationLineRequest
+- [ ] DaysRequest
+- [ ] DaysResponse
+- [ ] EmployeeConfidentialNoteResponse
+- [ ] EmployeeLeaveBalanceResponse
+- [ ] EmployeePDActivityResponse
+- [ ] EmployeePhotoChange
+- [ ] EmployeePhotoChangesResponse
+- [ ] EmployeeQualificationResponse
+- [ ] EmployeeResponse
+- [ ] EmployeeStandardNoteResponse
+- [ ] EmployeeUDAreaResponse
+- [ ] ExceptionDetails
+- [ ] FileDetails
+- [ ] FileResponse
+- [ ] GLAccountOptionsResponse
+- [ ] GLLineResponse
+- [ ] GeneralLedgerAccountResponse
+- [ ] GetUserTokenRequest
+- [ ] IFormFile
+- [ ] InvoiceGeneralLedgerAssigneeRequest
+- [ ] InvoicePurchaseOrderAssigneeRequest
+- [ ] JournalResponse
+- [ ] JournalTypeOptionsResponse
+- [ ] NewAttachmentResponse
+- [ ] ObjectiveResult
+- [ ] Operation
+- [ ] OperationType
+- [ ] OptionsResponse
+- [ ] OptionsResponseActive
+- [ ] PDActivityUDAttachmentResponse
+- [ ] PDActivityUDCodeResponse
+- [ ] PDActivityUDCodeUpdateRequest
+- [ ] PDActivityUDFieldsRequest
+- [ ] PDActivityUDFlagResponse
+- [ ] PDActivityUDFlagUpdateRequest
+- [ ] PDActivityUDTextResponse
+- [ ] PDActivityUDTextUpdateRequest
+- [ ] PDUDFieldsResponse
+- [ ] PeriodBalanceResponse
+- [ ] PeriodBudgetRequest
+- [ ] PeriodBudgetResponse
+- [ ] PurchaseOrderDeliveryDetailsResponse
+- [ ] PurchaseOrderGLLineResponse
+- [ ] PurchaseOrderResponse
+- [ ] PurchaseOrderSupplierDetailsResponse
+- [ ] PurchaseOrderUDFieldsResponse
+- [ ] PurchaseOrderUDFlagsResponse
+- [ ] PurchaseOrderUDTextResponse
+- [ ] ReportingCodeOptionsFieldDetails
+- [ ] ReportingCodeOptionsFieldReferenceValue
+- [ ] ReportingCodeResponse
+- [ ] RptCodes
+- [ ] SegmentResponse
+- [ ] StandardJournalLine
+- [ ] StudentAttendanceResponse
+- [ ] StudentCommunicationRulesCommunicationTypeResponse
+- [ ] StudentCommunicationRulesParentAddressResponse
+- [ ] StudentCommunicationRulesParentDetailsResponse
+- [ ] StudentCommunicationRulesParentNameResponse
+- [ ] StudentCommunicationRulesResponse
+- [ ] StudentConfidentialNoteResponse
+- [ ] StudentIllnessResponse
+- [ ] StudentImmunisationRegisterResponse
+- [ ] StudentImmunisationResponse
+- [ ] StudentMceecdyaResponse
+- [ ] StudentMedicalConditionNoteResponse
+- [ ] StudentMedicalConditionResponse
+- [ ] StudentMedicalConfidentialNoteResponse
+- [ ] StudentMedicalStandardNoteResponse
+- [ ] StudentMedicalSupplementaryResponse
+- [ ] StudentMedicationNoteResponse
+- [ ] StudentMedicationResponse
+- [ ] StudentMedicationScheduleResponse
+- [ ] StudentPhotoChange
+- [ ] StudentPhotoChangesResponse
+- [ ] StudentPractitionerResponse
+- [ ] StudentResponse
+- [ ] StudentStandardNoteResponse
+- [ ] StudentUDAreaAttachmentResponse
+- [ ] StudentUDAreaCodeRequest
+- [ ] StudentUDAreaCodeResponse
+- [ ] StudentUDAreaDateRequest
+- [ ] StudentUDAreaDateResponse
+- [ ] StudentUDAreaFieldsRequest
+- [ ] StudentUDAreaFieldsResponse
+- [ ] StudentUDAreaFlagRequest
+- [ ] StudentUDAreaFlagResponse
+- [ ] StudentUDAreaResponse
+- [ ] StudentUDAreaTextRequest
+- [ ] StudentUDAreaTextResponse
+- [ ] StudentUDFieldOptionResponse
+- [ ] StudentUDFieldsResponse
+- [ ] SupplierAccountInformationResponse
+- [ ] SupplierContactsResponse
+- [ ] SupplierCreditAppliedInvoiceResponse
+- [ ] SupplierCreditApplyInvoicesResponse
+- [ ] SupplierCreditGLLineResponse
+- [ ] SupplierCreditInvoiceDetailsResponse
+- [ ] SupplierCreditResponse
+- [ ] SupplierCreditStatusResponse
+- [ ] SupplierCreditUnapplyInvoiceDetailsResponse
+- [ ] SupplierCreditUnapplyInvoicesResponse
+- [ ] SupplierInvoiceCreditResponse
+- [ ] SupplierInvoiceHoldPaymentAssigneeResponse
+- [ ] SupplierInvoiceHoldPaymentResponse
+- [ ] SupplierInvoiceLineResponse
+- [ ] SupplierInvoiceResponse
+- [ ] SupplierNoteResponse
+- [ ] SupplierPaymentInfoResponse
+- [ ] SupplierResponse
+- [ ] TaxJournalLine
+- [ ] Triggers
+- [ ] UDAreaAttachmentResponse
+- [ ] UDAreaCodeRequest
+- [ ] UDAreaCodeResponse
+- [ ] UDAreaDateRequest
+- [ ] UDAreaDateResponse
+- [ ] UDAreaFieldsRequest
+- [ ] UDAreaFieldsResponse
+- [ ] UDAreaFlagRequest
+- [ ] UDAreaFlagResponse
+- [ ] UDAreaOptionsResponse
+- [ ] UDAreaTextRequest
+- [ ] UDAreaTextResponse
+- [ ] UDAttachmentFieldDetails
+- [ ] UDCodeFieldDetails
+- [ ] UDCodeRequest
+- [ ] UDCodeResponse
+- [ ] UDFieldDetails
+- [ ] UDFieldOptionsResponse
+- [ ] UDFieldReferenceValue
+- [ ] UDFieldTypes
+- [ ] UDFieldsRequest
+- [ ] UDFieldsResponse
+- [ ] UDFlagRequest
+- [ ] UDFlagResponse
+- [ ] UDTextRequest
+- [ ] UDTextResponse
+- [ ] UdFields
+- [ ] UdText
+- [ ] UpdateAccountBudgetRequest
+- [ ] UpdateAccountReportingCodesRequest
+- [ ] UpdateAccountResponsibilityRequest
+- [ ] UpdateActivityStudentResultsRequest
+- [ ] UpdateAsthmaManagementRequest
+- [ ] UpdateContactDetails
+- [ ] UpdateEmployeeConfidentialNoteRequest
+- [ ] UpdateEmployeePDActivityRequest
+- [ ] UpdateEmployeeQualificationRequest
+- [ ] UpdateEmployeeRequest
+- [ ] UpdateEmployeeStandardNoteRequest
+- [ ] UpdateEmployeeUDAreaRequest
+- [ ] UpdateGeneralJournalRequest
+- [ ] UpdateGeneralLedgerAccountRequest
+- [ ] UpdatePurchaseOrderDeliveryDetailsRequest
+- [ ] UpdatePurchaseOrderGLLineRequest
+- [ ] UpdatePurchaseOrderRequest
+- [ ] UpdatePurchaseOrderUDFieldsRequest
+- [ ] UpdatePurchaseOrderUDFlagsRequest
+- [ ] UpdatePurchaseOrderUDTextRequest
+- [ ] UpdateStudentConfidentialNoteRequest
+- [ ] UpdateStudentIllnessRequest
+- [ ] UpdateStudentImmunisationRegisterRequest
+- [ ] UpdateStudentImmunisationRequest
+- [ ] UpdateStudentMceecdyaRequest
+- [ ] UpdateStudentMedicalConditionNoteRequest
+- [ ] UpdateStudentMedicalConditionRequest
+- [ ] UpdateStudentMedicalConfidentialNoteRequest
+- [ ] UpdateStudentMedicalStandardNoteRequest
+- [ ] UpdateStudentMedicalSupplementaryRequest
+- [ ] UpdateStudentMedicationNoteRequest
+- [ ] UpdateStudentMedicationRequest
+- [ ] UpdateStudentMedicationScheduleRequest
+- [ ] UpdateStudentPractitionerRequest
+- [ ] UpdateStudentRequest
+- [ ] UpdateStudentStandardNoteRequest
+- [ ] UpdateStudentUDAreaRequest
+- [ ] UpdateStudentUDFieldsRequest
+- [ ] UpdateSupplierAccountInformationRequest
+- [ ] UpdateSupplierContactsRequest
+- [ ] UpdateSupplierCreditGLLineRequest
+- [ ] UpdateSupplierCreditRequest
+- [ ] UpdateSupplierCreditStatusRequest
+- [ ] UpdateSupplierInvoiceGeneralLedgerLineRequest
+- [ ] UpdateSupplierInvoiceGeneralLedgerRequest
+- [ ] UpdateSupplierInvoiceHoldPaymentAssigneeRequest
+- [ ] UpdateSupplierInvoiceHoldPaymentRequest
+- [ ] UpdateSupplierInvoicePurchaseOrderLineRequest
+- [ ] UpdateSupplierInvoicePurchaseOrderRequest
+- [ ] UpdateSupplierNoteRequest
+- [ ] UpdateSupplierPaymentInfoRequest
+- [ ] UpdateSupplierRequest
+- [ ] UpdateTaxJournalRequest
+- [ ] UserTokenResponse
+- [ ] UsualSigns
+- [ ] ValidationExceptionDetails
+- [ ] ValidationResponse
+- [ ] WorseningSigns
+- [ ] YearPeriodOptionsResponse
+  "contact_details"

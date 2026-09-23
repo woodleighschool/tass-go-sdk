@@ -29,7 +29,29 @@ const (
 type TokenResponse struct {
 	Token               string             `json:"token"`
 	TokenExpiryDate     time.Time          `json:"token_expiry_date"`
-	AllowedCompanyCodes []TokenCompanyCode `json:"allowed_company_codes"`
+	AllowedCompanyCodes []TokenCompanyCode `json:"allowed_companies"`
+}
+
+func (r *TokenResponse) UnmarshalJSON(b []byte) error {
+	var response struct {
+		Token               string             `json:"token"`
+		TokenExpiryDate     string             `json:"token_expiry_date"`
+		AllowedCompanyCodes []TokenCompanyCode `json:"allowed_companies"`
+	}
+
+	if err := json.Unmarshal(b, &response); err != nil {
+		return err
+	}
+	date, err := time.Parse("2006-01-02T03:04:05.000", response.TokenExpiryDate)
+	if err != nil {
+		return err
+	}
+
+	r.Token = response.Token
+	r.TokenExpiryDate = date
+	r.AllowedCompanyCodes = response.AllowedCompanyCodes
+
+	return nil
 }
 
 type TokenCompanyCode struct {
@@ -42,7 +64,13 @@ type Config struct {
 	CompanyCode  string
 	ClientKey    string
 	ClientSecret string
-	CommTypeCode string
+	Modules      ModulesConfig
+}
+
+type ModulesConfig struct {
+	Student  bool
+	Employee bool
+	Finance  bool
 }
 
 type Client struct {
@@ -55,7 +83,6 @@ type Client struct {
 type transport struct {
 	apiEndpoint  string
 	companyCode  string
-	commTypeCode string
 	clientKey    string
 	clientSecret string
 	httpClient   *http.Client
@@ -85,11 +112,11 @@ func NewClient(c any) (*Client, error) {
 	if err != nil || !validCompanyCode {
 		return nil, fmt.Errorf("tass company code must be a 2 digit number")
 	}
-	apiEndpoint := strings.TrimRight(config.URL, "/") + "/api/" + config.CompanyCode
+	apiEndpoint := strings.TrimRight(config.URL, "/") + "/api"
 	return newClient(
 		apiEndpoint,
 		config.CompanyCode,
-		config.CommTypeCode,
+		config.Modules,
 		config.ClientKey,
 		config.ClientSecret,
 		&http.Client{Timeout: defaultHTTPTimeout},
@@ -100,26 +127,40 @@ func NewClient(c any) (*Client, error) {
 func newClient(
 	apiEndpoint string,
 	companyCode string,
-	commTypeCode string,
+	moduleConfig ModulesConfig,
 	clientKey string,
 	clientSecret string,
 	httpClient *http.Client,
 	now func() time.Time,
 ) *Client {
-	return &Client{
-		transport: &transport{
-			apiEndpoint:  strings.TrimRight(apiEndpoint, "/"),
-			companyCode:  companyCode,
-			commTypeCode: commTypeCode,
-			clientKey:    clientKey,
-			clientSecret: clientSecret,
-			httpClient:   httpClient,
-			now:          now,
-		},
+	client := Client{}
+
+	client.transport = &transport{
+		apiEndpoint:  strings.TrimRight(apiEndpoint, "/"),
+		companyCode:  companyCode,
+		clientKey:    clientKey,
+		clientSecret: clientSecret,
+		httpClient:   httpClient,
+		now:          now,
 	}
+
+	if moduleConfig.Employee {
+		c := tassemployee.NewClient(client.transport)
+		client.Employee = &c
+	}
+	if moduleConfig.Student {
+		c := tassstudent.NewClient(client.transport)
+		client.Student = &c
+	}
+	if moduleConfig.Finance {
+		c := tassfinance.NewClient(client.transport)
+		client.Finance = &c
+	}
+
+	return &client
 }
 
-func (c *Client) request(
+func (t *transport) Request(
 	ctx context.Context,
 	method string,
 	path string,
@@ -132,11 +173,11 @@ func (c *Client) request(
 		return nil, err
 	}
 	for attempt := range 2 {
-		token, tokenErr := c.refreshToken(ctx)
+		token, tokenErr := t.refreshToken(ctx)
 		if tokenErr != nil {
 			return nil, tokenErr
 		}
-		requestURL := c.transport.apiEndpoint + path
+		requestURL := fmt.Sprintf("%s/%s%s", t.apiEndpoint, t.companyCode, path)
 		if len(query) != 0 {
 			requestURL += "?" + query.Encode()
 		}
@@ -147,7 +188,7 @@ func (c *Client) request(
 		request.Header.Set("Accept", "application/json")
 		request.Header.Set("Authorization", "Bearer "+token)
 
-		response, requestErr := c.transport.httpClient.Do(request)
+		response, requestErr := t.httpClient.Do(request)
 		if requestErr != nil {
 			return nil, fmt.Errorf("call tass api: %w", requestErr)
 		}
@@ -160,18 +201,18 @@ func (c *Client) request(
 			return nil, fmt.Errorf("close tass response: %w", closeErr)
 		}
 		if response.StatusCode == http.StatusUnauthorized && attempt == 0 {
-			c.invalidateToken(token)
+			t.invalidateToken(token)
 			continue
 		}
 		if !containsStatus(successCodes, response.StatusCode) {
-			return nil, NewHTTPError(response.StatusCode, body)
+			return nil, NewHTTPError(requestURL, response.StatusCode, body)
 		}
 		return body, nil
 	}
 	return nil, fmt.Errorf("tass authentication failed after token refresh")
 }
 
-func (c *Client) upload(
+func (t *transport) Upload(
 	ctx context.Context,
 	path string,
 	payload tasscommon.FileRequest,
@@ -179,11 +220,11 @@ func (c *Client) upload(
 ) ([]byte, error) {
 	encoded := encodeFormPayload(payload)
 	for attempt := range 2 {
-		token, tokenErr := c.refreshToken(ctx)
+		token, tokenErr := t.refreshToken(ctx)
 		if tokenErr != nil {
 			return nil, tokenErr
 		}
-		requestURL := c.transport.apiEndpoint + path
+		requestURL := t.apiEndpoint + path
 		request, requestErr := http.NewRequestWithContext(ctx, http.MethodPost, requestURL, strings.NewReader(encoded))
 		if requestErr != nil {
 			return nil, fmt.Errorf("create tass api request: %w", requestErr)
@@ -194,7 +235,7 @@ func (c *Client) upload(
 		request.Header.Set("Accept", "application/json")
 		request.Header.Set("Authorization", "Bearer "+token)
 
-		response, requestErr := c.transport.httpClient.Do(request)
+		response, requestErr := t.httpClient.Do(request)
 		if requestErr != nil {
 			return nil, fmt.Errorf("call tass api: %w", requestErr)
 		}
@@ -207,31 +248,31 @@ func (c *Client) upload(
 			return nil, fmt.Errorf("close tass response: %w", closeErr)
 		}
 		if response.StatusCode == http.StatusUnauthorized && attempt == 0 {
-			c.invalidateToken(token)
+			t.invalidateToken(token)
 			continue
 		}
 		if !containsStatus(successCodes, response.StatusCode) {
-			return nil, NewHTTPError(response.StatusCode, body)
+			return nil, NewHTTPError(requestURL, response.StatusCode, body)
 		}
 		return body, nil
 	}
 	return nil, fmt.Errorf("tass authentication failed after token refresh")
 }
 
-func (c *Client) refreshToken(ctx context.Context) (string, error) {
-	c.transport.tokenMu.Lock()
-	defer c.transport.tokenMu.Unlock()
+func (t *transport) refreshToken(ctx context.Context) (string, error) {
+	t.tokenMu.Lock()
+	defer t.tokenMu.Unlock()
 
-	if c.transport.token != "" && c.transport.now().Add(tokenRefreshLeeway).Before(c.transport.tokenExpiryDate) {
-		return c.transport.token, nil
+	if t.token != "" && t.now().Add(tokenRefreshLeeway).Before(t.tokenExpiryDate) {
+		return t.token, nil
 	}
 
 	authPayload, err := json.Marshal(struct {
 		ClientKey    string `json:"ClientKey"`
 		ClientSecret string `json:"ClientSecret"`
 	}{
-		ClientKey:    c.transport.clientKey,
-		ClientSecret: c.transport.clientSecret,
+		ClientKey:    t.clientKey,
+		ClientSecret: t.clientSecret,
 	})
 	if err != nil {
 		return "", fmt.Errorf("encode TASS token request: %w", err)
@@ -240,7 +281,7 @@ func (c *Client) refreshToken(ctx context.Context) (string, error) {
 	request, err := http.NewRequestWithContext(
 		ctx,
 		http.MethodPost,
-		c.transport.apiEndpoint+"/users",
+		t.apiEndpoint+"/users",
 		bytes.NewBuffer(authPayload),
 	)
 	if err != nil {
@@ -248,7 +289,7 @@ func (c *Client) refreshToken(ctx context.Context) (string, error) {
 	}
 	request.Header.Set("Accept", "application/json")
 	request.Header.Set("Content-Type", "application/json")
-	response, err := c.transport.httpClient.Do(request)
+	response, err := t.httpClient.Do(request)
 	if err != nil {
 		return "", fmt.Errorf("request TASS token: %w", err)
 	}
@@ -261,7 +302,7 @@ func (c *Client) refreshToken(ctx context.Context) (string, error) {
 		if closeErr != nil {
 			return "", fmt.Errorf("close TASS token error response: %w", closeErr)
 		}
-		return "", fmt.Errorf("request TASS token: %w", NewHTTPError(response.StatusCode, body))
+		return "", fmt.Errorf("request TASS token: %w", NewHTTPError(t.apiEndpoint+"/users", response.StatusCode, body))
 	}
 	var result TokenResponse
 	decodeErr := json.NewDecoder(response.Body).Decode(&result)
@@ -272,25 +313,25 @@ func (c *Client) refreshToken(ctx context.Context) (string, error) {
 	if closeErr != nil {
 		return "", fmt.Errorf("close TASS token response: %w", closeErr)
 	}
-	if result.Token == "" || result.TokenExpiryDate.Before(c.transport.now()) {
+	if result.Token == "" || result.TokenExpiryDate.Before(t.now()) {
 		return "", fmt.Errorf("decode TASS token: token and expiry in the future are required")
 	}
 	if !slices.ContainsFunc(result.AllowedCompanyCodes, func(allowedCompanyCode TokenCompanyCode) bool {
-		return allowedCompanyCode.CompanyCode == c.transport.companyCode
+		return allowedCompanyCode.CompanyCode == t.companyCode
 	}) {
-		return "", fmt.Errorf("decode TASS token: company code %s is not in codes returned by API: %s", c.transport.companyCode, result.AllowedCompanyCodes)
+		return "", fmt.Errorf("decode TASS token: company code %s is not in codes returned by API: %s", t.companyCode, result.AllowedCompanyCodes)
 	}
-	c.transport.token = result.Token
-	c.transport.tokenExpiryDate = result.TokenExpiryDate
-	return c.transport.token, nil
+	t.token = result.Token
+	t.tokenExpiryDate = result.TokenExpiryDate
+	return t.token, nil
 }
 
-func (c *Client) invalidateToken(token string) {
-	c.transport.tokenMu.Lock()
-	defer c.transport.tokenMu.Unlock()
-	if c.transport.token == token {
-		c.transport.token = ""
-		c.transport.tokenExpiryDate = time.Time{}
+func (t *transport) invalidateToken(token string) {
+	t.tokenMu.Lock()
+	defer t.tokenMu.Unlock()
+	if t.token == token {
+		t.token = ""
+		t.tokenExpiryDate = time.Time{}
 	}
 }
 

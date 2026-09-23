@@ -9,22 +9,23 @@ import (
 const MaxErrorBodyBytes = 4 << 10
 
 type httpError struct {
-	status int
-	body   string
+	requestURL string
+	status     int
+	body       string
 }
 
 func (e *httpError) Error() string {
 	if e.body == "" {
 		return fmt.Sprintf("TASS API returned HTTP %d", e.status)
 	}
-	return fmt.Sprintf("TASS API returned HTTP %d: %s", e.status, e.body)
+	return fmt.Sprintf("TASS API %s returned HTTP %d: %s", e.requestURL, e.status, e.body)
 }
 
-func NewHTTPError(status int, body []byte) error {
+func NewHTTPError(url string, status int, body []byte) error {
 	if len(body) > MaxErrorBodyBytes {
 		body = body[:MaxErrorBodyBytes]
 	}
-	return &httpError{status: status, body: strings.TrimSpace(string(body))}
+	return &httpError{requestURL: url, status: status, body: strings.TrimSpace(string(body))}
 }
 
 func (c *Client) StatusCode(err error) (int, bool) {
