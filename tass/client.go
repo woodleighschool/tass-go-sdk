@@ -42,7 +42,7 @@ func (r *TokenResponse) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &response); err != nil {
 		return err
 	}
-	date, err := time.Parse("2006-01-02T03:04:05.000", response.TokenExpiryDate)
+	date, err := time.Parse("2006-01-02T15:04:05.000", response.TokenExpiryDate)
 	if err != nil {
 		return err
 	}

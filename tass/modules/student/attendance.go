@@ -12,7 +12,7 @@ import (
 // CODEGEN(none): op=GetAllStudentAttendances, path=/{cmpy_code}/students/attendance
 func (c *Client) GetAllStudentAttendances(ctx context.Context) ([]StudentAttendanceResponse, error) {
 	var result []StudentAttendanceResponse
-	body, err := c.t.Request(ctx, http.MethodGet, "/students/absences", nil, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, "/students/attendance", nil, nil, http.StatusOK)
 	if err != nil {
 		return nil, err
 	}

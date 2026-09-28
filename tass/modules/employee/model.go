@@ -129,13 +129,13 @@ type EmployeeStandardNoteResponse struct {
 
 type AddEmployeeStandardNoteRequest struct {
 	Category string `json:"note_cat" validate:"max=3"`                             // Must conform to GetAllEmployeeNoteCategoryOptions
-	Date     string `json:"note_date" validate:"datetime=2006-01-02T03:04:05.000"` // TODO: Confirm this works
+	Date     string `json:"note_date" validate:"datetime=2006-01-02T15:04:05.000"` // TODO: Confirm this works
 	Text     string `json:"note_text" validate:"max=4000"`
 }
 
 type UpdateEmployeeStandardNoteRequest struct {
 	Category string `json:"note_cat" validate:"max=3"`                             // Must conform to GetAllEmployeeNoteCategoryOptions
-	Date     string `json:"note_date" validate:"datetime=2006-01-02T03:04:05.000"` // TODO: Confirm this works
+	Date     string `json:"note_date" validate:"datetime=2006-01-02T15:04:05.000"` // TODO: Confirm this works
 	Text     string `json:"note_text" validate:"max=4000"`
 }
 

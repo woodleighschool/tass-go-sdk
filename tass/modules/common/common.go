@@ -14,9 +14,10 @@ func (d *DateTime) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &s); err != nil {
 		return fmt.Errorf("failed to unmarshal date")
 	}
-	t, err := time.Parse("2006-01-02T03:04:05.000", s)
+	s = truncate(s, 19) // Some times TASS returns 2 digits instead of 3 for milliseconds, we don't need it anyway so discard it.
+	t, err := time.Parse("2006-01-02T15:04:05", s)
 	if err != nil {
-		return fmt.Errorf("failed to parse date")
+		return fmt.Errorf("failed to parse date: %s", s)
 	}
 	*d = DateTime(t)
 	return nil
@@ -24,7 +25,7 @@ func (d *DateTime) UnmarshalJSON(b []byte) error {
 
 func (d DateTime) MarshalJSON() ([]byte, error) {
 	t := time.Time(d)
-	formatted := t.Format("2006-01-02T03:04:05.000")
+	formatted := t.Format("2006-01-02T15:04:05.000")
 	return json.Marshal(formatted)
 }
 
@@ -36,9 +37,10 @@ func (d *Date) UnmarshalJSON(b []byte) error {
 	if err := json.Unmarshal(b, &s); err != nil {
 		return fmt.Errorf("failed to unmarshal date")
 	}
+	s = truncate(s, 10)
 	t, err := time.Parse("2006-01-02", s)
 	if err != nil {
-		return fmt.Errorf("failed to parse date")
+		return fmt.Errorf("failed to parse date: %s", s)
 	}
 	*d = Date(t)
 	return nil

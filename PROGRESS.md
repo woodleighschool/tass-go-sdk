@@ -10,25 +10,25 @@ Progress for testing functions and structs
 - [ ] GET /options/students/attendance/campuses
 - [ ] GET /options/students/attendance/houses
 - [ ] GET /options/students/attendance/yeargroups
-- [ ] GET /students/{stud_code}/communicationrules
-- [ ] GET /students/{stud_code}/communicationrules/{commtype_code}
-- [ ] GET /students/communicationrules
-- [ ] GET /students/communicationrules/{commtype_code}
-- [ ] GET /options/students/communicationrules/genders
-- [ ] GET /options/students/communicationrules/types
-- [ ] GET /students
-- [ ] GET /students/{stud_code}
+- [x] GET /students/{stud_code}/communicationrules
+- [x] GET /students/{stud_code}/communicationrules/{commtype_code}
+- [x] GET /students/communicationrules
+- [x] GET /students/communicationrules/{commtype_code}
+- [x] GET /options/students/communicationrules/genders
+- [x] GET /options/students/communicationrules/types
+- [x] GET /students
+- [x] GET /students/{stud_code}
 - [ ] PUT /students/{stud_code}
 - [ ] PATCH /students/{stud_code}
 - [ ] GET /options/students/religions
-- [ ] GET /options/students/residencystatuses
-- [ ] GET /options/students/campuses
-- [ ] GET /options/students/feederschools
-- [ ] GET /options/students/houses
-- [ ] GET /options/students/yeargroups
-- [ ] GET /options/students/nextyearindicators
-- [ ] GET /options/students/comparativereportingtypes
-- [ ] GET /options/students/pctutorgroups
+- [x] GET /options/students/residencystatuses
+- [x] GET /options/students/campuses
+- [x] GET /options/students/feederschools
+- [x] GET /options/students/houses
+- [x] GET /options/students/yeargroups
+- [x] GET /options/students/nextyearindicators
+- [x] GET /options/students/comparativereportingtypes
+- [x] GET /options/students/pctutorgroups
 - [ ] GET /students/{stud_code}/mceecdya
 - [ ] PUT /students/{stud_code}/mceecdya
 - [ ] PATCH /students/{stud_code}/mceecdya

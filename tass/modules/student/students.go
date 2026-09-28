@@ -326,14 +326,14 @@ func (c *Client) DeleteStudentConfidentialNoteAttachment(ctx context.Context, st
 	return nil
 }
 
-// CODEGEN(none): op=GetStudentPhotoChanges, path=/{cmpy_code}/students/photos/changes
+// CODEGEN(none): op=GetStudentPhotoChanges, path=/{cmpy_code}/students/photo/changes
 func (c *Client) GetStudentPhotoChanges(ctx context.Context, changeKey string) (StudentPhotoChangesResponse, error) {
 	var result StudentPhotoChangesResponse
 	query, err := url.ParseQuery(fmt.Sprintf("change_key=%s", changeKey))
 	if err != nil {
 		return StudentPhotoChangesResponse{}, err
 	}
-	body, err := c.t.Request(ctx, http.MethodGet, "/students/photos/changes", query, nil, http.StatusOK)
+	body, err := c.t.Request(ctx, http.MethodGet, "/students/photo/changes", query, nil, http.StatusOK)
 	if err != nil {
 		return StudentPhotoChangesResponse{}, err
 	}
