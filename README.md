@@ -2,7 +2,7 @@
 
 [![Release](https://img.shields.io/github/v/release/woodleighschool/tass-go-sdk?display_name=tag&sort=semver)](https://github.com/woodleighschool/tass-go-sdk/releases/latest)
 [![CI](https://github.com/woodleighschool/tass-go-sdk/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/woodleighschool/tass-go-sdk/actions/workflows/ci.yaml)
-[![Go](https://img.shields.io/github/go-mod/go-version/woodleighschool/tass-go=sdk?logo=go)](https://github.com/woodleighschool/tass-go-sdk/blob/main/go.mod)
+[![Go](https://img.shields.io/github/go-mod/go-version/woodleighschool/tass-go-sdk?logo=go)](https://github.com/woodleighschool/tass-go-sdk/blob/main/go.mod)
 [![Container](https://img.shields.io/badge/container-ghcr.io-2496ED?logo=github&logoColor=white)](https://github.com/orgs/woodleighschool/packages/container/package/tass-go-sdk)
 [![License](https://img.shields.io/github/license/woodleighschool/tass-go-sdk)](https://github.com/woodleighschool/tass-go-sdk/blob/main/LICENSE)
 
