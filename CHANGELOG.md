@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/woodleighschool/tass-go-sdk/compare/0.1.1...0.1.2) (2026-09-28)
+
+
+### Miscellaneous Chores
+
+* Update README.md ([030904f](https://github.com/woodleighschool/tass-go-sdk/commit/030904f49b56f5ac78ec65b6ce907dfcd6978cdc))
+
 ## [0.1.1](https://github.com/woodleighschool/tass-go-sdk/compare/0.1.0...0.1.1) (2026-09-28)
 
 
