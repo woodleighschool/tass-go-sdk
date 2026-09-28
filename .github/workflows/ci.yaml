@@ -98,9 +98,6 @@ jobs:
       - name: Run dependency-free Go checks
         run: mise run test
 
-      - name: Build application
-        run: mise run build
-
   go-vulncheck:
     if: >-
       ${{ !(startsWith(github.head_ref, 'release-please--')
