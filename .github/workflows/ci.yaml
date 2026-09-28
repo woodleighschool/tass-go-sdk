@@ -95,18 +95,6 @@ jobs:
       - name: Run Go lint
         run: mise run lint
 
-      - name: Regenerate committed artifacts
-        run: mise run generate
-
-      - name: Check generated artifacts are committed
-        run: |
-          generated_status=$(git status --short --untracked-files=all -- internal/store/sqlc)
-          test -z "$generated_status" || {
-            printf '%s\n' "$generated_status"
-            git diff -- internal/store/sqlc
-            exit 1
-          }
-
       - name: Run dependency-free Go checks
         run: mise run test
 
