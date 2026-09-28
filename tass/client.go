@@ -268,8 +268,8 @@ func (t *transport) refreshToken(ctx context.Context) (string, error) {
 	}
 
 	authPayload, err := json.Marshal(struct {
-		ClientKey    string `json:"ClientKey"`
-		ClientSecret string `json:"ClientSecret"`
+		ClientKey    string `json:"ClientKey"`    // #nosec G117 - Necessary and limited in scope
+		ClientSecret string `json:"ClientSecret"` // #nosec G117 - Necessary and limited in scope
 	}{
 		ClientKey:    t.clientKey,
 		ClientSecret: t.clientSecret,
