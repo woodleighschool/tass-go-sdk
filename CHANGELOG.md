@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/woodleighschool/tass-go-sdk/compare/0.1.2...0.1.3) (2026-09-29)
+
+
+### Miscellaneous Chores
+
+* fixed goreleaser config ([58667fb](https://github.com/woodleighschool/tass-go-sdk/commit/58667fb5e302e9f8b8fc1960493b1cec895625b9))
+
 ## [0.1.2](https://github.com/woodleighschool/tass-go-sdk/compare/0.1.1...0.1.2) (2026-09-29)
 
 
