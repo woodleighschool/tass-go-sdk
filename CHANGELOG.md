@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.1.5](https://github.com/woodleighschool/tass-go-sdk/compare/v0.1.4...v0.1.5) (2026-10-03)
+
+
+### Continuous Integration
+
+* start renovate and release please runs in .github ([c472bf2](https://github.com/woodleighschool/tass-go-sdk/commit/c472bf218a6e832dbd1cb33d1a3a64ce1ff649a2))
+
+
+### Miscellaneous Chores
+
+* **github-action:** update action jdx/mise-action (v4.3.0 → v5.0.0) ([#14](https://github.com/woodleighschool/tass-go-sdk/issues/14)) ([7f39f67](https://github.com/woodleighschool/tass-go-sdk/commit/7f39f6723a8b8b311c063815bf500d003ad8da5d))
+* **mise:** update tool lefthook (2.1.14 → 2.1.15) ([#15](https://github.com/woodleighschool/tass-go-sdk/issues/15)) ([8886013](https://github.com/woodleighschool/tass-go-sdk/commit/88860131087361a02f4ef450e001e3ee8d5707f3))
+* **mise:** update tool oxfmt (0.70.0 → 0.71.0) ([#13](https://github.com/woodleighschool/tass-go-sdk/issues/13)) ([65a0cd4](https://github.com/woodleighschool/tass-go-sdk/commit/65a0cd485a1be5acca0d20baa41cde35bc07106b))
+
 ## [0.1.4](https://github.com/woodleighschool/tass-go-sdk/compare/v0.1.3...v0.1.4) (2026-09-29)
 
 
