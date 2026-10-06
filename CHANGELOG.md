@@ -34,21 +34,21 @@
 * some validation ([8cc5a06](https://github.com/woodleighschool/tass-go-sdk/commit/8cc5a0608a852ab14c3a49bdf8b964c8e03b0b42))
 * Update README.md ([030904f](https://github.com/woodleighschool/tass-go-sdk/commit/030904f49b56f5ac78ec65b6ce907dfcd6978cdc))
 
-## [0.1.3](https://github.com/woodleighschool/tass-go-sdk/compare/0.1.2...0.1.3) (2026-09-29)
+## [0.1.3](https://github.com/woodleighschool/tass-go-sdk/compare/v0.1.2...v0.1.3) (2026-09-29)
 
 
 ### Miscellaneous Chores
 
 * fixed goreleaser config ([58667fb](https://github.com/woodleighschool/tass-go-sdk/commit/58667fb5e302e9f8b8fc1960493b1cec895625b9))
 
-## [0.1.2](https://github.com/woodleighschool/tass-go-sdk/compare/0.1.1...0.1.2) (2026-09-29)
+## [0.1.2](https://github.com/woodleighschool/tass-go-sdk/compare/v0.1.1...v0.1.2) (2026-09-29)
 
 
 ### Miscellaneous Chores
 
 * Update README.md ([030904f](https://github.com/woodleighschool/tass-go-sdk/commit/030904f49b56f5ac78ec65b6ce907dfcd6978cdc))
 
-## [0.1.1](https://github.com/woodleighschool/tass-go-sdk/compare/0.1.0...0.1.1) (2026-09-28)
+## [0.1.1](https://github.com/woodleighschool/tass-go-sdk/compare/0.1.0...v0.1.1) (2026-09-28)
 
 
 ### Bug Fixes
