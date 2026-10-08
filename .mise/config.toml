@@ -29,10 +29,6 @@ run = "go mod tidy -diff"
 description = "Scan for known vulnerabilities with govulncheck"
 run = "govulncheck ./..."
 
-[tasks.generate]
-description = "Generate committed artifacts"
-run = "go tool sqlc generate -f sqlc.yaml"
-
 [tasks.test]
 description = "Run dependency-free Go checks"
 run = ["go vet ./...", "go test -race -count=1 ./..."]
