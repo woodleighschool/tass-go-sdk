@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.5](https://github.com/woodleighschool/tass-go-sdk/compare/v0.1.4...v0.1.5) (2026-10-09)
+
+
+### Bug Fixes
+
+* **build:** update Go toolchain and vulnerable dependencies ([ea3c52b](https://github.com/woodleighschool/tass-go-sdk/commit/ea3c52bdbead72f35b7acb3692702a0ddee703e9))
+
 ## [0.1.4](https://github.com/woodleighschool/tass-go-sdk/compare/v0.1.3...v0.1.4) (2026-09-29)
 
 
