@@ -53,12 +53,9 @@ fmt.Printf("Student name: %s", student.PreferredName)
 Mise owns the toolchain and repository checks:
 
 ```bash
-mise run build
-#mise run generate
 mise run test
 mise run lint
 mise run fmt-check
-mise run workflow-lint
 ```
 
 ## 📄 License
