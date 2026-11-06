@@ -3,23 +3,17 @@
 name: Release
 
 on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - "**.md"
   release:
     types:
       - published
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: ${{ github.event_name != 'release' }}
+  cancel-in-progress: false
 
 jobs:
   goreleaser:
     name: GoReleaser
-    if: ${{ github.event_name == 'release' }}
     runs-on: ubuntu-26.04
     timeout-minutes: 15
     permissions:
